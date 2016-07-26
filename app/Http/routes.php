@@ -25,27 +25,29 @@ Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
     route::get('pay', function () {
         return view('PaymentArea.bayar-user');
     });
-    route::post('pay', function () {
-        return redirect('/payment/method');
-    });
+    route::post('pay', 'RekeningController@inputrek');
     route::get('method', function () {
         return view('PaymentArea.bayar-method');
     });
-    route::post('method', function () {
-        return redirect('/payment/summary');
-    });
-    route::get('summary', function () {
-        return view('PaymentArea.bayar-summary');
-    });
-    route::post('summary', function () {
-        return view('PaymentArea.bayar-summary');
-    });
+    route::post('method', 'RekeningController@inputmethod');
+    route::get('summary', 'RekeningController@summary');
+    route::post('summary', 'RekeningController@finalize');
+
+    route::get('process/','GatewayController@show');
+    route::get('process/{id}','GatewayController@validateTransaction');
 });
 //================== ROUTE FOR AUTHENTICATION ==========================
 
+Route::get('login', 'Auth\AuthController@login');
+Route::post('login', 'Auth\AuthController@Authenticate');
+
 Route::group(['prefix' => 'auth'], function () {
-    Route::get('login', 'Auth\AuthController@login');
-    Route::post('login', 'Auth\AuthController@Authenticate');
-    Route::get('register', 'UserController@create');
-    Route::post('register', 'UserController@store');
+    route::get('register', 'UserController@create');
+    route::post('register', 'UserController@store');
+});
+
+//========================= ROUTE FOR USER =============================
+
+Route::group(['middleware' => 'auth'],function()    {
+    route::get('/booking/{id}','UserController@getBooking');
 });

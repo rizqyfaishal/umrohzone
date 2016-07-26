@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use Illuminate\Http\Request;
 
-use App\Booking;
 use App\Http\Requests;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Validator;
 
-class UserController extends Controller
+class GatewayController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,7 +27,6 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('auth.register');
     }
 
     /**
@@ -41,17 +38,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-
-
-        $user = new User;
-
-        $user->nama = Input::get('nama');
-        $user->no_hp = Input::get('no_hp');
-        $user->email = Input::get('email');
-        $user->alamat = Input::get('alamat');
-        //TODO HASH IT (jangan raw)
-        $user->password = Input::get('password');
-
     }
 
     /**
@@ -60,9 +46,18 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
+        $bookings = Booking::where('status_payment', '=', 1)->get();
+        return view('admin.transaksi-masuk', ['bookings' => $bookings]);
+    }
+
+    public function validateTransaction(Request $request, $id)
+    {
+        $bookings = Booking::where('no_booking', '=', $id)->first()
+                ->update(['status_payment' => 2]);
+        return redirect('/payment/process');
     }
 
     /**
@@ -97,11 +92,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getBooking(Request $request, $id)
-    {
-        $bookings = Booking::where('id_user','=',$id)->get();
-        return view('UserArea.user-transaksi',['bookings'=>$bookings]);
     }
 }

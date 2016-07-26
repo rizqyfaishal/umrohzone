@@ -9,7 +9,7 @@
             <input type="radio" name="bank" value="mandiri"> Mandiri <br>
             <input type="radio" name="bank" value="bca"> BCA <br>
         </div>
-        <input type="text" name="no_rek">
+        <label>No Rekening : </label><input type="text" name="no_rek">
         <input type='hidden' name="_token" value={!! csrf_token() !!}>
 
         <button type="submit">Selanjutnya</button>
