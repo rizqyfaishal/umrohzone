@@ -9,8 +9,8 @@ use App\Http\Requests;
 
 class PageController extends Controller
 {
-    public function __construct(PageDescription $page){
-        $this->page = $page;
+    public function __construct(PageDescription $pageDescription){
+        $this->page = $pageDescription;
     }
 
     public function index(){
