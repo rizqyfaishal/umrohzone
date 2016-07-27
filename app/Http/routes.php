@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('UserArea.bayar');
-});
+Route::get('/', 'PageController@index');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
