@@ -36,7 +36,7 @@ class PageController extends Controller
 
     public function login(){
         $this->page->setTitle('Login');
-        return view('login')->with([
+        return view('UserArea.login')->with([
             'page' => $this->page
         ]);
     }

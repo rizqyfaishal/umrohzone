@@ -57,7 +57,6 @@ class AuthController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'alamat' => 'required',
             'password' => 'required|min:6|confirmed',
-            'password_confirmation' => 'required|same:password'
         ]);
     }
 

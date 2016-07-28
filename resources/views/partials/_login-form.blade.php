@@ -1,4 +1,4 @@
-{!! Form::open()!!}
+{!! Form::open(['url' => '/login','METHOD' => 'POST'])!!}
 <h3>Sign in</h3>
 <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
     <div class="row">

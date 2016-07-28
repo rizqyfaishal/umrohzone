@@ -12,6 +12,9 @@
 */
 
 Route::get('/', 'PageController@index');
+Route::get('/booking-status', 'PageController@bookingStatus');
+Route::get('/features', 'PageController@features');
+Route::get('/login','PageController@login');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
@@ -36,7 +39,7 @@ Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
 });
 //================== ROUTE FOR AUTHENTICATION ==========================
 
-Route::get('login', 'Auth\AuthController@login');
+//Route::get('login', 'Auth\AuthController@login');
 Route::post('login', 'Auth\AuthController@Authenticate');
 
 Route::group(['prefix' => 'auth'], function () {
