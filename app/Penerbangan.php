@@ -5,19 +5,21 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Booking extends Model
+class Penerbangan extends Model
 {
+    protected $table = 'penerbangan';
+
     use SoftDeletes;
 
     protected $dates = ['delete_at'];
 
-    protected $table = 'booking';
-
     protected $fillable = [
-        'kode_booking',
-        'status_payment',
-        'status_dokumen',
-        'status_visa',
-        'no_resi'
+        'tanggal_berangkat',
+        'waktu_tempuh',
+        'bandara',
+        'terminal',
+        'kode_booking_bnb'
     ];
+
+
 }
