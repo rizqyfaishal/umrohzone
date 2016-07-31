@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f4568c8-d293-4c70-9ee2-13e4e17ce441" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Booking.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Rekening.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-    </list>
+    <list default="true" id="9f4568c8-d293-4c70-9ee2-13e4e17ce441" name="Default" comment="" />
     <ignored path="umrohzone.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -199,7 +194,6 @@
         <option value="$PROJECT_DIR$/database/migrations/2016_07_31_163704_create_jamaahs_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_07_31_163924_create_admins_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_07_31_170003_update_table_users.php" />
-        <option value="$PROJECT_DIR$/app/Admin.php" />
         <option value="$PROJECT_DIR$/app/Booking.php" />
         <option value="$PROJECT_DIR$/app/Fasilitas.php" />
         <option value="$PROJECT_DIR$/app/Hotel.php" />
@@ -213,6 +207,7 @@
         <option value="$PROJECT_DIR$/app/Attachment.php" />
         <option value="$PROJECT_DIR$/app/Rekening.php" />
         <option value="$PROJECT_DIR$/app/Rating.php" />
+        <option value="$PROJECT_DIR$/app/Admin.php" />
       </list>
     </option>
   </component>
