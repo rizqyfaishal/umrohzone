@@ -7,6 +7,7 @@
 
 .navbar-custom {
     background-color: #005A31;
+    padding: 1.2em;
     border-radius: 0;
 }
 
@@ -56,6 +57,19 @@
 }
 
 .navbar-custom .navbar-brand {
+    color: #ffffff;
+}
+
+.travel-agent-register-form .has-error .help-block {
+    color: red;
+}
+
+.has-error .help-block {
+    color: floralwhite;
+}
+
+.navbar-custom .navbar-brand img{
+    margin-top: -1.2em;
     color: #ffffff;
 }
 
@@ -199,7 +213,7 @@ footer a{
 }
 
 .content {
-    padding-top: 4.5em;
+    padding-top: 6.8em;
 }
 .booking-status-field {
     padding-bottom: 1.5em;
@@ -337,6 +351,7 @@ footer a{
     color: #ffffff;
     padding: 3em;
     background-color: #dd9a09;
+    margin-bottom: 1em;
 }
 
 .price-big {
@@ -443,7 +458,7 @@ ul.feature-function li {
 }
 
 ul.feature-function li button,
-ul.feature-function li select,
+ul.feature-function li select
 {
     display: inline-block;
 }

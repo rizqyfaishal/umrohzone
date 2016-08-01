@@ -8,7 +8,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand topnav" href="#">UmrohZone</a> <div class="navbar-brand topnav">| &nbsp;Portal Travel Umroh Seluruh Indonesia</div>
+            <a class="navbar-brand topnav" href="#">
+                <img src="{{ URL::asset('/img/logo.png') }}" alt="Logo" height="60">
+            </a>
+            {{--<div class="navbar-brand topnav">| &nbsp;Portal Travel Umroh Seluruh Indonesia</div>--}}
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">

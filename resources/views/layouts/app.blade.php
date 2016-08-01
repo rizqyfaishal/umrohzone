@@ -13,14 +13,16 @@
     <link rel="stylesheet" href="{{ URL::asset('css/slick.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+    <script src="{{ URL::asset('js/jquery-2.2.1.min.js') }}"></script>
 </head>
 <body>
 @include('partials._navbar')
 <div class="content">
-    @yield('content')
+    <div class="container">
+        @yield('content')
+    </div>
 </div>
 @include('partials._footer')
-<script src="{{ URL::asset('js/jquery-2.2.1.min.js') }}"></script>
 <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ URL::asset('js/slick.min.js') }}"></script>
 <script src="{{ URL::asset('js/script.js') }}"></script>

@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-       'id', 'nama', 'no_hp', 'password', 'email', 'alamat', 'no_rek'
+        'phone', 'password', 'email'
     ];
 
     /**
@@ -28,4 +28,21 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [];
+
+    public function user(){
+        return $this->morphTo();
+    }
+
+    public function isAdmin(){
+        return $this->user_type == 'App\Admin';
+    }
+
+    public function isAgen(){
+        return $this->user_type == 'App\Agen';
+    }
+
+    public function isJamaah(){
+        return $this->user_type == 'App\Jamaah';
+    }
+
 }

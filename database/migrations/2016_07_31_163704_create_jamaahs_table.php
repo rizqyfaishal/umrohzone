@@ -23,6 +23,7 @@ class CreateJamaahsTable extends Migration
             $table->string('nama');
             $table->string('mahrom');
             $table->boolean('upgrade');
+            $table->string('status_visa');
             $table->softDeletes();
             $table->timestamps();
         });

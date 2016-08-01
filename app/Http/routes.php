@@ -14,12 +14,12 @@
 Route::get('/', 'PageController@index');
 Route::get('/booking-status', 'PageController@bookingStatus');
 Route::get('/features', 'PageController@features');
-Route::get('/login','PageController@login');
+Route::get('/login', 'PageController@login');
 
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
+//Route::controllers([
+//    'auth' => 'Auth\AuthController',
+//    'password' => 'Auth\PasswordController',
+//]);
 //================== ROUTE FOR PAYMENT GATEWAY ==========================
 
 Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
@@ -40,11 +40,16 @@ Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
 //================== ROUTE FOR AUTHENTICATION ==========================
 
 //Route::get('login', 'Auth\AuthController@login');
-Route::post('login', 'Auth\AuthController@Authenticate');
+Route::post('login', 'Auth\AuthController@login');
 
-Route::group(['prefix' => 'auth'], function () {
-    route::get('register', 'UserController@create');
-    route::post('register', 'UserController@store');
+Route::group(['prefix' => 'auth/jamaah'], function () {
+    route::get('register', 'JamaahController@create');
+    route::post('register', 'JamaahController@store');
+});
+
+Route::group(['prefix' => 'auth/travel-agen'], function () {
+    route::get('register', 'AgenController@showRegister');
+    route::post('register', 'AgenController@store');
 });
 
 //========================= ROUTE FOR USER =============================
@@ -52,3 +57,7 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['middleware' => 'auth'],function()    {
     route::get('/booking/{id}','UserController@getBooking');
 });
+
+Route::get('/logout','Auth\AuthController@logout');
+Route::get('/api/provinsi/{id}','PageController@getRegencies');
+

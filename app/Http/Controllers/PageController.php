@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper\PageDescription;
+use App\Provinsi;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -36,8 +37,18 @@ class PageController extends Controller
 
     public function login(){
         $this->page->setTitle('Login');
-        return view('UserArea.login')->with([
+        return view('login')->with([
             'page' => $this->page
+        ]);
+    }
+
+
+    public function getRegencies($id){
+        $res = Provinsi::where('id','=',$id)->first();
+        $res = $res->regencies()->get();
+        return response()->json([
+            'status' => true,
+            'data' => $res
         ]);
     }
 }

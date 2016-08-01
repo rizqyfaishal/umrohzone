@@ -22,7 +22,6 @@ class CreateAttachmentsTable extends Migration
             $table->integer('size');
             $table->timestamp('uploaded_at');
             $table->string('hashcode');
-
             $table->softDeletes();
             $table->timestamps();
         });
