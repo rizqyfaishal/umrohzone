@@ -14,6 +14,7 @@
                     <li>
                         <a href="#contact">Afiliasi & Mitra</a>
                     </li>
+                    <li class="footer-menu-divider">&sdot;</li>
                     <li>
                         <a href="{{ action('PageController@login') }}">Login</a>
                     </li>
