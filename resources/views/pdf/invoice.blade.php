@@ -1,9 +1,6 @@
 @extends('layouts.pdf')
 
 @section('content')
-    <header>
-        <div class="logo-company">
-
-        </div>
-    </header>
+    <img src="{{ public_path('img/logo-color.jpg') }}">
+    <span class="invoice">INVOICE</span>    </header>
 @endsection

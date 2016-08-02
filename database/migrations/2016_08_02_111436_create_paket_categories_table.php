@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMahromsTable extends Migration
+class CreatePaketCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,11 @@ class CreateMahromsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mahroms', function (Blueprint $table) {
+        Schema::create('paket_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('jamaah_id')
-                ->unsigned();
-            $table->foreign('jamaah_id')
-                ->references('id')
-                ->on('jamaahs')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+            $table->string('name');
+            $table->decimal('base_price');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateMahromsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('mahroms');
+        Schema::drop('paket_categories');
     }
 }

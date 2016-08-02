@@ -2,6 +2,7 @@
 
 namespace App\Helper;
 
+use App\User;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

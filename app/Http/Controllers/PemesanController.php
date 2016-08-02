@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\PageDescription;
 use App\Helper\RegistersUsers;
+use App\Pemesan;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -27,6 +28,9 @@ class PemesanController extends Controller
     }
 
     public function postRegister(Requests\RegisterPemesanRequest $request){
-
+        $user = $this->register($request);
+        $pemesan = Pemesan::create($request->all());
+        $pemesan->user()->save($user);
+        return response()->json($user);
     }
 }

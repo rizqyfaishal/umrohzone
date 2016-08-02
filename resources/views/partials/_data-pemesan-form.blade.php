@@ -1,5 +1,5 @@
 <h3>Data Pemesan yang dapat dihubungi</h3>
-{!! Form::open(['action' => ['PemesanController@postRegister'], 'class' => 'data-pemesan-form data-pemesan-form-field']) !!}
+{!! Form::open(['action' => ['PemesanController@postRegister'], 'class' => 'data-pemesan-form data-pemesan-form-field', 'id' => 'data-pemesan-form']) !!}
     <div class="row form-group {{ $errors->has('nama') ? ' has-error' : '' }}">
         <div class="col-lg-4 col-md-4 col-sm-12">
             {!! Form::label('nama','Nama') !!}
@@ -65,15 +65,23 @@
             @endif
         </div>
     </div>
+    <div class="row form-group {{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            {!! \Greggilbert\Recaptcha\Facades\Recaptcha::render() !!}
+        </div>
+        @if ($errors->has('g-recaptcha-response'))
+            <span class="help-block">
+                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                </span>
+        @endif
+    </div>
 
     <div class="form-group">
-        <button type="button" class="btn btn-orange" data-toggle="modal" data-target="#confirmationModal">
+        <button type="button" class="btn btn-orange" id="confirmation" data-toggle="modal" data-target="#confirmationModal">
             Lanjutkan !
         </button>
     </div>
     <!--Modal-->
     @include('partials._data-pemesan-form-modal')
-{!! Form::close() !!}
-<script>
 
-</script>
+{!! Form::close() !!}

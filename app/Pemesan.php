@@ -11,6 +11,8 @@ class Pemesan extends Model
 
     protected $dates = ['delete_at'];
 
+    protected  $fillable = ['nama'];
+
     public function user(){
         return $this->morphOne('App\User','user');
     }

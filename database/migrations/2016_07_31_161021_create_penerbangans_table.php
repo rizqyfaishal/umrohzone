@@ -14,17 +14,8 @@ class CreatePenerbangansTable extends Migration
     {
         Schema::create('penerbangan', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('manasik_id')
-                ->references('id')
-                ->on('manasik')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
             $table->date('tanggal_berangkat');
             $table->integer('waktu_tempuh')->unsigned();
-            $table->string('bandara');
-            $table->string('terminal');
-            $table->integer('kode_booking_bnb')->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });

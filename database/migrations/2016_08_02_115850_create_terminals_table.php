@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMahromsTable extends Migration
+class CreateTerminalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,10 @@ class CreateMahromsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mahroms', function (Blueprint $table) {
+        Schema::create('terminals', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('jamaah_id')
-                ->unsigned();
-            $table->foreign('jamaah_id')
-                ->references('id')
-                ->on('jamaahs')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+            $table->string('nama');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ class CreateMahromsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('mahroms');
+        Schema::drop('terminals');
     }
 }
