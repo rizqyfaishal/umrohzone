@@ -60,8 +60,56 @@
     color: #ffffff;
 }
 
-.travel-agent-register-form .has-error .help-block {
+.travel-agent-register-form .has-error .help-block,
+.data-pemesan-form .has-error .help-block {
     color: red;
+}
+
+.dashboard-container {
+    padding: 1.5em;
+    margin-top: 1em;
+}
+
+.dashboard-side-nav,
+.dashboard-content {
+    background-color: #e2e2e2;
+    padding: 1.5em 2em;
+    border-radius: 7px;
+}
+
+.dashboard-side-nav ul {
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+}
+
+.dashboard-side-nav ul li {
+    padding: 0.4em 0;
+}
+
+.dashboard-side-nav ul li a {
+    background-color: #bcbcbc;
+    display: block;
+    padding: 1em;
+    border-radius: 7px;
+    color: #ffffee;
+    text-decoration: none;
+}
+
+.dashboard-side-nav ul li a:hover {
+    background-color: #939393;
+}
+
+.dashboard-side-nav ul li a:active {
+    background-color: #aaaaaa;
+}
+
+.dashboard-side-nav ul li.active a {
+    background-color: #6c6c6c;
+}
+
+.dashboard-side-nav ul li a:focus {
+    background-color: #7c7c7c;
 }
 
 .has-error .help-block {
@@ -109,10 +157,25 @@ footer a{
 }
 
 .custom-modal .modal-content{
-    padding: 2em 3em;
+    padding: 0 4.5em;
+    border-radius: 0;
+    width: 800px;
+    overflow: hidden;
+}
+
+
+.model-picture img {
+    display: block;
+    margin-left: -4em;
+    margin-top: -2em;
+    width: 200px;
 }
 .custom-modal .modal-footer{
     border: 0;
+}
+
+.custom-modal .modal-dialog {
+    border-radius: 0;
 }
 
 .data-pemesan-result {
@@ -151,6 +214,17 @@ footer a{
 
 .custom-modal .modal-content {
     position: relative;
+}
+
+.logo-company img{
+    height: 70px;
+    display: block;
+    float: right;
+    margin-right: -2em;
+}
+
+.modal-content-status {
+    margin-top: 4em;
 }
 .custom-modal .modal-header {
     border: none;

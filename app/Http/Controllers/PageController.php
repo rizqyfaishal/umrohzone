@@ -51,4 +51,11 @@ class PageController extends Controller
             'data' => $res
         ]);
     }
+
+    public function dashboard(){
+        $this->page->setTitle('Dashboard');
+        return view('dashboard')->with([
+            'page' => $this->page
+        ]);
+    }
 }

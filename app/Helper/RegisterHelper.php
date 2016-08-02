@@ -78,4 +78,13 @@ trait RegistersUsers
     {
         return property_exists($this, 'guard') ? $this->guard : null;
     }
+
+    protected function create(array $data)
+    {
+        return User::create([
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'password' => bcrypt($data['password']),
+        ]);
+    }
 }

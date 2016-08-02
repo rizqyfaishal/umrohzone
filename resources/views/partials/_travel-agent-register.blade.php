@@ -47,7 +47,7 @@
     <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group {{ $errors->has('kota') ? ' has-error' : '' }}">
             {!! Form::label('kota','Kota') !!}
-            {!! Form::select('kota',[],null,['class' => 'form-control', 'placeholder' => 'Kota']) !!}
+            {!! Form::select('kota',is_null(old('provinsi')) ? [] : (is_null(\App\Provinsi::where('id','=',old('provinsi'))->first()) ? [] : \App\Provinsi::where('id','=',old('provinsi'))->first()->regencies()->lists('name','id')),is_null(old('kota')) ? null : old('kota'),['class' => 'form-control', 'placeholder' => 'Kota']) !!}
             @if ($errors->has('kota'))
                 <span class="help-block">
                     <strong>{{ $errors->first('kota') }}</strong>
@@ -213,6 +213,11 @@
                 </span>
             @endif
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        {!! \Greggilbert\Recaptcha\Facades\Recaptcha::render() !!}
     </div>
 </div>
 <div class="row">

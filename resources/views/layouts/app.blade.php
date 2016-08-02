@@ -18,9 +18,7 @@
 <body>
 @include('partials._navbar')
 <div class="content">
-    <div class="container">
-        @yield('content')
-    </div>
+    @yield('content')
 </div>
 @include('partials._footer')
 <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
@@ -36,7 +34,6 @@
             cssEase: 'linear'
         });
     });
-//    sasasas
 </script>
 </body>
 </html>

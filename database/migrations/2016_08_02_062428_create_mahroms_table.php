@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJamaahsTable extends Migration
+class CreateMahromsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,16 @@ class CreateJamaahsTable extends Migration
      */
     public function up()
     {
-        Schema::create('jamaahs', function (Blueprint $table) {
+        Schema::create('mahroms', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pemesan_id')->unsigned();
-            $table->string('nama');
-            $table->string('mahrom');
-            $table->boolean('upgrade');
-            $table->string('status_visa');
-            $table->softDeletes();
+            $table->integer('jamaah_id')
+                ->unsigned();
+            $table->foreign('jamaah_id')
+                ->references('id')
+                ->on('jamaahs')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateJamaahsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('jamaahs');
+        Schema::drop('mahroms');
     }
 }

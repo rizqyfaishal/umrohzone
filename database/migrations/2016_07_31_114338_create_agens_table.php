@@ -21,12 +21,10 @@ class CreateAgensTable extends Migration
             $table->string('no_rekening');
             $table->string('nama_agen');
             $table->integer('rating');
-            $table->string('provinsi');
-            $table->string('kota');
+            $table->integer('provinsi')->unsigned();
+            $table->integer('kota')->unsigned();
             $table->softDeletes();
             $table->timestamps();
-
-
         });
     }
 

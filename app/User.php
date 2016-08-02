@@ -22,12 +22,15 @@ class User extends Authenticatable
         'phone', 'password', 'email'
     ];
 
+    protected $hidden = [
+        'password','remember_token'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [];
 
     public function user(){
         return $this->morphTo();

@@ -148,6 +148,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+        \Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -204,6 +206,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'HTML' => Collective\Html\HtmlFacade::class,
         'Form' => Collective\Html\FormFacade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
 
     ],
 

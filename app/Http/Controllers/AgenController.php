@@ -33,23 +33,15 @@ class AgenController extends Controller
     }
 
 
-    protected function create(array $data)
-    {
-        return User::create([
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'password' => bcrypt($data['password']),
-        ]);
-    }
 
 
     public function store(Requests\AgentRegisterRequest $request)
     {
         $user = $this->register($request);
         $agen = Agen::create($request->all());
-        $agen->user();
+        $agen->user()->save($user);
         $agen->generateNoAgen();
-        return true;
+        return response()->json($user);
     }
 
 

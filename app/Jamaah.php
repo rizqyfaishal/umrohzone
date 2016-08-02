@@ -15,9 +15,9 @@ class Jamaah extends Model
         'nama', 'mahrom'
     ];
 
-    public function user(){
-        return $this->morphOne('App\User','user');
-    }
+   public function pemesan(){
+       return $this->belongsTo('App\User','pemesan_id');
+   }
 
 
 }

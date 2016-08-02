@@ -22,8 +22,9 @@ class Agen extends Model
 
     public function generateNoAgen(){
         $id = $this->id;
-        $hashid = new \Hashids\Hashids('18uy84I9gzZecYGlXdFpEM0URaWyVp+WfhRrxLkMOYE',6,'1234567890ABCDEFGHIJKLMN)PQRSTUVWXYZ');
+        $hashid = new \Hashids\Hashids('18uy84I9gzZecYGlXdFpEM0URaWyVp+WfhRrxLkMOYE',6,'1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ');
         $noAgen = $hashid->encode($id);
+        $this->no_agen = $noAgen;
         $this->save();
     }
 
@@ -51,4 +52,11 @@ class Agen extends Model
         return $this->attachments()->where('category_id','=',1)->first();
     }
 
+    public function provinsi(){
+        return $this->hasOne('App\Provinsi');
+    }
+
+    public function regency(){
+        return $this->hasOne('App\Regency');
+    }
 }
