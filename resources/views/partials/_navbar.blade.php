@@ -24,6 +24,9 @@
                 <li>
                     <a href="#contact">Afiliasi & Mitra</a>
                 </li>
+                <li>
+                    <a href="{{ action('PageController@login') }}">Login</a>
+                </li>
             </ul>
         </div>
     </div>

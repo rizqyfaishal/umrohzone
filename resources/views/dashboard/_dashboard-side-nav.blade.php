@@ -1,16 +1,16 @@
 <div class="dashboard-side-nav">
     <ul>
         <li>
-            <a href="#">Home</a>
+            <a href="#">Panel Kontrol Akun</a>
         </li>
         <li>
-            <a href="#">Inbox</a>
+            <a href="#">Informasi Akun</a>
         </li>
         <li>
-            <a href="#">Inbox</a>
+            <a href="#">My Booking</a>
         </li>
         <li>
-            <a href="#">Inbox</a>
+            <a href="#">Data Calon Jamaah</a>
         </li>
     </ul>
 </div>
