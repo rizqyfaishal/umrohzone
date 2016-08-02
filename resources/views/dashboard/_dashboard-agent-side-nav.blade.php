@@ -7,10 +7,13 @@
             <a href="#">Informasi Akun</a>
         </li>
         <li>
-            <a href="#">My Booking</a>
+            <a href="#">Daftar Seluruh Pemesan</a>
         </li>
         <li>
-            <a href="#">Data Calon Jamaah</a>
+            <a href="#">Daftar Seluruh Paket</a>
+        </li>
+        <li>
+            <a href="#">Buat Paket Baru</a>
         </li>
     </ul>
 </div>
