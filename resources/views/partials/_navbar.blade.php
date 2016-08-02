@@ -22,10 +22,10 @@
                     <a href="{{ action('PageController@bookingStatus') }}">My Booking</a>
                 </li>
                 <li>
-                    <a href="#contact">Afiliasi & Mitra</a>
+                    <a href="{{ action('AgenController@showRegister') }}">Afiliasi & Mitra</a>
                 </li>
                 <li>
-                    <a href="{{ action('PageController@login') }}">Login</a>
+                    <a id="cobalogin" href="{{ action('PageController@login') }}">Login</a>
                 </li>
             </ul>
         </div>

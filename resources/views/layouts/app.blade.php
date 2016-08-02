@@ -36,13 +36,20 @@
     });
 </script>
 <script>
-    function cobalogin() {
-        if (document.getElementById('email_coba').value == 'luthfi@coba.com') {
-            window.open("/dashboard", "_self");
-        } else if (document.getElementById('email_coba').value == 'agent@coba.com') {
-            window.open("/dashboardAgent", "_self")
+
+        if(window.location.href == "https://umrohzone.com/beta/v3/dashboard") {
+            document.getElementById("cobalogin").innerHTML = "Logout";
         }
-    }
+        if(window.location.href == "http://umrohzone.com/beta/v3/dashboard") {
+            document.getElementById("cobalogin").innerHTML = "Logout";
+        }
+        if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {
+            document.getElementById("cobalogin").innerHTML = "Logout";
+        }
+        if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {
+            document.getElementById("cobalogin").innerHTML = "Logout";
+        }
+
 </script>
 </body>
 </html>
