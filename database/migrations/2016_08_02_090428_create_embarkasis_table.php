@@ -15,7 +15,14 @@ class CreateEmbarkasisTable extends Migration
         Schema::create('embarkasis', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
-            $table->string('bandara');
+            $table->integer('bandara_id')->unsigned();
+            $table->integer('provinsi_id')
+                ->unsigned();
+            $table->foreign('provinsi_id')
+                ->references('id')
+                ->on('provinsis')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->integer('regency_id')->unsigned();
             $table->foreign('regency_id')
                 ->references('id')

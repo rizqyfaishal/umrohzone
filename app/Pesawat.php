@@ -21,5 +21,23 @@ class Pesawat extends Model
         'penghargaan'
     ];
 
+    public function attachments(){
+        return $this->morphMany('App\Attachments','attach');
+    }
+
+    public function logo(){
+        $attachments = $this->attachments();
+        return $attachments->where('attachment_category_id','=',1);
+    }
+
+    public function photos(){
+        $attachments = $this->attachments();
+        return $attachments->where('attachment_category_id','=',4);
+    }
+
+    public function rating(){
+        return $this->morphOne('App\Rating','rating');
+    }
+
 
 }

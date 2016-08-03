@@ -13,7 +13,7 @@ class Agen extends Model
     protected $table = 'agen';
 
     protected $fillable = [
-        'no_agen','direktur','phone_direktur','bank','no_rekening','nama_agen','provinsi','kota','phone2'
+        'no_agen','direktur','phone_direktur','bank','no_rekening','nama_agen','provinsi_id','regency_id','phone2'
     ];
 
     protected $dates = [

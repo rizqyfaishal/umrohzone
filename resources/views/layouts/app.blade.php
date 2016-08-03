@@ -37,18 +37,18 @@
 </script>
 <script>
 
-        if(window.location.href == "https://umrohzone.com/beta/v3/dashboard") {
-            document.getElementById("cobalogin").innerHTML = "Logout";
-        }
-        if(window.location.href == "http://umrohzone.com/beta/v3/dashboard") {
-            document.getElementById("cobalogin").innerHTML = "Logout";
-        }
-        if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {
-            document.getElementById("cobalogin").innerHTML = "Logout";
-        }
-        if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {
-            document.getElementById("cobalogin").innerHTML = "Logout";
-        }
+    if(window.location.href == "https://umrohzone.com/beta/v3/dashboard") {
+        document.getElementById("cobalogin").innerHTML = "Logout";
+    }
+    if(window.location.href == "http://umrohzone.com/beta/v3/dashboard") {
+        document.getElementById("cobalogin").innerHTML = "Logout";
+    }
+    if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {
+        document.getElementById("cobalogin").innerHTML = "Logout";
+    }
+    if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {
+        document.getElementById("cobalogin").innerHTML = "Logout";
+    }
 
 </script>
 </body>

@@ -5,6 +5,11 @@
 
 */
 
+.panel-heading-custom {
+    background: #005A31!important;
+    color: white!important;
+}
+
 .navbar-custom {
     background-color: #005A31;
     padding: 1.2em;
@@ -61,8 +66,36 @@
 }
 
 .travel-agent-register-form .has-error .help-block,
-.data-pemesan-form .has-error .help-block {
+.data-pemesan-form .has-error .help-block,
+.reset-form .has-error .help-block {
     color: red;
+}
+
+.pagination span {
+    color: black;
+}
+
+.pagination-container {
+    margin: 0 auto;
+    display: block;
+}
+
+.pagination {
+    margin: 1em auto;
+    text-align: center;
+}
+
+.pagination>li>a,
+.pagination>li>span {
+    color: black;
+}
+
+.pagination>.active>span {
+    background-color: #005A31;
+}
+
+.pagination>.active>span:hover {
+    background-color: #007042;
 }
 
 .dashboard-container {
@@ -70,6 +103,9 @@
     margin-top: 1em;
 }
 
+.data-entry-table > tbody > tr > td{
+    vertical-align: middle;
+}
 .dashboard-side-nav,
 .dashboard-content {
     background-color: #e2e2e2;

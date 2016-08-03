@@ -25,7 +25,9 @@
                     <a href="{{ action('AgenController@showRegister') }}">Afiliasi & Mitra</a>
                 </li>
                 <li>
-                    <a id="cobalogin" href="{{ action('PageController@login') }}">Login</a>
+                    <a id="cobalogin" href="{{ is_null(\Illuminate\Support\Facades\Auth::user()) ? action('PageController@login') : url('logout') }}">
+                        {{ is_null(\Illuminate\Support\Facades\Auth::user()) ? 'Login' : 'Logout' }}
+                    </a>
                 </li>
             </ul>
         </div>
