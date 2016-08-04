@@ -13,7 +13,7 @@ class UpdateTableAttachments extends Migration
     public function up()
     {
         Schema::table('attachments', function (Blueprint $table) {
-            $table->integer('category_id')->unsigned();
+            $table->integer('attachment_category_id')->unsigned();
         });
     }
 
@@ -25,7 +25,7 @@ class UpdateTableAttachments extends Migration
     public function down()
     {
         Schema::table('attachments', function (Blueprint $table) {
-            $table->dropColumn('category_id');
+            $table->dropColumn('attachment_category_id');
         });
     }
 }

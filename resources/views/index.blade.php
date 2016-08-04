@@ -225,7 +225,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="text-center">UmrohZone.com adalah</h3>
+                    <h3 class="text-center">Umrohzone adalah</h3>
                 </div>
             </div>
             <div class="row">
@@ -235,7 +235,7 @@
                             <i class="fa fa-thumbs-up"></i>
                         </div>
                         <h4 class="text-center">Fast & Simple</h4>
-                        <p class="text-center">Pilgrim.com menghimpun
+                        <p class="text-center">Umrohzone.com menghimpun
                             ratusan paket dari
                             travel agen diseluruh
                             Indonesia</p>
@@ -260,7 +260,7 @@
                         </div>
                         <h4 class="text-center">Trusted
                            </h4>
-                        <p class="text-center"> Pilgrim.com telah
+                        <p class="text-center"> Umrohzone.com telah
                             dilengkapi dengan
                             keamanan data (SSL)
                             tingkat tinggi</p>
@@ -306,7 +306,7 @@
                     <p>Program Kemenag
                         5-Pasti Umrah
                         adalah hanya sebagian
-                        layanan Pilgrim.com</p>
+                        layanan Umrohzone.com</p>
                     <h6>Prof. Dr. Tokoh Agama</h6>
                 </div>
                 <div class="col-lg-4">
@@ -340,13 +340,16 @@
                 <div class="col-lg-4">
                     <ul class="list-inline banner-social-buttons">
                         <li>
-                            <a href="https://twitter.com/umrohzone" class="btn btn-orange btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            <a href="https://twitter.com/umrohzone" class="btn btn-orange btn-lg">
+                                <i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
                         </li>
                         <li>
-                            <a href="http://www.fb.com/umrohzone" class="btn btn-orange btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                            <a href="http://www.fb.com/umrohzone" class="btn btn-orange btn-lg">
+                                <i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
                         </li>
                         <li>
-                            <a href="#" class="btn btn-orange btn-lg"><i class="fa fa-instagram fa-fw"></i> <span class="network-name">Instagram</span></a>
+                            <a href="#" class="btn btn-orange btn-lg"><i class="fa fa-instagram fa-fw">
+                                </i> <span class="network-name">Instagram</span></a>
                         </li>
                     </ul>
                 </div>

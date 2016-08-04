@@ -17,7 +17,7 @@
                 <div class="col-lg-12">
                     <div class="alert alert-success alert-dismissable" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <p>{{ \Illuminate\Support\Facades\Session::get('embarkasi-edited') }}</p>
+                        <p>{{ \Illuminate\Support\Facades\Session::get('bandara-edited') }}</p>
                     </div>
                 </div>
             </div>

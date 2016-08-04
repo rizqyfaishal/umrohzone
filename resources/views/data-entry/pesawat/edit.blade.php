@@ -1,7 +1,12 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Rizqy Faishal
- * Date: 8/3/2016
- * Time: 9:25 AM
- */
+@extends('dashboard._dashboard-base')
+
+@include('admin.partials._dashboard-admin-side-nav')
+
+@section('dashboard-content')
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Create Data Entry Pesawat</h1>
+        </div>
+    </div>
+    @include('data-entry.pesawat.partials._pesawat-edit-form')
+@endsection

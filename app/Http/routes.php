@@ -86,3 +86,8 @@ Route::resource('rating','RatingController');
 Route::resource('fasilitas','FasilitasController');
 Route::resource('hotel-fasilitas','HotelFasilitasController');
 Route::resource('hotel-fasilitas-detail','HotelFasilitasDetailController');
+Route::resource('terminal','TerminalController');
+Route::resource('address','AddressController');
+Route::resource('promo','PromoController');
+Route::get('/attachments/all','AttachmentController@index');
+

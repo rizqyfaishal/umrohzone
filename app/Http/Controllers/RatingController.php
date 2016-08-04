@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\PageDescription;
+use App\Rating;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 class RatingController extends Controller
 {
+    public function __construct(PageDescription $page)
+    {
+        $this->page = $page;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,11 @@ class RatingController extends Controller
      */
     public function index()
     {
-        //
+        $this->page->setTitle('Rating All');
+        return view('data-entry.rating.index')->with([
+            'page' => $this->page,
+            'ratings' => Rating::paginate(15)
+        ]);
     }
 
     /**
@@ -25,7 +36,7 @@ class RatingController extends Controller
      */
     public function create()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -36,7 +47,7 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -47,7 +58,14 @@ class RatingController extends Controller
      */
     public function show($id)
     {
-        //
+        $rating = Rating::where('id','=',$id)->first();
+        if(is_null($rating)){
+            abort(404);
+        }
+        return response()->json([
+            'status' => 'ok',
+            'data' => $rating
+        ]);
     }
 
     /**
@@ -58,7 +76,7 @@ class RatingController extends Controller
      */
     public function edit($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -70,7 +88,7 @@ class RatingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -81,6 +99,6 @@ class RatingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        abort(404);
     }
 }

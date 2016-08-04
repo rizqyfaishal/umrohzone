@@ -15,7 +15,7 @@ class PenerbanganController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**

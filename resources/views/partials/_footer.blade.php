@@ -19,7 +19,7 @@
                         <a href="{{ action('PageController@login') }}">Login</a>
                     </li>
                 </ul>
-                <p class="copyright text-muted small">Copyright &copy; UmrohZone.com luthfi all right reserved, 2015</p>
+                <p class="copyright text-muted small">Copyright &copy; Umrohzone.com - All right reserved, 2016</p>
             </div>
         </div>
     </div>

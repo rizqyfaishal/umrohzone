@@ -16,6 +16,11 @@
     border-radius: 0;
 }
 
+.alert-success {
+    background: #005A31;
+    color: white;
+}
+
 .btn-custom {
     background-color: #005A31;
     color: #ffffff;

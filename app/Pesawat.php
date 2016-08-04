@@ -14,6 +14,7 @@ class Pesawat extends Model
     protected $table = 'pesawat';
 
     protected $fillable = [
+        'nama',
         'jenis',
         'kelas',
         'makanan',
@@ -22,12 +23,12 @@ class Pesawat extends Model
     ];
 
     public function attachments(){
-        return $this->morphMany('App\Attachments','attach');
+        return $this->morphMany('App\Attachment','attach');
     }
 
     public function logo(){
         $attachments = $this->attachments();
-        return $attachments->where('attachment_category_id','=',1);
+        return $attachments->where('attachment_category_id','=',1)->first();
     }
 
     public function photos(){

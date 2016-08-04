@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\PageDescription;
+use App\HotelFasilitasDetail;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 class HotelFasilitasDetailController extends Controller
 {
+    public function __construct(PageDescription $page)
+    {
+        $this->page = $page;
+        $this->middleware('auth-admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +24,11 @@ class HotelFasilitasDetailController extends Controller
      */
     public function index()
     {
-        //
+        $this->page->setTitle('Fasilitas Hotel Detail');
+        return view('data-entry.hotel-fasilitas-detail.index')->with([
+            'hotelFaslitasDetails' => HotelFasilitasDetail::paginate(15),
+            'page' => $this->page
+        ]);
     }
 
     /**
@@ -25,7 +38,10 @@ class HotelFasilitasDetailController extends Controller
      */
     public function create()
     {
-        //
+        $this->page->setTitle('Fasilitas Hotel Create');
+        return view('data-entry.hotel-fasilitas-detail.create')->with([
+            'page' => $this->page
+        ]);
     }
 
     /**
@@ -34,9 +50,14 @@ class HotelFasilitasDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\HotelFasilitasDetailRequest $request)
     {
-        //
+        $r = HotelFasilitasDetail::create($request->all());
+        if(is_null($r)){
+            abort(500);
+        }
+        Session::flash('hotel-fasilitas-detail-registered','Fasilitas Hotel Detail telah ditambahkan');
+        return redirect(action('HotelFasilitasDetailController@index'));
     }
 
     /**
@@ -47,7 +68,14 @@ class HotelFasilitasDetailController extends Controller
      */
     public function show($id)
     {
-        //
+        $u = HotelFasilitasDetail::where('id','=',$id)->first();
+        if(is_null($u)){
+            abort(404);
+        }
+        return response()->json([
+            'status' => 'ok',
+            'data' => $u
+        ]);
     }
 
     /**
@@ -58,7 +86,15 @@ class HotelFasilitasDetailController extends Controller
      */
     public function edit($id)
     {
-        //
+        $u = HotelFasilitasDetail::where('id','=',$id)->first();
+        if(is_null($u)){
+            abort(404);
+        }
+        $this->page->setTitle($u->name . ' - edit');
+        return view('data-entry.hotel-fasilitas-detail.edit')->with([
+            'page' => $this->page,
+            'hotelFasilitasDetail' => $u
+        ]);
     }
 
     /**
@@ -68,9 +104,18 @@ class HotelFasilitasDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\HotelFasilitasDetailRequest $request, $id)
     {
-        //
+        $u = HotelFasilitasDetail::where('id','=',$id)->first();
+        if(is_null($u)){
+            abort(404);
+        }
+        $bool = $u->update($request->all());
+        if(!$bool){
+            abort(500);
+        }
+        Session::flash('hotel-fasilitas-detail-edited','Fasilitas hotel detail telah teredit');
+        return redirect(action('HotelFasilitasDetail@index'));
     }
 
     /**
@@ -81,6 +126,15 @@ class HotelFasilitasDetailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $u = HotelFasilitasDetail::where('id','=',$id)->first();
+        if(is_null($u)){
+            abort(404);
+        }
+        $bool = $u->delete();
+        if(!$bool){
+            abort(500);
+        }
+        Session::flash('hotel-fasilitas-detail-deleted','Deleted!');
+        return redirect()->back();
     }
 }

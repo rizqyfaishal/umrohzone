@@ -13,7 +13,7 @@ class UpdateTableAttachments2 extends Migration
     public function up()
     {
         Schema::table('attachments', function (Blueprint $table) {
-            $table->foreign('category_id')
+            $table->foreign('attachment_category_id')
                 ->references('id')
                 ->on('attachment_categories')
                 ->onDelete('cascade')
@@ -29,7 +29,7 @@ class UpdateTableAttachments2 extends Migration
     public function down()
     {
         Schema::table('attachments', function (Blueprint $table) {
-            $table->dropForeign('category_id');
+            $table->dropForeign('attachment_category_id');
         });
     }
 }

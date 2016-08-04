@@ -15,4 +15,8 @@ class Admin extends Model
         return $this->morphOne('App\User','user');
     }
 
+    public function attachments(){
+        return $this->morphMany('App\Attachment','attach');
+    }
+
 }
