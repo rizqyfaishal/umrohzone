@@ -18,27 +18,24 @@ class Penerbangan extends Model
         'waktu_tempuh',
     ];
 
-    public function pesawatBerangkat(){
-        return $this->hasOne('App\Pesawat','pesawat_berangkat_id');
+    public function pesawat(){
+        return $this->belongsTo('App\Pesawat','pesawat_id');
     }
 
-    public function pesawatPulang(){
-        return $this->hasOne('App\Pesawat','pesawat_pulang_id');
-    }
 
     public function bandaraBerangkat(){
-        return $this->hasOne('App\Bandara','bandara_berangkat_id');
+        return $this->belongsTo('App\Bandara','bandara_berangkat_id');
     }
 
-    public function bandaraPulang(){
-        return $this->hasOne('App\Bandara','bandara_pulang_id');
+    public function bandaraTujuan(){
+        return $this->belongsTo('App\Bandara','bandara_tujuan_id');
     }
 
     public function terminalBerangkat(){
-        return $this->hasOne('App\Terminal','terminal_berangkat_id');
+        return $this->belongsTo('App\Terminal','terminal_berangkat_id');
     }
 
-    public function terminalPulang(){
-        return $this->hasOne('App\Terminal','terminal_pulang_id');
+    public function terminalTujuan(){
+        return $this->belongsTo('App\Terminal','terminal_tujuan_id');
     }
 }

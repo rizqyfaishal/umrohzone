@@ -26,7 +26,10 @@ class HotelRequest extends Request
         return [
             'nama' => 'required|min:3|max:50',
             'deskripsi' => 'required|min:6|max:255',
-            'review' => 'required'
+            'review' => 'required',
+            'full_address' => 'required|min:4|max:100',
+            'hotel_fasilitas' => 'required',
+            'google_map_url' => 'required|url'
         ];
     }
 }

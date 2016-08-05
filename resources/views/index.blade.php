@@ -206,10 +206,10 @@
     <div class="values-section customer">
         <div class="container">
             <div class="row text-center">
-                <div class="col-lg-7  col-lg-offset-1 text-right">
-                    <h4 class="section-heading">Anda mau paket CUSTOMISE ? atau info PROMO ? Call <span class="phone">0800-1453-000</span> atau tulis</h4>
+                <div class="col-lg-8 text-right">
+                    <h4 class="section-heading">Anda mau paket CUSTOMISE ? atau info PROMO ? Call <a href="tel:0800-1453-000"><span class="phone">0800-1453-000</span></a> atau tulis</h4>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-4">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Nomor HP atau Email">
                               <span class="input-group-btn">

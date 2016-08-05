@@ -12,6 +12,8 @@ class Address extends Model
 
     protected $dates = ['delete_at'];
 
+    protected $fillable = ['full_address','google_map_url'];
+
     public function address(){
         return $this->morphTo();
     }

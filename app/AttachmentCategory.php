@@ -12,6 +12,6 @@ class AttachmentCategory extends Model
     protected $dates = ['delete_at'];
 
     public function attachments(){
-        return $this->hasMany('App\Attachment','attachment_id');
+        return $this->hasMany('App\Attachment');
     }
 }

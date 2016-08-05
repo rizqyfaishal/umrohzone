@@ -30,7 +30,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <table class="table-hover table data-entry-table table-custom">
+                <table id="dataTables" class="table-hover table data-entry-table table-custom">
                     <thead>
                     <tr>
                         <td>Nama Embarkasi</td>
@@ -44,9 +44,9 @@
                     @foreach($embarkasis as $embarkasi)
                         <tr>
                             <td>{{ $embarkasi->nama }}</td>
+                            <td>{{ $embarkasi->bandara->nama }}</td>
                             <td>{{ $embarkasi->provinsi->name }}</td>
                             <td>{{ $embarkasi->kota->name }}</td>
-                            <td>{{ $embarkasi->bandara->name }}</td>
                             <td>
                                 {!! Form::model($embarkasi,['method' => 'DELETE','action' => ['EmbarkasiController@destroy',$embarkasi->id]]) !!}
                                     <a href="{{ action('EmbarkasiController@edit',$embarkasi->id) }}" class="btn btn-orange">
@@ -62,10 +62,11 @@
                     @endforeach
                     </tbody>
                 </table>
-                <div class="pagination-container">
-                    {!! $embarkasis->render()  !!}
-                </div>
+                {{--<div class="pagination-container">--}}
+                    {{--{!! $embarkasis->render()  !!}--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>
+    @include('partials._data-tables')
 @endsection

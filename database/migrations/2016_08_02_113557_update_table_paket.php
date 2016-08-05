@@ -39,7 +39,7 @@ class UpdateTablePaket extends Migration
         Schema::table('paket', function (Blueprint $table) {
             $table->dropForeign('embarkasi_id');
             $table->dropForeign('paket_category_id');
-            $table->dropColumn('embarkasi_id');
+            $table->dropColumn('paket_category_id');
             $table->dropColumn('embarkasi_id');
         });
     }

@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\PageDescription;
+use App\Penerbangan;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 class PenerbanganController extends Controller
 {
+    public function __construct(PageDescription $page)
+    {
+        $this->page = $page;
+        $this->middleware('auth-admin');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +24,11 @@ class PenerbanganController extends Controller
      */
     public function index()
     {
-
+        $this->page->setTitle('Penerbangan All');
+        return view('data-entry.penerbangan.index')->with([
+            'page' => $this->page,
+            'penerbangans' => Penerbangan::paginate(15)
+        ]);
     }
 
     /**
@@ -25,7 +38,10 @@ class PenerbanganController extends Controller
      */
     public function create()
     {
-        //
+        $this->page->setTitle('Create Penerbangan');
+        return view('data-entry.penerbangan.create')->with([
+            'page' => $this->page
+        ]);
     }
 
     /**

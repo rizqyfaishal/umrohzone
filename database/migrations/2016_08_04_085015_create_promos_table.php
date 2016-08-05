@@ -20,7 +20,9 @@ class CreatePromosTable extends Migration
                 ->on('paket')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-
+            $table->date('start_date');
+            $table->date('due_date');
+            $table->decimal('price');
             $table->timestamps();
         });
     }

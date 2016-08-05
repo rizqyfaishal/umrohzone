@@ -30,7 +30,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <table class="table-hover table data-entry-table table-custom">
+                <table id="dataTables" class="table-hover table data-entry-table table-custom">
                     <thead>
                     <tr>
                         <td>Nama Bandara</td>
@@ -60,10 +60,8 @@
                     @endforeach
                     </tbody>
                 </table>
-                <div class="pagination-container">
-                    {!! $bandaras->render()  !!}
-                </div>
             </div>
         </div>
     </div>
+    @include('partials._data-tables')
 @endsection

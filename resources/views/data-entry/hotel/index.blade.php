@@ -30,12 +30,13 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <table class="table-hover table data-entry-table table-custom">
+                <table id="dataTables" class="table-hover table data-entry-table table-custom">
                     <thead>
                     <tr>
                         <td>Nama hotel</td>
                         <td>Deskripsi</td>
                         <td>Review</td>
+                        <td>Fasilitas Hotel</td>
                         <td>Action</td>
                     </tr>
                     </thead>
@@ -45,6 +46,18 @@
                             <td>{{ $hotel->nama }}</td>
                             <td style="width: 30%">{{ $hotel->deskripsi }}</td>
                             <td style="width: 30%"> {{ $hotel->review }}</td>
+                            <td style="width: 30%">
+                                <ul>
+                                    @foreach($hotel->fasilitas as $fasilitas)
+                                        <li>{{ $fasilitas->name }}</li>
+                                        <ul>
+                                            @foreach($fasilitas->details as $detail)
+                                                <li>{{ $detail->name }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @endforeach
+                                </ul>
+                            </td>
                             <td>
                                 {!! Form::model($hotel,['method' => 'DELETE','action' => ['HotelController@destroy',$hotel->id]]) !!}
                                 <a href="{{ action('HotelController@edit',$hotel->id) }}" class="btn btn-orange">
@@ -60,10 +73,9 @@
                     @endforeach
                     </tbody>
                 </table>
-                <div class="pagination-container">
-                    {!! $hotels->render()  !!}
-                </div>
+
             </div>
         </div>
     </div>
+    @include('partials._data-tables')
 @endsection

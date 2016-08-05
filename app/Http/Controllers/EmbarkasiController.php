@@ -27,7 +27,7 @@ class EmbarkasiController extends Controller
         $this->page->setTitle('Embarkasi All');
         return view('data-entry.embarkasi.index')->with([
             'page' => $this->page,
-            'embarkasis' => Embarkasi::paginate(5)
+            'embarkasis' => Embarkasi::with('bandara','kota','provinsi')->get()
         ]);
     }
 

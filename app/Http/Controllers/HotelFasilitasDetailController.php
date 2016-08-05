@@ -26,7 +26,7 @@ class HotelFasilitasDetailController extends Controller
     {
         $this->page->setTitle('Fasilitas Hotel Detail');
         return view('data-entry.hotel-fasilitas-detail.index')->with([
-            'hotelFaslitasDetails' => HotelFasilitasDetail::paginate(15),
+            'hotelFasilitasDetails' => HotelFasilitasDetail::paginate(15),
             'page' => $this->page
         ]);
     }
@@ -115,7 +115,7 @@ class HotelFasilitasDetailController extends Controller
             abort(500);
         }
         Session::flash('hotel-fasilitas-detail-edited','Fasilitas hotel detail telah teredit');
-        return redirect(action('HotelFasilitasDetail@index'));
+        return redirect(action('HotelFasilitasDetailController@index'));
     }
 
     /**

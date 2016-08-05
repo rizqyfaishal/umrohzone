@@ -12,6 +12,16 @@
                 </div>
             </div>
         @endif
+            @if(\Illuminate\Support\Facades\Session::has('penerbangan-deleted'))
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-success alert-dismissable" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <p>{{ \Illuminate\Support\Facades\Session::get('penerbangan-deleted') }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endif
         @if(\Illuminate\Support\Facades\Session::has('penerbangan-edited'))
             <div class="row">
                 <div class="col-lg-12">
@@ -36,19 +46,23 @@
                         <td>Tanggal Berangkat</td>
                         <td>Waktu Tempuh</td>
                         <td>Bandara Berangkat</td>
-                        <td>Bandara Pulang</td>
-                        <td>Pesawat Berangkat</td>
-                        <td>Pesawat Pulang</td>
+                        <td>Bandara Tujuan</td>
+                        <td>Pesawat</td>
                         <td>Terminal Berangkat</td>
                         <td>Terminal Pulang</td>
+                        <td>Action</td>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($penerbangans as $penerbangan)
                         <tr>
-                            <td>{{ $penerbangan->nama }}</td>
-                            <td>{{ $penerbangan->provinsi->name }}</td>
-                            <td>{{ $penerbangan->kota->name }}</td>
+                            <td>{{ $penerbangan->tanggal_berangkat }}</td>
+                            <td>{{ $penerbangan->waktu_tempuh }}</td>
+                            <td>{{ $penerbangan->bandaraBerangkat->nama }}</td>
+                            <td>{{ $penerbangan->bandaraTujuan->nama }}</td>
+                            <td>{{ $penerbangan->pesawat->nama }}</td>
+                            <td>{{ $penerbangan->terminalBerangkat->nama }}</td>
+                            <td>{{ $penerbangan->terminalTujuan->nama }}</td>
                             <td>
                                 {!! Form::model($penerbangan,['method' => 'DELETE','action' => ['PenerbanganController@destroy',$penerbangan->id]]) !!}
                                 <a href="{{ action('PenerbanganController@edit',$penerbangan->id) }}" class="btn btn-orange">

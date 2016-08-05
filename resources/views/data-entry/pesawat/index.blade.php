@@ -33,28 +33,28 @@
                 <table class="table-hover table data-entry-table table-custom">
                     <thead>
                     <tr>
-                        <td>Logo</td>
+                        {{--<td>Logo</td>--}}
                         <td>Nama Pesawat</td>
                         <td>Jenis</td>
                         <td>Kelas</td>
                         <td>Makanan</td>
                         <td>Hiburan</td>
                         <td>Penghargaan</td>
-                        <td>Rating</td>
+                        {{--<td>Rating</td>--}}
                         <td>Action</td>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($pesawats as $pesawat)
                         <tr>
-                            <td>{{ $pesawat->logo->first()->hashcode }}</td>
+{{--                            <td>{{ $pesawat->logo->first()->hashcode }}</td>--}}
                             <td>{{ $pesawat->nama }}</td>
                             <td>{{ $pesawat->jenis }}</td>
                             <td>{{ $pesawat->kelas }}</td>
                             <td>{{ $pesawat->makanan }}</td>
                             <td>{{ $pesawat->hiburan }}</td>
                             <td>{{ $pesawat->penghargaan }}</td>
-                            <td>{{ $pesawat->rating->rating_value }}</td>
+{{--                            <td>{{ $pesawat->rating->rating_value }}</td>--}}
                             <td>
                                 {!! Form::model($pesawat,['method' => 'DELETE','action' => ['PesawatController@destroy',$pesawat->id]]) !!}
                                 <a href="{{ action('PesawatController@edit',$pesawat->id) }}" class="btn btn-orange">

@@ -48,7 +48,16 @@ class UpdateTablePenerbangans extends Migration
     public function down()
     {
         Schema::table('penerbangan', function (Blueprint $table) {
-            //
+            $table->dropForeign('bandara_berangkat_id');
+            $table->dropForeign('bandara_tujuan_id');
+            $table->dropForeign('terminal_tujuan_id');
+            $table->dropForeign('terminal_berangkat_id');
+
+            $table->dropColumn('bandara_berangkat_id');
+            $table->dropColumn('bandara_tujuan_id');
+            $table->dropColumn('terminal_tujuan_id');
+            $table->dropColumn('terminal_berangkat_id');
+
         });
     }
 }

@@ -27,7 +27,7 @@ class BandaraController extends Controller
         $this->page->setTitle('Bandara All');
         return view('data-entry.bandara.index')->with([
             'page' =>$this->page,
-            'bandaras' => Bandara::paginate(10)
+            'bandaras' => Bandara::with('provinsi','kota')->get()
         ]);
     }
 

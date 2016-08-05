@@ -25,7 +25,7 @@ class HotelFasilitasRequest extends Request
     {
         return [
             'name' => 'required|min:3|max:40',
-            'hotel_id' => 'required|integer'
+            'hotel_fasilitas_details' => 'required|array',
         ];
     }
 }

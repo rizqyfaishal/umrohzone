@@ -17,10 +17,10 @@ use Illuminate\Support\Facades\Storage;
 
 class PesawatController extends Controller
 {
+    use AttachmentHelper;
 
-    public function __construct(PageDescription $pageDescription, AttachmentHelper $helper)
+    public function __construct(PageDescription $pageDescription)
     {
-        $this->helper = $helper;
         $this->page = $pageDescription;
         $this->middleware('auth-admin',['except' => ['show']]);
     }
@@ -74,23 +74,7 @@ class PesawatController extends Controller
         $pesawat->rating()->save($rating);
         $file = $request->file('logo');
         if(!is_null($file)){
-            $new_attach = new Attachment();
-            $new_attach->size = $file->getClientSize();
-            $new_attach->extension = $file->getClientOriginalExtension();
-            $new_attach->filename = $file->getClientOriginalName();
-            $new_attach->uploaded_at = Carbon::now();
-            $new_attach->mime_type = $file->getMimeType();
-            $new_attach->attachment_category_id = 1;
-            $new_attach->save();
-            $id = $new_attach->id;
-            $hashedFileName = md5($id);
-            $new_attach->hashcode = $hashedFileName;
-            $new_attach->update();
-            $hashed = $this->helper->getHashDirectory($hashedFileName,$file
-                ->getClientOriginalExtension());
-
-            Storage::disk('local')->put($hashed,File::get($file));
-            $pesawat->attachments()->save($new_attach);
+            $pesawat->attachments()->save($this->saveFile($file));
         }
         Session::flash('pesawat-registered','Pesawat telah ditambahkan');
         return redirect(action('PesawatController@index'));
@@ -152,18 +136,7 @@ class PesawatController extends Controller
         ]);
         $file = $request->file('logo');
         if(!is_null($file)){
-            $new_attach = $pesawat->logo->first();
-            $new_attach->size = $file->getClientSize();
-            $new_attach->extension = $file->getClientOriginalExtension();
-            $new_attach->filename = $file->getClientOriginalName();
-            $new_attach->uploaded_at = Carbon::now();
-            $new_attach->mime_type = $file->getMimeType();
-            $new_attach->attachment_category_id = 1;
-            $new_attach->save();
-            $hashed = $this->helper->getHashDirectory($new_attach->hashcode,$file
-                ->getClientOriginalExtension());
-
-            Storage::disk('local')->put($hashed,File::get($file));
+           $this->saveFile($file);
         }
         Session::flash('pesawat-edited','Pesawat telah di edit');
         return redirect(action('PesawatController@index'));

@@ -13,18 +13,12 @@ class UpdateTablePenerbangans2 extends Migration
     public function up()
     {
         Schema::table('penerbangan', function (Blueprint $table) {
-            $table->integer('pesawat_berangkat_id')->unsigned();
-            $table->foreign('pesawat_berangkat_id')
+            $table->integer('pesawat_id')->unsigned();
+            $table->foreign('pesawat_id')
                 ->references('id')
                 ->on('pesawat')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->integer('pesawat_pulang_id')->unsigned();
-            $table->foreign('pesawat_pulang_id')
-                ->references('id')
-                ->on('pesawat')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
         });
     }
 
@@ -36,10 +30,8 @@ class UpdateTablePenerbangans2 extends Migration
     public function down()
     {
         Schema::table('penerbangan', function (Blueprint $table) {
-            $table->dropForeign('pesawat_berangkat_id');
-            $table->dropForeign('pesawat_pulang_id');
-            $table->dropColumn('pesawat_pulang_id');
-            $table->dropColumn('pesawat_berangkat_id');
+            $table->dropForeign('pesawat_id');
+            $table->dropColumn('pesawat_id');
         });
     }
 }

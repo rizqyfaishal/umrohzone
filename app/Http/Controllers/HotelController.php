@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
+use App\Helper\AttachmentHelper;
 use App\Helper\PageDescription;
 use App\Hotel;
 use Illuminate\Http\Request;
@@ -11,6 +13,8 @@ use Illuminate\Support\Facades\Session;
 
 class HotelController extends Controller
 {
+    use AttachmentHelper;
+
     public function __construct(PageDescription $page)
     {
         $this->page = $page;
@@ -27,7 +31,7 @@ class HotelController extends Controller
         $this->page->setTitle('Hotel All');
         return view('data-entry.hotel.index')->with([
             'page' => $this->page,
-            'hotels' => Hotel::paginate(13)
+            'hotels' => Hotel::with('fasilitas','address','fasilitas.details')->get()
         ]);
     }
 
@@ -56,6 +60,12 @@ class HotelController extends Controller
         if(is_null($hotel)){
             abort(500);
         }
+        $hotel->address()->save(Address::create($request->all()));
+        if($request->hasFile('logo')){
+            $file = $this->saveFile($request->file('logo'),4);
+            $hotel->attachments()->save($file);
+        }
+        $hotel->fasilitas()->sync($request->input('hotel_fasilitas'));
         Session::flash('hotel-registered','Hotel Telah dibuat');
         return redirect(action('HotelController@index'));
     }
@@ -101,13 +111,20 @@ class HotelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\HotelRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $hotel = Hotel::where('id','=',$id)->first();
         if(is_null($hotel)){
             abort(404);
         }
         $hotel->update($request->all());
+        $hotel->fasilitas()->sync($request->input('hotel_fasilitas'));
+        $logo = $hotel->logo();
+        if(!is_null($logo)){
+            if($request->hasFile('logo')){
+                $file = $this->updateFile($logo,$request->file('logo'));
+            }
+        }
         Session::flash('hotel-edited','Hotel telah diedit');
         return redirect(action('HotelController@index'));
     }
@@ -120,7 +137,6 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-
         $hotel = Hotel::where('id','=',$id)->first();
         if(is_null($hotel)){
             abort(404);

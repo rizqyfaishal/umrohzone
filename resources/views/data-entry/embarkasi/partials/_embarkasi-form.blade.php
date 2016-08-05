@@ -13,7 +13,7 @@
     <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group {{ $errors->has('bandara_id') ? ' has-error' : '' }}">
             {!! Form::label('bandara_id','Bandara') !!}
-            {!! Form::select('bandara_id',\App\Bandara::lists('name','id'),old('bandara_id'),['class' => 'form-control', 'placeholder' => 'Bandara']) !!}
+            {!! Form::select('bandara_id',\App\Bandara::lists('nama','id'),old('bandara_id'),['class' => 'form-control', 'placeholder' => 'Bandara']) !!}
             @if ($errors->has('bandara_id'))
                 <span class="help-block">
                     <strong>{{ $errors->first('bandara_id') }}</strong>

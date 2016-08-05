@@ -62,8 +62,8 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6">
         <div class="form-group {{ $errors->has('logo') ? ' has-error' : '' }}">
-            {!! Form::label('logo','Logo Images') !!}
-            {!! Form::file('logo',['class' => 'form-control','placeholder' => 'Logo Images']) !!}
+            {!! Form::label('logo','Logo Hotel') !!}
+            {!! Form::file('logo',['class' => 'form-control','placeholder' => 'Logo']) !!}
             @if ($errors->has('logo'))
                 <span class="help-block">
                     <strong>{{ $errors->first('logo') }}</strong>
@@ -72,3 +72,17 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="form-group {{ $errors->has('hotel_fasilitas') ? ' has-error' : '' }}">
+            {!! Form::label('hotel_fasilitas','Fasilitas Hotel') !!}
+            {!! Form::select('hotel_fasilitas[]',\App\HotelFasilitas::lists('name','id'),is_null($hotel->fasilitas->lists('id')) ?  old('hotel_fasilitas') : $hotel->fasilitas->lists('id')->all(),['class' => 'form-control select-multiple','placeholder' => 'Fasilitas Hotel','multiple' => 'multiple']) !!}
+            @if ($errors->has('hotel_fasilitas'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('hotel_fasilitas') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+</div>
+@include('partials._select2')

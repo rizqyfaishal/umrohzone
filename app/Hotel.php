@@ -18,7 +18,7 @@ class Hotel extends Model
     ];
 
     public function fasilitas(){
-        return $this->hasMany('App\HotelFasilitas','hotel_id');
+        return $this->belongsToMany('App\HotelFasilitas','hotel_hotel_fasilitas','hotel_id');
     }
 
     public function attachments(){

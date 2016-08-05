@@ -12,13 +12,15 @@ class HotelFasilitas extends Model
 
     protected $fillable = ['name'];
 
-    public function hotel(){
-        return $this->belongsTo('App\Hotel','hotel_id');
+
+    public function hotels(){
+        return $this->belongsToMany('App\Hotel','hotel_hotel_fasilitas','hotel_fasilitas_id');
     }
 
-    public function hotelFasilitas(){
-        return $this->hasMany('App\HotelFasilitas','hotel_fasilitas_id');
+    public function details(){
+        return $this->hasMany('App\HotelFasilitasDetail');
     }
+
 
 
 }

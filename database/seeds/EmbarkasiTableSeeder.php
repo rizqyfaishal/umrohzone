@@ -13,15 +13,17 @@ class EmbarkasiTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
+        $provinsis = App\Provinsi::all()->all();
+        $regencies = \App\Regency::all()->all();
+        $bandaras = \App\Bandara::all()->all();
         $limit = 50;
         for($i = 0 ;$i<$limit;$i++){
-            $bandara = \App\Bandara::find($faker->numberBetween(1,\App\Bandara::count()))->first();
-            $provinsi = \App\Provinsi::find(11)->first();
-            $kota = $provinsi->regencies()->first();
-
-            $embarkasi = new \App\Embarkasi();
-            $embarkasi->nama = $faker->streetName;
-            $embarkasi->save();
+            \App\Embarkasi::create([
+                'nama' => $faker->name,
+                'provinsi_id' => $provinsis[$faker->numberBetween(0,count($provinsis)-1)]->id,
+                'regency_id' => $regencies[$faker->numberBetween(0,count($regencies)-1)]->id,
+                'bandara_id' => $bandaras[$faker->numberBetween(0,count($bandaras)-1)]->id
+            ]);
         }
     }
 }

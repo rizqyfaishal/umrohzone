@@ -89,5 +89,7 @@ Route::resource('hotel-fasilitas-detail','HotelFasilitasDetailController');
 Route::resource('terminal','TerminalController');
 Route::resource('address','AddressController');
 Route::resource('promo','PromoController');
+Route::resource('agenda','AgendaController');
+Route::resource('testimoni','TestimoniController');
 Route::get('/attachments/all','AttachmentController@index');
 
