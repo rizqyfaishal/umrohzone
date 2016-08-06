@@ -11,16 +11,15 @@
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="form-group {{ $errors->has('hotel') ? ' has-error' : '' }}">
-            {!! Form::label('hotel','Nama Hotel') !!}
-            {!! Form::select('hotel[]',\App\Hotel::lists('nama','id'), is_null($hotelFasilitas->hotels) ? old('hotel_id') : $hotelFasilitas->hotels->lists('id')->all(),['class' => 'form-control','placeholder' => 'Nama Hotel','multiple' => 'multiple']) !!}
-            @if ($errors->has('hotel'))
+        <div class="form-group {{ $errors->has('hotel_fasilitas_category_id') ? ' has-error' : '' }}">
+            {!! Form::label('hotel_fasilitas_category_id','Category') !!}
+            {!! Form::select('hotel_fasilitas_category_id',\App\HotelFasilitasCategory::lists('name','id'), is_null($hotelFasilitas->category) ? old('hotel_fasilitas_category_id') : $hotelFasilitas->category->id,['class' => 'form-control','placeholder' => 'Category']) !!}
+            @if ($errors->has('hotel_fasilitas_category_id'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('hotel_id') }}</strong>
+                    <strong>{{ $errors->first('hotel_fasilitas_category_id') }}</strong>
                 </span>
             @endif
         </div>
     </div>
 </div>
 
-@include('partials._select2')

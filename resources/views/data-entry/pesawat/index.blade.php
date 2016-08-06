@@ -22,6 +22,16 @@
                 </div>
             </div>
         @endif
+            @if(\Illuminate\Support\Facades\Session::has('pesawat-deleted'))
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-success alert-dismissable" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <p>{{ \Illuminate\Support\Facades\Session::get('pesawat-deleted') }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endif
         <div class="row">
             <div class="col-lg-12">
                 <h1>Data Pesawat All</h1>
@@ -30,7 +40,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <table class="table-hover table data-entry-table table-custom">
+                <table id="dataTables" class="table-hover table data-entry-table table-custom">
                     <thead>
                     <tr>
                         {{--<td>Logo</td>--}}
@@ -70,10 +80,8 @@
                     @endforeach
                     </tbody>
                 </table>
-                <div class="pagination-container">
-                    {!! $pesawats->render()  !!}
-                </div>
             </div>
         </div>
     </div>
 @endsection
+@include('partials._data-tables')

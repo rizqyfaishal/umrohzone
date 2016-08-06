@@ -11,7 +11,12 @@ class Rekening extends Model
 
     protected $dates = ['delete_at'];
 
-    protected $table = 'pesawat';
+    protected $table = 'rekening';
+    protected $fillable = ['no_rekening','bank'];
+
+    public function owner(){
+        return $this->morphTo();
+    }
 
 
 }

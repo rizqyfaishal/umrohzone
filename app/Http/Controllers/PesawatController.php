@@ -35,7 +35,7 @@ class PesawatController extends Controller
         $this->page->setTitle('Pesawat All');
         return view('data-entry.pesawat.index')->with([
             'page' => $this->page,
-            'pesawats' => Pesawat::paginate(15)
+            'pesawats' => Pesawat::with('rating')->get()
         ]);
     }
 
@@ -154,7 +154,11 @@ class PesawatController extends Controller
         if(is_null($pesawat)){
             abort(404);
         }
-        $pesawat->delete();
+        $t = $pesawat->delete();
+        if(!$t){
+            abort(500);
+        }
+        Session::flash('pesawat-deleted','Deleted!');
         return redirect()->back();
     }
 }

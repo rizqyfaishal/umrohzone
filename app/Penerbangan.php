@@ -16,12 +16,16 @@ class Penerbangan extends Model
     protected $fillable = [
         'tanggal_berangkat',
         'waktu_tempuh',
+        'terminal_berangkat_id',
+        'terminal_tujuan_id',
+        'bandara_tujuan_id',
+        'bandara_berangkat_id',
+        'pesawat_id',
     ];
 
     public function pesawat(){
         return $this->belongsTo('App\Pesawat','pesawat_id');
     }
-
 
     public function bandaraBerangkat(){
         return $this->belongsTo('App\Bandara','bandara_berangkat_id');

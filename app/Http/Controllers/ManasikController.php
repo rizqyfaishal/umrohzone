@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
 use App\Helper\PageDescription;
-use App\HotelFasilitasDetail;
+use App\Manasik;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Session;
 
-class HotelFasilitasDetailController extends Controller
+class ManasikController extends Controller
 {
     public function __construct(PageDescription $page)
     {
@@ -24,10 +25,10 @@ class HotelFasilitasDetailController extends Controller
      */
     public function index()
     {
-        $this->page->setTitle('Fasilitas Hotel Detail');
-        return view('data-entry.hotel-fasilitas-detail.index')->with([
-            'hotelFasilitasDetails' => HotelFasilitasDetail::paginate(15),
-            'page' => $this->page
+        $this->page->setTitle('Manasik All');
+        return view('data-entry.manasik.index')->with([
+            'page' => $this->page,
+            'manasiks' => Manasik::with('address')->get()
         ]);
     }
 
@@ -38,8 +39,8 @@ class HotelFasilitasDetailController extends Controller
      */
     public function create()
     {
-        $this->page->setTitle('Fasilitas Hotel Create');
-        return view('data-entry.hotel-fasilitas-detail.create')->with([
+        $this->page->setTitle('Manasik Create');
+        return view('data-entry.manasik.create')->with([
             'page' => $this->page
         ]);
     }
@@ -50,14 +51,15 @@ class HotelFasilitasDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\HotelFasilitasDetailRequest $request)
+    public function store(Requests\ManasikRequest $request)
     {
-        $r = HotelFasilitasDetail::create($request->all());
-        if(is_null($r)){
+        $manasik = Manasik::create($request->all());
+        if(is_null($manasik)){
             abort(500);
         }
-        Session::flash('hotel-fasilitas-detail-registered','Fasilitas Hotel Detail telah ditambahkan');
-        return redirect(action('HotelFasilitasDetailController@index'));
+        $manasik->address()->save(Address::create($request->all()));
+        Session::flash('manasik-registered','Telah ditambahkan');
+        return redirect(action('ManasikController@index'));
     }
 
     /**
@@ -68,13 +70,13 @@ class HotelFasilitasDetailController extends Controller
      */
     public function show($id)
     {
-        $u = HotelFasilitasDetail::where('id','=',$id)->first();
-        if(is_null($u)){
+        $manasik = Manasik::find($id);
+        if(is_null($manasik)){
             abort(404);
         }
         return response()->json([
             'status' => 'ok',
-            'data' => $u
+            'data' => $manasik
         ]);
     }
 
@@ -86,14 +88,14 @@ class HotelFasilitasDetailController extends Controller
      */
     public function edit($id)
     {
-        $u = HotelFasilitasDetail::where('id','=',$id)->first();
-        if(is_null($u)){
+        $manasik = Manasik::find($id);
+        if(is_null($manasik)){
             abort(404);
         }
-        $this->page->setTitle($u->name . ' - edit');
-        return view('data-entry.hotel-fasilitas-detail.edit')->with([
+        $this->page->setTitle('Manasik Edit');
+        return view('data-entry.manasik.edit')->with([
             'page' => $this->page,
-            'hotelFasilitasDetail' => $u
+            'manasik' => $manasik
         ]);
     }
 
@@ -104,18 +106,18 @@ class HotelFasilitasDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\HotelFasilitasDetailRequest $request, $id)
+    public function update(Requests\ManasikRequest $request, $id)
     {
-        $u = HotelFasilitasDetail::where('id','=',$id)->first();
-        if(is_null($u)){
+        $manasik = Manasik::find($id);
+        if(is_null($manasik)){
             abort(404);
         }
-        $bool = $u->update($request->all());
-        if(!$bool){
+        if(!$manasik->update($request->all())){
             abort(500);
         }
-        Session::flash('hotel-fasilitas-detail-edited','Fasilitas hotel detail telah teredit');
-        return redirect(action('HotelFasilitasDetailController@index'));
+        $manasik->address->update($request->all());
+        Session::flash('manasik-edited','Manasik telah diedit');
+        return redirect(action('ManasikController@index'));
     }
 
     /**
@@ -126,15 +128,13 @@ class HotelFasilitasDetailController extends Controller
      */
     public function destroy($id)
     {
-        $u = HotelFasilitasDetail::where('id','=',$id)->first();
-        if(is_null($u)){
+        $manasik = Manasik::find($id);
+        if(is_null($manasik)){
             abort(404);
         }
-        $bool = $u->delete();
-        if(!$bool){
+        if(!$manasik>delete()){
             abort(500);
         }
-        Session::flash('hotel-fasilitas-detail-deleted','Deleted!');
         return redirect()->back();
     }
 }

@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Fasilitas;
+use App\Helper\PageDescription;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 class FasilitasController extends Controller
 {
+    public function __construct(PageDescription $page)
+    {
+        $this->page = $page;
+        $this->middleware('auth-admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +24,11 @@ class FasilitasController extends Controller
      */
     public function index()
     {
-        //
+        $this->page->setTitle('Fasilitas All');
+        return view('data-entry.fasilitas.index')->with([
+            'page' => $this->page,
+            'fasilitass' => Fasilitas::all()
+        ]);
     }
 
     /**
@@ -25,7 +38,10 @@ class FasilitasController extends Controller
      */
     public function create()
     {
-        //
+        $this->page->setTitle('Fasilitas Create');
+        return view('data-entry.fasilitas.create')->with([
+            'page' => $this->page
+        ]);
     }
 
     /**
@@ -34,9 +50,14 @@ class FasilitasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\FasilitasRequest $request)
     {
-        //
+        $fasilitas = Fasilitas::create($request->all());
+        if(is_null($fasilitas)){
+            abort(500);
+        }
+        Session::flash('fasilitas-registered','Telah Ditambahkan');
+        return redirect(action('FasilitasController@index'));
     }
 
     /**
@@ -47,7 +68,14 @@ class FasilitasController extends Controller
      */
     public function show($id)
     {
-        //
+        $fasilitas = Fasilitas::find($id);
+        if(is_null($fasilitas)){
+            abort(404);
+        }
+        return response()->json([
+            'status' => 'ok',
+            'data' => $fasilitas
+        ]);
     }
 
     /**
@@ -58,7 +86,15 @@ class FasilitasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $fasilitas = Fasilitas::find($id);
+        if(is_null($fasilitas)){
+            abort(404);
+        }
+        $this->page->setTitle($fasilitas->name. ' - edit');
+        return view('data-entry.fasilitas.edit')->with([
+            'page' => $this->page,
+            'fasilitas' => $fasilitas
+        ]);
     }
 
     /**
@@ -68,9 +104,17 @@ class FasilitasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\FasilitasRequest $request, $id)
     {
-        //
+        $fasilitas = Fasilitas::find($id);
+        if(is_null($fasilitas)){
+            abort(404);
+        }
+        if(!$fasilitas->update($request->all())){
+            abort(500);
+        }
+        Session::flash('fasilitas-edited','Fasilitas telah teredit');
+        return redirect(action('FasilitasController@index'));
     }
 
     /**
@@ -81,6 +125,13 @@ class FasilitasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $fasilitas = Fasilitas::find($id);
+        if(is_null($fasilitas)){
+            abort(404);
+        }
+        if(!$fasilitas->delete()){
+            abort(500);
+        }
+        return redirect()->back();
     }
 }

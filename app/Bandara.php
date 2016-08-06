@@ -21,8 +21,12 @@ class Bandara extends Model
         return $this->belongsTo('App\Regency','regency_id');
     }
 
-    public function penerbangan(){
-        return $this->hasMany('App\Penerbangan','pesawat_id');
+    public function penerbanganBerangkat(){
+        return $this->hasMany('App\Penerbangan','bandara_berangkat_id');
+    }
+
+    public function penerbanganTujuan(){
+        return $this->hasMany('App\Penerbangan','bandara_tujuan_id');
     }
 
 

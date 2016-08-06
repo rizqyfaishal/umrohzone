@@ -40,5 +40,9 @@ class Pesawat extends Model
         return $this->morphOne('App\Rating','rating');
     }
 
+    public function penerbangan(){
+        return $this->hasMany('App\Penerbangan','pesawat_id');
+    }
+
 
 }

@@ -13,7 +13,7 @@ class PenerbanganRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class PenerbanganRequest extends Request
     public function rules()
     {
         return [
-            //
+            'tanggal_berangkat' => 'required|date',
+            'waktu_tempuh' => 'required',
+            'bandara_berangkat_id' => 'required|integer|exists:bandaras,id',
+            'bandara_tujuan_id' => 'required|integer|exists:bandaras,id',
+            'pesawat_id' => 'required|integer|exists:pesawat,id',
+            'terminal_berangkat_id' => 'required|integer|exists:terminals,id',
+            'terminal_tujuan_id' => 'required|integer|exists:terminals,id',
         ];
     }
 }

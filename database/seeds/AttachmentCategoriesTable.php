@@ -23,5 +23,8 @@ class AttachmentCategoriesTable extends Seeder
         \App\AttachmentCategory::create([
             'name' => 'Photos'
         ]);
+        \App\AttachmentCategory::create([
+            'name' => 'Other'
+        ]);
     }
 }

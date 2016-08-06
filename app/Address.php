@@ -12,7 +12,7 @@ class Address extends Model
 
     protected $dates = ['delete_at'];
 
-    protected $fillable = ['full_address','google_map_url'];
+    protected $fillable = ['full_address'];
 
     public function address(){
         return $this->morphTo();

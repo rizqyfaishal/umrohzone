@@ -44,7 +44,7 @@
                     <thead>
                     <tr>
                         <td>Nama hotel-fasilitas</td>
-                        <td>Nama Hotel</td>
+                        <td>Category</td>
                         <td>Action</td>
                     </tr>
                     </thead>
@@ -52,12 +52,7 @@
                     @foreach($hotelFasilitass as $hotelFasilitas)
                         <tr>
                             <td>{{ $hotelFasilitas->name }}</td>
-                            <td style="width: 30%">
-                               <ul>
-                                   @foreach($hotelFasilitas->hotels as $hotel)
-                                       <li>{{ $hotel->nama }}</li>
-                                   @endforeach
-                               </ul>
+                            <td>{{ $hotelFasilitas->category->name }}</td>
                             </td>
                             <td>
                                 {!! Form::model($hotelFasilitas,['method' => 'DELETE','action' => ['HotelFasilitasController@destroy',$hotelFasilitas->id]]) !!}

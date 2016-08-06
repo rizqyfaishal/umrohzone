@@ -54,12 +54,8 @@ class HotelFasilitasController extends Controller
     public function store(Requests\HotelFasilitasRequest $request)
     {
         $hf = HotelFasilitas::create($request->all());
-        if($request->has('hotel_fasilitas_details')){
-            for($i = 0;$i<count($request->input('hotel_fasilitas_details'));$i++){
-                $detail = new HotelFasilitasDetail();
-                $detail->name = $request->input('hotel_fasilitas_details')[$i];
-                $hf->details()->save($detail);
-            }
+        if(is_null($hf)){
+            abort(500);
         }
         Session::flash('hotel-fasilitas-registered','Fasilitas Hotel telah dibuat');
         return redirect(action('HotelFasilitasController@index'));

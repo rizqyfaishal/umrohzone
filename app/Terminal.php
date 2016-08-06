@@ -12,7 +12,11 @@ class Terminal extends Model
     protected $dates = ['delete_at'];
     protected $fillable = ['nama'];
 
-    public function penerbangan(){
+    public function penerbanganBerangkat(){
+        return $this->hasMany('App\Penerbangan',['terminal_berangkat_id','terminal_pulang_id']);
+    }
+
+    public function penerbanganTujuan(){
         return $this->hasMany('App\Penerbangan',['terminal_berangkat_id','terminal_pulang_id']);
     }
 }

@@ -19,12 +19,12 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
-            {!! Form::label('address','Alamat') !!}
-            {!! Form::textarea('address',old('address'),['class' => 'form-control','placeholder' => 'Alamat']) !!}
-            @if ($errors->has('address'))
+        <div class="form-group {{ $errors->has('full_address') ? ' has-error' : '' }}">
+            {!! Form::label('full_address','Alamat') !!}
+            {!! Form::textarea('full_address',old('full_address'),['class' => 'form-control','placeholder' => 'Alamat']) !!}
+            @if ($errors->has('full_address'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('address') }}</strong>
+                    <strong>{{ $errors->first('full_address') }}</strong>
                 </span>
             @endif
 

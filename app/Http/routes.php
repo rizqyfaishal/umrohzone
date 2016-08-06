@@ -85,11 +85,15 @@ Route::resource('penerbangan','PenerbanganController');
 Route::resource('rating','RatingController');
 Route::resource('fasilitas','FasilitasController');
 Route::resource('hotel-fasilitas','HotelFasilitasController');
-Route::resource('hotel-fasilitas-detail','HotelFasilitasDetailController');
+Route::resource('hotel-fasilitas-category','HotelFasilitasCategoryController');
 Route::resource('terminal','TerminalController');
 Route::resource('address','AddressController');
 Route::resource('promo','PromoController');
 Route::resource('agenda','AgendaController');
 Route::resource('testimoni','TestimoniController');
+Route::resource('agen','AgenController');
+Route::resource('manasik','ManasikController');
+Route::resource('paket-category','PaketCategoryController');
+Route::resource('rekening','RekeningController');
 Route::get('/attachments/all','AttachmentController@index');
 

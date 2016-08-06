@@ -14,13 +14,8 @@ class CreateTestimonisTable extends Migration
     {
         Schema::create('testimonis', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pemesan_id')
-                ->unsigned();
-            $table->foreign('pemesan_id')
-                ->references('id')
-                ->on('pemesans')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+            $table->string('testimoni_type');
+            $table->integer('testimoni_id')->unsigned();
             $table->text('description');
             $table->softDeletes();
             $table->timestamps();
@@ -31,6 +26,7 @@ class CreateTestimonisTable extends Migration
      * Reverse the migrations.
      *
      * @return void
+     *
      */
     public function down()
     {

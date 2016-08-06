@@ -10,15 +10,15 @@ class HotelFasilitas extends Model
     use SoftDeletes;
     protected $dates = ['delete_at'];
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','hotel_fasilitas_category_id'];
 
 
     public function hotels(){
         return $this->belongsToMany('App\Hotel','hotel_hotel_fasilitas','hotel_fasilitas_id');
     }
 
-    public function details(){
-        return $this->hasMany('App\HotelFasilitasDetail');
+    public function category(){
+        return $this->belongsTo('App\HotelFasilitasCategory','hotel_fasilitas_category_id');
     }
 
 

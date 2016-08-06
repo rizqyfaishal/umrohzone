@@ -9,5 +9,4 @@
         </div>
     </div>
     @include('data-entry.hotel-fasilitas.partials._hotel-fasilitas-edit')
-    @include('data-entry.hotel-fasilitas.partials._hotel-fasilitas-template-form')
 @endsection

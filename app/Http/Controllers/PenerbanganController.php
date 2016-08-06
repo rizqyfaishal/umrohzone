@@ -7,6 +7,7 @@ use App\Penerbangan;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 class PenerbanganController extends Controller
 {
@@ -27,7 +28,7 @@ class PenerbanganController extends Controller
         $this->page->setTitle('Penerbangan All');
         return view('data-entry.penerbangan.index')->with([
             'page' => $this->page,
-            'penerbangans' => Penerbangan::paginate(15)
+            'penerbangans' => Penerbangan::with('pesawat','bandaraBerangkat','bandaraTujuan','terminalBerangkat','terminalTujuan')->get()
         ]);
     }
 
@@ -50,9 +51,23 @@ class PenerbanganController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\PenerbanganRequest $request)
     {
-        //
+        if($request->input('bandara_berangkat_id') == $request->input('bandara_tujuan_id')){
+            Session::flash('bandara-input-error','Bandara berangkat dan tujuan tidak boleh sama!');
+            return redirect()->back()->withInput($request->all());
+        }
+        if($request->input('terminal_berangkat_id') == $request->input('terminal_tujuan_id')){
+            Session::flash('terminal-input-error','Terminal berangkat dan tujuan tidak boleh sama!');
+            return redirect()->back()->withInput($request->all());
+        }
+
+        $penerbangan = Penerbangan::create($request->all());
+        if(is_null($penerbangan)){
+            abort(500);
+        }
+        Session::flash('penerbangan-registered','Telah Ditambahkan');
+        return redirect(action('PenerbanganController@index'));
     }
 
     /**
@@ -63,7 +78,14 @@ class PenerbanganController extends Controller
      */
     public function show($id)
     {
-        //
+        $penerbangan = Penerbangan::find($id);
+        if(is_null($penerbangan)){
+            abort(404);
+        }
+        return response()->json([
+            'status' => 'ok',
+            'data' => $penerbangan
+        ]);
     }
 
     /**
@@ -74,7 +96,15 @@ class PenerbanganController extends Controller
      */
     public function edit($id)
     {
-        //
+        $penerbangan = Penerbangan::find($id);
+        if(is_null($penerbangan)){
+            abort(404);
+        }
+        $this->page->setTitle('Penerbangan - edit');
+        return view('data-entry.penerbangan.edit')->with([
+            'page' => $this->page,
+            'penerbangan' => $penerbangan
+        ]);
     }
 
     /**
@@ -84,9 +114,24 @@ class PenerbanganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\PenerbanganRequest $request, $id)
     {
-        //
+        if($request->input('bandara_berangkat_id') == $request->input('bandara_tujuan_id')){
+            Session::flash('bandara-input-error','Bandara berangkat dan tujuan tidak boleh sama!');
+            return redirect()->back()->withInput($request->all());
+        }
+        if($request->input('terminal_berangkat_id') == $request->input('terminal_tujuan_id')){
+            Session::flash('terminal-input-error','Terminal berangkat dan tujuan tidak boleh sama!');
+            return redirect()->back()->withInput($request->all());
+        }
+
+        $penerbangan = Penerbangan::find($id);
+        if(is_null($penerbangan)){
+            abort(404);
+        }
+        $penerbangan->update($request->all());
+        Session::flash('penerbangan-registered','Telah Ditambahkan');
+        return redirect(action('PenerbanganController@index'));
     }
 
     /**
@@ -97,6 +142,13 @@ class PenerbanganController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $penerbangan = Penerbangan::find($id);
+        if(is_null($penerbangan)){
+            abort(404);
+        }
+        if(!$penerbangan->delete()){
+            abort(500);
+        }
+        return redirect()->back();
     }
 }

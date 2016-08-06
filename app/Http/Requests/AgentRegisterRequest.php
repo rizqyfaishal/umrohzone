@@ -29,7 +29,7 @@ class AgentRegisterRequest extends Request
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required',
             'nama_agen' => 'required|max:50|min:3',
-            'address' => 'required|min:5|max:255',
+            'full_address' => 'required|min:5|max:255',
             'provinsi_id' => 'required|integer',
             'regency_id' => 'required|integer',
             'phone2' => 'required|max:12',
