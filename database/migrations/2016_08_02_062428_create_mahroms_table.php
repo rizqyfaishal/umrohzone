@@ -21,7 +21,6 @@ class CreateMahromsTable extends Migration
                 ->on('jamaahs')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-
             $table->timestamps();
         });
     }

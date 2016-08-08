@@ -27,6 +27,6 @@ class CreateManasiksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('manasiks');
+        Schema::drop('manasik');
     }
 }

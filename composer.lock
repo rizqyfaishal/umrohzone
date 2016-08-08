@@ -4,9 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d7d23db01d432e7d79d144af1dc43b33",
-    "content-hash": "b8e92c8687b4c54470f8e92231c1e402",
+    "hash": "2ecdb0ec4fa3054e2fdcad9a62b79ad1",
+    "content-hash": "71ccce10cb21419176d140cc291f6ecb",
     "packages": [
+        {
+            "name": "artesaos/seotools",
+            "version": "v0.9.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/artesaos/seotools.git",
+                "reference": "90c287542602af077541dab1ddac4914f608e7e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/artesaos/seotools/zipball/90c287542602af077541dab1ddac4914f608e7e7",
+                "reference": "90c287542602af077541dab1ddac4914f608e7e7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "~5",
+                "illuminate/support": "~5",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "2.1.x",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Artesaos\\SEOTools\\": "src/SEOTools/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vinicius",
+                    "email": "luiz.vinicius73@gmail.com"
+                }
+            ],
+            "description": "SEO Tools for Laravel and Lumen",
+            "keywords": [
+                "laravel5",
+                "lumen",
+                "metatags",
+                "opengraph",
+                "seo",
+                "seotools",
+                "webmaster"
+            ],
+            "time": "2016-04-30 00:18:23"
+        },
         {
             "name": "barryvdh/laravel-dompdf",
             "version": "v0.6.1",
@@ -1182,6 +1233,42 @@
                 "shell"
             ],
             "time": "2016-03-09 05:03:14"
+        },
+        {
+            "name": "sukohi/surpass",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SUKOHI/Surpass.git",
+                "reference": "70c45c57955ea70b6ee1aa4ff6b17400aea8755b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SUKOHI/Surpass/zipball/70c45c57955ea70b6ee1aa4ff6b17400aea8755b",
+                "reference": "70c45c57955ea70b6ee1aa4ff6b17400aea8755b",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sukohi\\Surpass\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sukohi",
+                    "email": "capilano.sukohi@gmail.com"
+                }
+            ],
+            "description": "A PHP package mainly developed for Laravel to manage uploading images using Ajax and displaying thumbnail.",
+            "time": "2016-04-03 07:49:26"
         },
         {
             "name": "swiftmailer/swiftmailer",

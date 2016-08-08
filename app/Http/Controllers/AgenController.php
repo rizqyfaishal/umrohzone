@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
 use App\Agen;
+use App\Helper\AttachmentHelper;
 use App\Helper\PageDescription;
 use App\Helper\RegistersUsers;
+use App\Rekening;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -14,6 +17,7 @@ class AgenController extends Controller
 {
 
     use RegistersUsers;
+    use AttachmentHelper;
 
     public function __construct(PageDescription $page)
     {
@@ -29,7 +33,11 @@ class AgenController extends Controller
      */
     public function index()
     {
-        //
+        $this->page->setTitle('Agen All');
+        return view('data-entry.agen.index')->with([
+            'page' => $this->page,
+            'agens' => Agen::with('alamat','rating','provinsi','regency','rekening')->get()
+        ]);
     }
 
 
@@ -39,7 +47,20 @@ class AgenController extends Controller
     {
         $user = $this->register($request);
         $agen = Agen::create($request->all());
-        $agen->user()->save($user);
+        if(is_null($agen)){
+            abort(500);
+        }
+        $t = $agen->user()->save($user);
+        if(!$t){
+            abort(500);
+        }
+        if($request->hasFile('logo')){
+            $file = $request->file('logo');
+            $attach = $this->saveFile($file,4);
+            $agen->attachments()->save($attach);
+        }
+        $agen->alamat()->save(Address::create($request->all()));
+        $agen->rekening()->save(Rekening::create($request->all()));
         $agen->generateNoAgen();
         return response()->json($user);
     }
@@ -53,7 +74,14 @@ class AgenController extends Controller
      */
     public function show($id)
     {
-        //
+        $agen = Agen::fins($id);
+        if(is_null($agen)){
+            abort(404);
+        }
+        return response()->json([
+            'status' => 'ok',
+            'data' => $agen
+        ]);
     }
 
     /**
@@ -64,7 +92,7 @@ class AgenController extends Controller
      */
     public function edit($id)
     {
-        //
+        abort(404);
     }
 
     /**

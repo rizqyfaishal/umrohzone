@@ -13,7 +13,7 @@ class Agen extends Model
     protected $table = 'agen';
 
     protected $fillable = [
-        'no_agen','direktur','phone_direktur','bank','no_rekening','nama_agen','provinsi','kota','phone2'
+        'no_agen','direktur','phone_direktur','nama_agen','provinsi_id','regency_id','phone2'
     ];
 
     protected $dates = [
@@ -48,6 +48,10 @@ class Agen extends Model
         return $this->hasMany('App\Jamaah');
     }
 
+    public function pemesan(){
+        return $this->hasMany('App\Pemesan');
+    }
+
     public function logo(){
         return $this->attachments()->where('category_id','=',1)->first();
     }
@@ -58,5 +62,9 @@ class Agen extends Model
 
     public function regency(){
         return $this->hasOne('App\Regency');
+    }
+
+    public function rekening(){
+        return $this->morphOne('App\Rekening','owner');
     }
 }

@@ -17,5 +17,8 @@ class Manasik extends Model
         'waktu_manasik'
     ];
 
+    public function address(){
+        return $this->morphOne('App\Address','address');
+    }
 
 }

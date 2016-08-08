@@ -14,12 +14,35 @@ class Pesawat extends Model
     protected $table = 'pesawat';
 
     protected $fillable = [
+        'nama',
         'jenis',
         'kelas',
         'makanan',
         'hiburan',
         'penghargaan'
     ];
+
+    public function attachments(){
+        return $this->morphMany('App\Attachment','attach');
+    }
+
+    public function logo(){
+        $attachments = $this->attachments();
+        return $attachments->where('attachment_category_id','=',1)->first();
+    }
+
+    public function photos(){
+        $attachments = $this->attachments();
+        return $attachments->where('attachment_category_id','=',4);
+    }
+
+    public function rating(){
+        return $this->morphOne('App\Rating','rating');
+    }
+
+    public function penerbangan(){
+        return $this->hasMany('App\Penerbangan','pesawat_id');
+    }
 
 
 }

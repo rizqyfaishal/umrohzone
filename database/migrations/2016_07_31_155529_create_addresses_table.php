@@ -16,9 +16,10 @@ class CreateAddressesTable extends Migration
             $table->increments('id');
             $table->integer('address_id')->unsigned();
             $table->string('address_type');
-            $table->decimal('longitude');
-            $table->decimal('latitude');
+            $table->decimal('longitude')->nullable();
+            $table->decimal('latitude')->nullable();
             $table->string('full_address');
+            $table->string('google_map_url')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

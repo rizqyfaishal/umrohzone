@@ -14,6 +14,7 @@ class CreatePesawatsTable extends Migration
     {
         Schema::create('pesawat', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nama');
             $table->string('jenis');
             $table->string('kelas');
             $table->string('makanan');

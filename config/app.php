@@ -150,7 +150,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         \Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
-
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
+        Sukohi\Surpass\SurpassServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -208,6 +209,11 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
+        'SEOMeta'   => Artesaos\SEOTools\Facades\SEOMeta::class,
+        'OpenGraph' => Artesaos\SEOTools\Facades\OpenGraph::class,
+        'Twitter'   => Artesaos\SEOTools\Facades\TwitterCard::class,
+        'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
+        'Surprass' => Sukohi\Surpass\Facades\Surpass::class,
 
     ],
 

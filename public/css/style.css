@@ -5,10 +5,20 @@
 
 */
 
+.panel-heading-custom {
+    background: #005A31!important;
+    color: white!important;
+}
+
 .navbar-custom {
     background-color: #005A31;
     padding: 1.2em;
     border-radius: 0;
+}
+
+.alert-success {
+    background: #005A31;
+    color: white;
 }
 
 .btn-custom {
@@ -61,8 +71,55 @@
 }
 
 .travel-agent-register-form .has-error .help-block,
-.data-pemesan-form .has-error .help-block {
+.data-pemesan-form .has-error .help-block,
+.reset-form .has-error .help-block {
     color: red;
+}
+
+.pagination span {
+    color: black;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #006e3f;
+    border-color: #006e3f;
+}
+
+.dataTables_wrapper {
+    margin: 2em 0;
+}
+
+.form-delete {
+    padding: 0;
+}
+select[multiple] {
+    height: 200px;
+}
+
+.pagination-container {
+    margin: 0 auto;
+    display: block;
+}
+
+.pagination {
+    margin: 1em auto;
+    text-align: center;
+}
+
+.pagination>li>a,
+.pagination>li>span {
+    color: black;
+}
+
+.pagination>.active>span {
+    background-color: #005A31;
+}
+
+.pagination>.active>span:hover {
+    background-color: #007042;
 }
 
 .dashboard-container {
@@ -70,6 +127,9 @@
     margin-top: 1em;
 }
 
+.data-entry-table > tbody > tr > td{
+    vertical-align: middle;
+}
 .dashboard-side-nav,
 .dashboard-content {
     background-color: #e2e2e2;

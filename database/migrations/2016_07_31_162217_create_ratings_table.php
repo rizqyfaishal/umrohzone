@@ -16,7 +16,7 @@ class CreateRatingsTable extends Migration
             $table->increments('id');
             $table->string('rating_type');
             $table->integer('rating_id')->unsigned();
-            $table->integer('rating_value');
+            $table->decimal('rating_value');
             $table->softDeletes();
             $table->timestamps();
         });

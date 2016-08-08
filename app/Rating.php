@@ -15,9 +15,14 @@ class Rating extends Model
         'rating_value'
     ];
 
+    protected $table = 'rating';
+
     public function rating(){
         return $this->morphTo();
     }
 
+    public function getRatingTypeFor(){
+        return substr($this->rating_type,4);
+    }
 
 }

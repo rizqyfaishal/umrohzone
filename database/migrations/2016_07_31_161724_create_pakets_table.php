@@ -14,19 +14,23 @@ class CreatePaketsTable extends Migration
     {
         Schema::create('paket', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('kode_booking',6);
             $table->integer('harga');
             $table->date('waktu');
             $table->integer('durasi')->unsigned();
-            $table->string('lokasi_berangkat');
-            $table->integer('hotel_id')->unsigned();
-            $table->foreign('hotel_id')
+            $table->integer('hotel_mekah_id')->unsigned();
+            $table->foreign('hotel_mekah_id')
+                ->references('id')
+                ->on('hotel')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->integer('hotel_madinah_id')->unsigned();
+            $table->foreign('hotel_madinah_id')
                 ->references('id')
                 ->on('hotel')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->integer('kuota')->unsigned();
-            $table->integer('discount')->unsigned();
+            $table->integer('discount')->unsigned()->nullable();
             $table->integer('pesawat_id')->unsigned();
             $table->foreign('pesawat_id')
                 ->references('id')
@@ -37,6 +41,11 @@ class CreatePaketsTable extends Migration
             $table->foreign('agen_id')
                 ->references('id')
                 ->on('agen')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->integer('manasik_id')
+                ->references('id')
+                ->on('manasik')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->softDeletes();

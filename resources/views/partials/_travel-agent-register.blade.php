@@ -19,12 +19,12 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
-            {!! Form::label('address','Alamat') !!}
-            {!! Form::textarea('address',old('address'),['class' => 'form-control','placeholder' => 'Alamat']) !!}
-            @if ($errors->has('address'))
+        <div class="form-group {{ $errors->has('full_address') ? ' has-error' : '' }}">
+            {!! Form::label('full_address','Alamat') !!}
+            {!! Form::textarea('full_address',old('full_address'),['class' => 'form-control','placeholder' => 'Alamat']) !!}
+            @if ($errors->has('full_address'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('address') }}</strong>
+                    <strong>{{ $errors->first('full_address') }}</strong>
                 </span>
             @endif
 
@@ -34,23 +34,23 @@
 </div>
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="form-group {{ $errors->has('provinsi') ? ' has-error' : '' }}">
-            {!! Form::label('provinsi','Provinsi') !!}
-            {!! Form::select('provinsi',\App\Provinsi::lists('name','id'),old('provinsi'),['class' => 'form-control', 'placeholder' => 'Provinsi']) !!}
-            @if ($errors->has('provinsi'))
+        <div class="form-group {{ $errors->has('provinsi_id') ? ' has-error' : '' }}">
+            {!! Form::label('provinsi_id','Provinsi') !!}
+            {!! Form::select('provinsi_id',\App\Provinsi::lists('name','id'),old('provinsi_id'),['class' => 'form-control', 'placeholder' => 'Provinsi']) !!}
+            @if ($errors->has('provinsi_id'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('provinsi') }}</strong>
+                    <strong>{{ $errors->first('provinsi_id') }}</strong>
                  </span>
             @endif
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="form-group {{ $errors->has('kota') ? ' has-error' : '' }}">
-            {!! Form::label('kota','Kota') !!}
-            {!! Form::select('kota',is_null(old('provinsi')) ? [] : (is_null(\App\Provinsi::where('id','=',old('provinsi'))->first()) ? [] : \App\Provinsi::where('id','=',old('provinsi'))->first()->regencies()->lists('name','id')),is_null(old('kota')) ? null : old('kota'),['class' => 'form-control', 'placeholder' => 'Kota']) !!}
-            @if ($errors->has('kota'))
+        <div class="form-group {{ $errors->has('regency_id') ? ' has-error' : '' }}">
+            {!! Form::label('regency_id','Kota') !!}
+            {!! Form::select('regency_id',is_null(old('provinsi_id')) ? [] : (is_null(\App\Provinsi::where('id','=',old('provinsi_id'))->first()) ? [] : \App\Provinsi::where('id','=',old('provinsi_id'))->first()->regencies()->lists('name','id')),is_null(old('regency_id')) ? null : old('regency_id'),['class' => 'form-control', 'placeholder' => 'Kota']) !!}
+            @if ($errors->has('regency_id'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('kota') }}</strong>
+                    <strong>{{ $errors->first('regency_id') }}</strong>
                  </span>
             @endif
         </div>
@@ -226,7 +226,7 @@
             <label for="travel-agent-agree">
                 <input type="checkbox" id="travel-agent-agree" name="agree"
                        placeholder="Nama tarvel agent"/> I have read and agree with
-                <a href="#">T&C</a></label>
+                <a data-toggle="modal" data-target="#tcModal">T&C</a></label>
         </div>
     </div>
 </div>
@@ -238,35 +238,6 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('select#provinsi').on('change',function(){
-            updateSelect();
-        });
-    });
-
-    function updateSelect(){
-        var val = $('select#provinsi').val();
-        var con = $('select#kota');
-        if(val != ''){
-            $(con).html('');
-            $.get('/api/provinsi/' + val,function(data){
-                if(data.status){
-                    var data = data.data;
-                    for(var i = 0;i<data.length;i++){
-                        var option = document.createElement('option');
-                        option.value = data[i].id;
-                        option.innerText = data[i].name;
-                        $(con).append(option);
-                    }
-
-                }
-            });
-        } else {
-            $(con).html('');
-            $(con).append('<option selected>Kota</option>');
-        }
-    }
-
-</script>
+@include('partials._tc-modal')
+@include('partials._update-select-script')
 {!! Form::close() !!}

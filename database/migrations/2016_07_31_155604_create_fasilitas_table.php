@@ -14,13 +14,6 @@ class CreateFasilitasTable extends Migration
     {
         Schema::create('fasilitas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('hotel_id')->unsigned();
-            $table->foreign('hotel_id')
-                ->references('id')
-                ->on('hotel')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
             $table->string('name');
             $table->text('description');
 

@@ -36,6 +36,10 @@ class User extends Authenticatable
         return $this->morphTo();
     }
 
+    public function role(){
+        return $this->belongsTo($this->user_type,'user_id');
+    }
+
     public function isAdmin(){
         return $this->user_type == 'App\Admin';
     }
@@ -46,6 +50,18 @@ class User extends Authenticatable
 
     public function isJamaah(){
         return $this->user_type == 'App\Jamaah';
+    }
+
+    public function isPemesan(){
+        return $this->user_type == 'App\Pemesan';
+    }
+
+    public function testimoni(){
+        return $this->morphOne('App\Testimoni','testimoni');
+    }
+
+    public function rekening(){
+        return $this->morphOne('App\Rekening','owner');
     }
 
 }

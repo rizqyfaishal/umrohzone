@@ -66,3 +66,34 @@ Route::get('/invoice','PDFController@invoice');
 Route::get('/pemesan','PemesanController@showRegister');
 Route::post('/pemesan','PemesanController@postRegister');
 
+Route::group(['prefix' => 'admin'], function (){
+    Route::get('dashboard','AdminController@index');
+});
+
+Route::group(['prefix' => 'password'],function (){
+    Route::post('email','Auth\PasswordController@sendResetLinkEmail');
+    Route::post('reset','Auth\PasswordController@reset');
+    Route::get('reset/{token?}','Auth\PasswordController@showResetForm');
+});
+
+Route::resource('embarkasi','EmbarkasiController');
+Route::resource('bandara','BandaraController');
+Route::resource('hotel','HotelController');
+Route::resource('paket','PaketController');
+Route::resource('pesawat','PesawatController');
+Route::resource('penerbangan','PenerbanganController');
+Route::resource('rating','RatingController');
+Route::resource('fasilitas','FasilitasController');
+Route::resource('hotel-fasilitas','HotelFasilitasController');
+Route::resource('hotel-fasilitas-category','HotelFasilitasCategoryController');
+Route::resource('terminal','TerminalController');
+Route::resource('address','AddressController');
+Route::resource('promo','PromoController');
+Route::resource('agenda','AgendaController');
+Route::resource('testimoni','TestimoniController');
+Route::resource('agen','AgenController');
+Route::resource('manasik','ManasikController');
+Route::resource('paket-category','PaketCategoryController');
+Route::resource('rekening','RekeningController');
+Route::get('/attachments/all','AttachmentController@index');
+

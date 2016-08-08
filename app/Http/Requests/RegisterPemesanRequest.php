@@ -27,7 +27,8 @@ class RegisterPemesanRequest extends Request
             'phone' => 'required|max:12',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'nama' => 'required|min:3|max:50'
+            'nama' => 'required|min:3|max:50',
+            'g-recaptcha-response' => 'required|recaptcha',
         ];
     }
 }

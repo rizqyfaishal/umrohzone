@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="{{ URL::asset('css/landing-page.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/slick.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/slick-theme.css') }}">
+    @yield('data-tables-css')
+    @yield('select2-css')
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+    @yield('ajax-image-css')
     <script src="{{ URL::asset('js/jquery-2.2.1.min.js') }}"></script>
 </head>
 <body>
@@ -37,19 +40,22 @@
 </script>
 <script>
 
-        if(window.location.href == "https://umrohzone.com/beta/v3/dashboard") {
-            document.getElementById("cobalogin").innerHTML = "Logout";
-        }
-        if(window.location.href == "http://umrohzone.com/beta/v3/dashboard") {
-            document.getElementById("cobalogin").innerHTML = "Logout";
-        }
-        if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {
-            document.getElementById("cobalogin").innerHTML = "Logout";
-        }
-        if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {
-            document.getElementById("cobalogin").innerHTML = "Logout";
-        }
+    if(window.location.href == "https://umrohzone.com/beta/v3/dashboard") {
+        document.getElementById("cobalogin").innerHTML = "Logout";
+    }
+    if(window.location.href == "http://umrohzone.com/beta/v3/dashboard") {
+        document.getElementById("cobalogin").innerHTML = "Logout";
+    }
+    if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {
+        document.getElementById("cobalogin").innerHTML = "Logout";
+    }
+    if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {
+        document.getElementById("cobalogin").innerHTML = "Logout";
+    }
 
 </script>
+@yield('ajax-image-js')
+@yield('select2-js')
+@yield('data-tables-js')
 </body>
 </html>

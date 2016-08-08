@@ -16,4 +16,8 @@ class Fasilitas extends Model
     protected $fillable = [
         'name', 'description'
     ];
+
+    public function paket(){
+        return $this->belongsToMany('App\Paket','paket_fasilitas_pivot','paket_id');
+    }
 }
