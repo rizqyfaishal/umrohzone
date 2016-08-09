@@ -10,10 +10,10 @@
             <a href="{{ action('PageController@dashboardAgentDaftarPemesan') }}">Daftar Seluruh Pemesan</a>
         </li>
         <li>
-            <a href="#">Daftar Seluruh Paket</a>
+            <a href="{{ action('PageController@dashboardAgentDaftarPaket') }}">Daftar Seluruh Paket</a>
         </li>
         <li>
-            <a href="#">Buat Paket Baru</a>
+            <a href="{{ action('PageController@dashboardAgentBuatPaket') }}">Buat Paket Baru</a>
         </li>
     </ul>
 </div>
