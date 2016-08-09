@@ -69,6 +69,9 @@ Route::get('/dashboard-agent/daftarpemesan','PageController@dashboardAgentDaftar
 Route::get('/dashboard-agent/daftarpaket','PageController@dashboardAgentDaftarPaket');
 Route::get('/dashboard-agent/buatpaket','PageController@dashboardAgentBuatPaket');
 Route::get('/dashboard-agent/editpaket','PageController@dashboardAgentEditPaket');
+Route::get('/dashboard-user','PageController@dashboardUser');
+Route::get('/dashboard-user/infoakun','PageController@dashboardUserInfoAkun');
+Route::get('/dashboard-user/booking','PageController@dashboardUserBooking');
 //end of tambahan luthfi dashboard
 
 Route::get('/invoice','PDFController@invoice');

@@ -108,6 +108,27 @@ class PageController extends Controller
             'page' => $this->page
         ]);
     }
+
+    public function dashboardUser(){
+        $this->page->setTitle('Dashboard Calon Jamaah');
+        return view('dashboard-user')->with([
+            'page' => $this->page
+        ]);
+    }
+
+    public function dashboardUserInfoAkun(){
+        $this->page->setTitle('Dashboard Calon Jamaah');
+        return view('dashboard/_dashboard-base-user-infoakun')->with([
+            'page' => $this->page
+        ]);
+    }
+
+    public function dashboardUserBooking(){
+        $this->page->setTitle('Dashboard Calon Jamaah');
+        return view('dashboard/_dashboard-base-user-booking')->with([
+            'page' => $this->page
+        ]);
+    }
     // end of tambahan luthfi dashboard
     
 }
