@@ -24,7 +24,14 @@ class PaketRequest extends Request
     public function rules()
     {
         return [
-            //
+            'harga' => 'required',
+            'waktu' => 'required|date',
+            'durasi' => 'required',
+            'hotel_mekah_id' => 'required|integer|exists:hotel,id',
+            'hotel_madinah_id' => 'required|integer|exists:hotel,id',
+            'kuota' => 'required',
+            'discount' => 'required|decimal',
+            ''
         ];
     }
 }

@@ -142,5 +142,30 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group {{ $errors->has('paket_category_id') ? ' has-error' : '' }}">
+            {!! Form::label('paket_category_id','Kategori Paket') !!}
+            {!! Form::select('paket_category_id',\App\PaketCategory::lists('name','id'),old('paket_category_id'),['class' => 'form-control','placeholder' => 'Paket Category']) !!}
+            @if ($errors->has('paket_category_id'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('paket_category_id') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group {{ $errors->has('embarkasi_id') ? ' has-error' : '' }}">
+            {!! Form::label('embarkasi_id','Embarkasi') !!}
+            {!! Form::select('embarkasi_id',\App\Embarkasi::lists('nama','id'),old('embarkasi_id'),['class' => 'form-control','placeholder' => 'Embarkasi']) !!}
+            @if ($errors->has('embarkasi_id'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('embarkasi_id') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+</div>
+
 
 
