@@ -71,4 +71,11 @@ class PageController extends Controller
             'page' => $this->page
         ]);
     }
+
+    public function dashboardAgentInfoAkun(){
+        $this->page->setTitle('Dashboard Travel Agent');
+        return view('dashboard-agent-infoakun')->with([
+            'page' => $this->page
+        ]);
+    }
 }

@@ -61,7 +61,9 @@ Route::group(['middleware' => 'auth'],function()    {
 Route::get('/logout','Auth\AuthController@logout');
 Route::get('/api/provinsi/{id}','PageController@getRegencies');
 Route::get('/dashboard','PageController@dashboard');
-Route::get('/dashboardAgent','PageController@dashboardAgent');
+Route::get('/dashboard-agent','PageController@dashboardAgent');
+Route::get('/dashboard-agent/infoakun','PageController@dashboardAgentInfoAkun');
+
 Route::get('/invoice','PDFController@invoice');
 Route::get('/pemesan','PemesanController@showRegister');
 Route::post('/pemesan','PemesanController@postRegister');
