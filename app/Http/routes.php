@@ -11,14 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('UserArea.bayar');
-});
+Route::get('/', 'PageController@index');
+Route::get('/booking-status', 'PageController@bookingStatus');
+Route::get('/features', 'PageController@features');
+Route::get('/login', 'PageController@login');
 
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
+//Route::controllers([
+//    'auth' => 'Auth\AuthController',
+//    'password' => 'Auth\PasswordController',
+//]);
 //================== ROUTE FOR PAYMENT GATEWAY ==========================
 
 Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
@@ -38,12 +39,17 @@ Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
 });
 //================== ROUTE FOR AUTHENTICATION ==========================
 
-Route::get('login', 'Auth\AuthController@login');
-Route::post('login', 'Auth\AuthController@Authenticate');
+//Route::get('login', 'Auth\AuthController@login');
+Route::post('login', 'Auth\AuthController@login');
 
-Route::group(['prefix' => 'auth'], function () {
-    route::get('register', 'UserController@create');
-    route::post('register', 'UserController@store');
+Route::group(['prefix' => 'auth/jamaah'], function () {
+    route::get('register', 'JamaahController@create');
+    route::post('register', 'JamaahController@store');
+});
+
+Route::group(['prefix' => 'auth/travel-agen'], function () {
+    route::get('register', 'AgenController@showRegister');
+    route::post('register', 'AgenController@store');
 });
 
 //========================= ROUTE FOR USER =============================
@@ -51,3 +57,45 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['middleware' => 'auth'],function()    {
     route::get('/booking/{id}','UserController@getBooking');
 });
+
+Route::get('/logout','Auth\AuthController@logout');
+Route::get('/api/provinsi/{id}','PageController@getRegencies');
+Route::get('/dashboard','PageController@dashboard');
+Route::get('/dashboard-agent','PageController@dashboardAgent');
+Route::get('/dashboard-agent/infoakun','PageController@dashboardAgentInfoAkun');
+
+Route::get('/invoice','PDFController@invoice');
+Route::get('/pemesan','PemesanController@showRegister');
+Route::post('/pemesan','PemesanController@postRegister');
+
+Route::group(['prefix' => 'admin'], function (){
+    Route::get('dashboard','AdminController@index');
+});
+
+Route::group(['prefix' => 'password'],function (){
+    Route::post('email','Auth\PasswordController@sendResetLinkEmail');
+    Route::post('reset','Auth\PasswordController@reset');
+    Route::get('reset/{token?}','Auth\PasswordController@showResetForm');
+});
+
+Route::resource('embarkasi','EmbarkasiController');
+Route::resource('bandara','BandaraController');
+Route::resource('hotel','HotelController');
+Route::resource('paket','PaketController');
+Route::resource('pesawat','PesawatController');
+Route::resource('penerbangan','PenerbanganController');
+Route::resource('rating','RatingController');
+Route::resource('fasilitas','FasilitasController');
+Route::resource('hotel-fasilitas','HotelFasilitasController');
+Route::resource('hotel-fasilitas-category','HotelFasilitasCategoryController');
+Route::resource('terminal','TerminalController');
+Route::resource('address','AddressController');
+Route::resource('promo','PromoController');
+Route::resource('agenda','AgendaController');
+Route::resource('testimoni','TestimoniController');
+Route::resource('agen','AgenController');
+Route::resource('manasik','ManasikController');
+Route::resource('paket-category','PaketCategoryController');
+Route::resource('rekening','RekeningController');
+Route::get('/attachments/all','AttachmentController@index');
+

@@ -43,14 +43,14 @@ class UserController extends Controller
         //
 
 
-        $user = new User;
-
-        $user->nama = Input::get('nama');
-        $user->no_hp = Input::get('no_hp');
-        $user->email = Input::get('email');
-        $user->alamat = Input::get('alamat');
-        //TODO HASH IT (jangan raw)
-        $user->password = Input::get('password');
+//        $user = new User;
+//
+//        $user->nama = Input::get('nama');
+//        $user->no_hp = Input::get('no_hp');
+//        $user->email = Input::get('email');
+//        $user->alamat = Input::get('alamat');
+//        //TODO HASH IT (jangan raw)
+//        $user->password = Input::get('password');
 
     }
 

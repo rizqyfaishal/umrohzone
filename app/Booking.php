@@ -3,30 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Booking extends Model
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+    use SoftDeletes;
+
+    protected $dates = ['delete_at'];
+
     protected $table = 'booking';
-    protected $primaryKey = 'no_booking';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'no_booking','id_user','id_paket','status_payment','status_dokumen','no_resi','status_visa'
+        'kode_booking',
+        'status_payment',
+        'status_dokumen',
+        'status_visa',
+        'no_resi'
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [];
 }

@@ -1,0 +1,2 @@
+<p class="text-center modal-footer-content">Informasi yang tertera diatas dapat berubah dan atas kebijakan travel agent&nbsp;|&nbsp;Updated in may 2016&nbsp;|&nbsp;Hak cipta kontent
+    <a href="{{ action('PageController@index') }}"><strong>Umrohzone.com</strong></a></p>

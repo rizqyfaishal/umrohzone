@@ -3,29 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Rekening extends Model
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+    use SoftDeletes;
+
+    protected $dates = ['delete_at'];
+
     protected $table = 'rekening';
+    protected $fillable = ['no_rekening','bank'];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'id', 'bank', 'no_rek'
-    ];
+    public function owner(){
+        return $this->morphTo();
+    }
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [];
+
 }

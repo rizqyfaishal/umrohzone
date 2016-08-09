@@ -27,11 +27,11 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
-     * Where to redirect users after login / registration.
+     * Where to redirect users afteru login / registration.
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectPath = '/dashboard';
     protected $loginPath = '/auth/login';
     /**
      * Create a new authentication controller instance.
@@ -52,12 +52,9 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return $validator = Validator::make(Input::all(),[
-            'nama' => 'required|unique:users',
-            'no_hp' => 'required',
+            'phone' => 'required',
             'email' => 'required|email|max:255|unique:users',
-            'alamat' => 'required',
             'password' => 'required|min:6|confirmed',
-            'password_confirmation' => 'required|same:password'
         ]);
     }
 
@@ -72,10 +69,8 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'nama' => $data['nama'],
             'email' => $data['email'],
-            'no_hp' => $data['no_hp'],
-            'alamat' => $data['alamat'],
+            'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);
     }
@@ -85,15 +80,5 @@ class AuthController extends Controller
      *
      * @return Response
      */
-    public function authenticate(Request $request)
-    {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            // Authentication passed...
-            return redirect()->intended('/');
-        }
-    }
 
-    public function login() {
-        return view('auth.login');
-    }
 }
