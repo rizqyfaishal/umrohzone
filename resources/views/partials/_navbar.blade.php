@@ -29,6 +29,11 @@
                         {{ is_null(\Illuminate\Support\Facades\Auth::user()) ? 'Login' : 'Logout' }}
                     </a>
                 </li>
+                <li>
+                    <a id="cobalogin" href="{{ is_null(\Illuminate\Support\Facades\Auth::user()) ? action('PageController@dashboard') : url('dashboard') }}">
+                        {{ is_null(\Illuminate\Support\Facades\Auth::user()) ? ' ' : 'Dashboard' }}
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

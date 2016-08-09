@@ -65,10 +65,28 @@ class PageController extends Controller
 //        ]);
 //    }
 
+
+//di bawah ini tambahan luthfi dashboard
     public function dashboardAgent(){
         $this->page->setTitle('Dashboard Travel Agent');
         return view('dashboard-agent')->with([
             'page' => $this->page
         ]);
     }
+
+    public function dashboardAgentInfoAkun(){
+        $this->page->setTitle('Dashboard Travel Agent');
+        return view('dashboard-agent-infoakun')->with([
+            'page' => $this->page
+        ]);
+    }
+
+    public function dashboardAgentDaftarPemesan(){
+        $this->page->setTitle('Dashboard Travel Agent');
+        return view('dashboard-agent-daftarpemesan')->with([
+            'page' => $this->page
+        ]);
+    }
+    // end of tambahan luthfi dashboard
+    
 }
