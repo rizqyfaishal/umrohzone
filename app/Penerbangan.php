@@ -21,6 +21,7 @@ class Penerbangan extends Model
         'bandara_tujuan_id',
         'bandara_berangkat_id',
         'pesawat_id',
+        'jenis_penerbangan'
     ];
 
     public function pesawat(){

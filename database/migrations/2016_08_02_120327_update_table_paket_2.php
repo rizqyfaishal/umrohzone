@@ -25,12 +25,6 @@ class UpdateTablePaket2 extends Migration
                 ->on('penerbangan')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->integer('fasilitas_id')->unsigned();
-            $table->foreign('fasilitas_id')
-                ->references('id')
-                ->on('fasilitas')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
         });
     }
 

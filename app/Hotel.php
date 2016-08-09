@@ -14,7 +14,7 @@ class Hotel extends Model
     protected $table = 'hotel';
 
     protected $fillable = [
-        'review', 'deskripsi', 'nama'
+        'review', 'deskripsi', 'nama','hotel_primary_lokasi'
     ];
 
     public function fasilitas(){

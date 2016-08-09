@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\PageDescription;
+use App\Paket;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 class PaketController extends Controller
 {
+    public function __construct(PageDescription $page)
+    {
+        $this->middleware('auth-admin');
+        $this->page = $page;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,11 @@ class PaketController extends Controller
      */
     public function index()
     {
-        //
+        $this->page->setTitle('Paket All');
+        return view('data-entry.paket.index')->with([
+            'page' => $this->page,
+            'pakets' => Paket::with('paketCategory','hotelMekah','hotelMadinah','pesawat')
+        ]);
     }
 
     /**
@@ -25,7 +37,10 @@ class PaketController extends Controller
      */
     public function create()
     {
-        //
+        $this->page->setTitle('Paket Create');
+        return view('data-entry.paket.create')->with([
+            'page' => $this->page
+        ]);
     }
 
     /**

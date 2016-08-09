@@ -74,7 +74,7 @@ class PesawatController extends Controller
         $pesawat->rating()->save($rating);
         $file = $request->file('logo');
         if(!is_null($file)){
-            $pesawat->attachments()->save($this->saveFile($file));
+            $pesawat->attachments()->save($this->saveFile($file,4));
         }
         Session::flash('pesawat-registered','Pesawat telah ditambahkan');
         return redirect(action('PesawatController@index'));

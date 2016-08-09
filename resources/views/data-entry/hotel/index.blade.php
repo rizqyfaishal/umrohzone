@@ -50,11 +50,6 @@
                                 <ul>
                                     @foreach($hotel->fasilitas as $fasilitas)
                                         <li>{{ $fasilitas->name }}</li>
-                                        <ul>
-                                            @foreach($fasilitas->details as $detail)
-                                                <li>{{ $detail->name }}</li>
-                                            @endforeach
-                                        </ul>
                                     @endforeach
                                 </ul>
                             </td>

@@ -31,6 +31,7 @@ class PenerbanganRequest extends Request
             'pesawat_id' => 'required|integer|exists:pesawat,id',
             'terminal_berangkat_id' => 'required|integer|exists:terminals,id',
             'terminal_tujuan_id' => 'required|integer|exists:terminals,id',
+            'jenis_penerbangan' => 'required|integer|in:1,2'
         ];
     }
 }
