@@ -31,7 +31,7 @@ class HotelController extends Controller
         $this->page->setTitle('Hotel All');
         return view('data-entry.hotel.index')->with([
             'page' => $this->page,
-            'hotels' => Hotel::with('fasilitas','address','fasilitas.details')->get()
+            'hotels' => Hotel::with('fasilitas','address','fasilitas.category')->get()
         ]);
     }
 

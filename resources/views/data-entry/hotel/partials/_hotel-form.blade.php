@@ -1,11 +1,22 @@
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group {{ $errors->has('nama') ? ' has-error' : '' }}">
             {!! Form::label('nama','Nama Hotel') !!}
             {!! Form::text('nama',old('nama'),['class' => 'form-control','placeholder' => 'Nama Hotel']) !!}
             @if ($errors->has('nama'))
                 <span class="help-block">
                     <strong>{{ $errors->first('nama') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group {{ $errors->has('hotel_primary_lokasi') ? ' has-error' : '' }}">
+            {!! Form::label('hotel_primary_lokasi','Lokasi Hotel') !!}
+            {!! Form::select('hotel_primary_lokasi',['Mekah' => 'Mekah','Madinah' => 'Madinah'],old('hotel_primary_lokasi'),['class' => 'form-control','placeholder' => 'Lokasi Hotel']) !!}
+            @if ($errors->has('hotel_primary_lokasi'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('hotel_primary_lokasi') }}</strong>
                 </span>
             @endif
         </div>

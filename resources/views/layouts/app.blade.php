@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ URL::asset('css/landing-page.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/slick.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/slick-theme.css') }}">
+    @yield('angular-css')
+    @yield('angular-js')
     @yield('data-tables-css')
     @yield('select2-css')
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">

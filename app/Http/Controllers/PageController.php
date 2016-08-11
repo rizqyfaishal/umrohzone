@@ -65,6 +65,8 @@ class PageController extends Controller
 //        ]);
 //    }
 
+
+    //di bawah ini tambahan luthfi dashboard
     public function dashboardAgent(){
         $this->page->setTitle('Dashboard Travel Agent');
         return view('dashboard-agent')->with([
@@ -78,4 +80,55 @@ class PageController extends Controller
             'page' => $this->page
         ]);
     }
+
+    public function dashboardAgentDaftarPaket(){
+        $this->page->setTitle('Dashboard Travel Agent');
+        return view('dashboard-agent-daftarpaket')->with([
+            'page' => $this->page
+        ]);
+    }
+
+    public function dashboardAgentBuatPaket(){
+        $this->page->setTitle('Dashboard Travel Agent');
+        return view('dashboard-agent-buatpaket')->with([
+            'page' => $this->page
+        ]);
+    }
+
+    public function dashboardAgentEditPaket(){
+        $this->page->setTitle('Dashboard Travel Agent');
+        return view('dashboard/_dashboard-base-agent-editpaket')->with([
+            'page' => $this->page
+        ]);
+    }
+
+    public function dashboardAgentDaftarPemesan(){
+        $this->page->setTitle('Dashboard Travel Agent');
+        return view('dashboard-agent-daftarpemesan')->with([
+            'page' => $this->page
+        ]);
+    }
+
+    public function dashboardUser(){
+        $this->page->setTitle('Dashboard Calon Jamaah');
+        return view('dashboard-user')->with([
+            'page' => $this->page
+        ]);
+    }
+
+    public function dashboardUserInfoAkun(){
+        $this->page->setTitle('Dashboard Calon Jamaah');
+        return view('dashboard/_dashboard-base-user-infoakun')->with([
+            'page' => $this->page
+        ]);
+    }
+
+    public function dashboardUserBooking(){
+        $this->page->setTitle('Dashboard Calon Jamaah');
+        return view('dashboard/_dashboard-base-user-booking')->with([
+            'page' => $this->page
+        ]);
+    }
+    // end of tambahan luthfi dashboard
+    
 }

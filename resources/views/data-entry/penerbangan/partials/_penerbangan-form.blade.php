@@ -72,13 +72,24 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group {{ $errors->has('pesawat_id') ? ' has-error' : '' }}">
             {!! Form::label('pesawat_id','Pesawat') !!}
             {!! Form::select('pesawat_id',\App\Pesawat::lists('nama','id'),old('pesawat_id'),['class' => 'form-control', 'placeholder' => 'Pesawat']) !!}
             @if ($errors->has('pesawat_id'))
                 <span class="help-block">
                     <strong>{{ $errors->first('pesawat_id') }}</strong>
+                 </span>
+            @endif
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group {{ $errors->has('jenis_penerbangan') ? ' has-error' : '' }}">
+            {!! Form::label('jenis_penerbangan','Jenis Penerbangan') !!}
+            {!! Form::select('jenis_penerbangan',[1 => 'Berangkat', 2 => 'Pulang'],old('jenis_penerbangan'),['class' => 'form-control', 'placeholder' => 'Jenis Penerbangan']) !!}
+            @if ($errors->has('jenis_penerbangan'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('jenis_penerbangan') }}</strong>
                  </span>
             @endif
         </div>

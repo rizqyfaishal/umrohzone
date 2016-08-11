@@ -29,7 +29,8 @@ class HotelRequest extends Request
             'review' => 'required',
             'full_address' => 'required|min:4|max:100',
             'hotel_fasilitas' => 'required',
-            'google_map_url' => 'required|url'
+            'google_map_url' => 'required|url',
+            'hotel_primary_lokasi' => 'required|in:Mekah,Madinah'
         ];
     }
 }

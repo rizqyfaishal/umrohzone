@@ -61,8 +61,18 @@ Route::group(['middleware' => 'auth'],function()    {
 Route::get('/logout','Auth\AuthController@logout');
 Route::get('/api/provinsi/{id}','PageController@getRegencies');
 Route::get('/dashboard','PageController@dashboard');
+
+//tambahan luthfi dashboard
 Route::get('/dashboard-agent','PageController@dashboardAgent');
 Route::get('/dashboard-agent/infoakun','PageController@dashboardAgentInfoAkun');
+Route::get('/dashboard-agent/daftarpemesan','PageController@dashboardAgentDaftarPemesan');
+Route::get('/dashboard-agent/daftarpaket','PageController@dashboardAgentDaftarPaket');
+Route::get('/dashboard-agent/buatpaket','PageController@dashboardAgentBuatPaket');
+Route::get('/dashboard-agent/editpaket','PageController@dashboardAgentEditPaket');
+Route::get('/dashboard-user','PageController@dashboardUser');
+Route::get('/dashboard-user/infoakun','PageController@dashboardUserInfoAkun');
+Route::get('/dashboard-user/booking','PageController@dashboardUserBooking');
+//end of tambahan luthfi dashboard
 
 Route::get('/invoice','PDFController@invoice');
 Route::get('/pemesan','PemesanController@showRegister');
