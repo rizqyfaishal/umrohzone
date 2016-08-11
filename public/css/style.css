@@ -5,6 +5,17 @@
 
 */
 
+/* ini kodingan luthfi*/
+.nav {
+    float: right;
+}
+
+.val-icon img {
+    max-height: 90px;
+}
+
+/* akhir kodingan luthfi */
+
 .panel-heading-custom {
     background: #005A31!important;
     color: white!important;
