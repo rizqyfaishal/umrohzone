@@ -214,7 +214,6 @@ return [
         'Twitter'   => Artesaos\SEOTools\Facades\TwitterCard::class,
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
         'Surprass' => Sukohi\Surpass\Facades\Surpass::class,
-
     ],
 
 ];

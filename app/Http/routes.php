@@ -117,3 +117,4 @@ Route::group(['prefix' => 'api'],function (){
     Route::get('/paket/{id}/penerbangan','AngularController@getPaketPenerbangan');
 });
 
+Route::get('p/{hashcode}','AttachmentController@get');

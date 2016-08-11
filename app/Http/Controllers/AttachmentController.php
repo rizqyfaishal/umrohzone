@@ -52,45 +52,5 @@ class AttachmentController extends Controller
         return redirect()->back();
     }
 
-    public function savePhotos(Requests\SavePhotoRequest $request){
-
-    }
-
-    public function saveDocument(){
-
-    }
-
-    public function saveOther(){
-
-    }
-
-    public function saveScan(){
-
-    }
-
-    public function saveImages(){
-
-    }
-
-    public function savePhotosAJAX(){
-
-    }
-
-    public function saveDocumentAJAX(){
-
-    }
-
-    public function saveOtherAJAX(){
-
-    }
-
-    public function saveScanAJAX(){
-
-    }
-
-    public function saveImagesAJAX(){
-
-    }
-
 
 }

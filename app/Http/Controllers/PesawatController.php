@@ -60,21 +60,19 @@ class PesawatController extends Controller
      */
     public function store(Requests\PesawatRequest $request)
     {
+        $photos = $request->file('photos');
         $pesawat = Pesawat::create($request->all());
         if(is_null($pesawat)){
             abort(500);
         }
-        $rating = new Rating();
-        $rating->rating_value = $request->input('rating');
-        $bool = $rating->save();
-        if(!$bool){
-            $pesawat->delete();
-            abort(500);
-        }
-        $pesawat->rating()->save($rating);
         $file = $request->file('logo');
         if(!is_null($file)){
-            $pesawat->attachments()->save($this->saveFile($file,4));
+            $pesawat->attachments()->save($this->saveFile($file,1));
+        }
+        if(!is_null($photos)){
+            foreach ($photos as $photo){
+                $pesawat->attachments()->save($this->saveFile($photo,4));
+            }
         }
         Session::flash('pesawat-registered','Pesawat telah ditambahkan');
         return redirect(action('PesawatController@index'));
@@ -94,7 +92,7 @@ class PesawatController extends Controller
         }
         return response()->json([
             'status' => 'ok',
-            'data' => $pesawat
+            'data' => $pesawat->load('attachments')
         ]);
     }
 
@@ -131,12 +129,9 @@ class PesawatController extends Controller
             abort(404);
         }
         $pesawat->update($request->all());
-        $pesawat->rating()->update([
-            'rating_value' => $request->input('rating')
-        ]);
         $file = $request->file('logo');
         if(!is_null($file)){
-           $this->saveFile($file);
+            $pesawat->attachments()->save($this->saveFile($file,4));
         }
         Session::flash('pesawat-edited','Pesawat telah di edit');
         return redirect(action('PesawatController@index'));

@@ -30,8 +30,8 @@ class PesawatRequest extends Request
             'makanan' => 'required',
             'hiburan' => 'required',
             'penghargaan' => 'required',
-            'logo' => 'required|mimes:jpg,jpeg',
-            'rating' => 'required'
+            'photos' => 'required|array',
+            'logo' => 'required|mimes:jpg,jpeg,png'
         ];
     }
 }
