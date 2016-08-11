@@ -16,6 +16,7 @@
             <div class="row">
                 <h2 class="text-center">Booking Summary</h2>
                 <table class="table table-hover table-custom">
+
                     <thead>
                     <tr>
                         <td>Booking No.</td>
@@ -30,42 +31,26 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($bookings as $booking)
                     <tr>
-                        <td>PO1324</td>
+                        <td>{{$booking->no_booking}}</td>
                         <td>Multizaram 9 days</td>
                         <td>Magna</td>
                         <td>09 Sept 2016</td>
                         <td>4</td>
                         <td>2000</td>
                         <td>JNE Airwaybill pk21827912</td>
-                        <td>waiting</td>
+                        @if($booking->status_payment == 0)
+                           <td> Invalid </td>
+                        @elseif($booking->status_payment == 1)
+                            <td> Waiting </td>
+                        @else
+                            <td> Valid </td>
+                        @endif
                         <td><a href="#" class="pdf-submit"><i class="fa fa-file-pdf-o"></i></a></td>
 
                     </tr>
-                    <tr>
-                        <td>PO1324</td>
-                        <td>Multizaram 9 days</td>
-                        <td>Magna</td>
-                        <td>09 Sept 2016</td>
-                        <td>4</td>
-                        <td>2000</td>
-                        <td>JNE Airwaybill pk21827912</td>
-                        <td>waiting</td>
-                        <td><a href="#" class="pdf-submit"><i class="fa fa-file-pdf-o"></i></a></td>
-
-                    </tr>
-                    <tr>
-                        <td>PO1324</td>
-                        <td>Multizaram 9 days</td>
-                        <td>Magna</td>
-                        <td>09 Sept 2016</td>
-                        <td>4</td>
-                        <td>2000</td>
-                        <td>JNE Airwaybill pk21827912</td>
-                        <td>waiting</td>
-                        <td><a href="#" class="pdf-submit"><i class="fa fa-file-pdf-o"></i></a></td>
-
-                    </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

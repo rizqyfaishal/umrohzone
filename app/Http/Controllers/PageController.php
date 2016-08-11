@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\PageDescription;
 use App\Provinsi;
+use App\Booking;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -29,8 +30,9 @@ class PageController extends Controller
 
     public function bookingStatus(){
         $this->page->setTitle('Booking Status');
+        $bookings = Booking::where('id_user','<>',0)->get();
         return view('booking-status')->with([
-            'page' => $this->page
+            'page' => $this->page,'bookings'=>$bookings
         ]);
     }
 
