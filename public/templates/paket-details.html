@@ -1,0 +1,116 @@
+<div class="container paket-details-content">
+    <div class="row bottom-bordered">
+        <div class="col-lg-10 col-md-10 col-sm-12 text-left">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <h5>Travel Agen <a href="#"><i class="fa fa-info-circle">&nbsp;</i></a></h5>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9">
+                    <strong>
+                        <h5 class="text-left">: {{ data.agen.nama_agen }}
+                            <span><a href="#" class="travel-agent-rating">4.5</a></span></h5>
+                    </strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <h5>Nomor PPIU <a href="#"><i class="fa fa-info-circle">&nbsp;</i></a></h5>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9">
+                    <strong>
+                        <h5 class="text-left">: {{ data.agen.no_agen }}</h5>
+                    </strong>
+                </div>
+            </div>
+            <div class="feature-tabs">
+                <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
+                    <li role="presentation" class="active tabs-li-custom">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                            <i class="fa fa-calendar"></i><br>
+                            {{ data.waktu }}
+                        </a>
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                            <i class="fa fa-clock-o"></i><br>
+                            {{ data.durasi }} Hari
+                        </a>
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                            <i class="fa fa-shield"></i><br>
+                            {{ data.embarkasi.nama }}
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                            <i class="fa fa-plane"></i><br>
+                            {{ data.pesawat.nama }}
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                            <i class="fa fa-hospital-o"></i><br>
+                            {{ data.hotel_mekah.nama }}
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                            <i class="fa fa-calendar"></i><br>
+                            {{ data.hotel_madinah.nama }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12">
+            <div class="row">
+                <div class="col-lg-2 col-lg-offset-8">
+                    <a href="#" class="share"><i class="fa fa-share-alt-square"></i></a>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <span class="price-big">$ {{ data.harga }}</span>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <span><i class="fa fa-users">&nbsp;</i>Sisa 10 px</span>
+                    <span class="discount">Disc. $17</span>
+                </div>
+                <div class="form-field">
+                    <div class="col-lg-12">
+                        <br>
+                        <button class="btn btn-orange">Pilih Sekarang !</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <div class="features-modal-tabs tabs-custom">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a ng-click="changeTabs('persyaratan')" aria-controls="home" role="tab" data-toggle="tab">
+                                    <i class="fa fa-exchange">&nbsp;</i> Persyaratan
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a  ng-click="changeTabs('penerbangan')" aria-controls="profile" role="tab" data-toggle="tab">
+                                    <i class="fa fa-calendar">&nbsp;</i>Waktu dan Tempat
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a ng-click="changeTabs('agenda')" aria-controls="messages" role="tab" data-toggle="tab">
+                                    <i class="fa fa-pencil-square">&nbsp;</i>Agenda
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a ng-click="changeTabs('fasilitas')" aria-controls="settings" role="tab" data-toggle="tab">
+                                    <i class="fa fa-life-saver">&nbsp;</i>Fasilitas
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ui-view></ui-view>
+</div>

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/slick-theme.css') }}">
     @yield('angular-css')
     <script src="{{ URL::asset('js/jquery-2.2.1.min.js') }}"></script>
+    <script src="{{ URL::asset('js/datatables.min.js') }}"></script>
     @yield('angular-js')
     @yield('data-tables-css')
     @yield('select2-css')
@@ -22,8 +23,9 @@
 </head>
 <body>
 @include('partials._navbar')
-<div class="content">
+<div class="content" ng-app="app">
     @yield('content')
+    @yield('template-cache')
 </div>
 @include('partials._footer')
 <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>

@@ -27,6 +27,7 @@ class BandaraRequest extends Request
             'nama' => 'required|min:3|max:40',
             'provinsi_id' => 'required|integer',
             'regency_id' => 'required|integer',
+            'kode_bandara' => 'required'
         ];
     }
 }

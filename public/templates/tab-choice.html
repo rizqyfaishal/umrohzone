@@ -1,0 +1,29 @@
+<div class="package-jamaah-container">
+    <div class="container">
+        <div class="tabs-choice-package">
+            <ul class="nav nav-tabs" role="tablist">
+                <li ng-repeat="tab in tabs" role="presentation" ng-class="{ 'active' : tab.active }">
+                    <a class="tab-link" ng-click="changePage(tab.id)" aria-controls="home" role="tab" data-toggle="tab">
+                        {{ tab.name }} <br>
+                        <span class="package-price">$ {{ tab.base_price }}</span><br/>
+                        <span class="package-detail">Paket 9 hari &nbsp; | &nbsp; Start Jakarta &nbsp; | &nbsp; Hotel 3/3</span>
+                        <span class="package-logo">
+                            <i ng-class="tab.icon"></i>
+                        </span>
+                    </a>
+                </li>
+                <ul class="feature-function">
+                    <li><a href="" class="btn btn-sm"><i class="fa fa-search-plus">&nbsp;</i>Ganti Pencarian</a>
+                    </li>
+                    <li><a href="" class="btn btn-sm"><i class="fa fa-pie-chart">&nbsp;</i>Grafik Pencarian</a></li>
+                    <li><a href="" class="btn btn-sm"><i class="fa fa-pie-chart">&nbsp;</i>Pilih Mata Uang</a></li>
+                </ul>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <ui-view></ui-view>
+                </div>
+            </div><!---->
+        </div>
+    </div>
+</div>

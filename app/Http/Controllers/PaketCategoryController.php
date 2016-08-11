@@ -14,7 +14,7 @@ class PaketCategoryController extends Controller
     public function __construct(PageDescription $page)
     {
         $this->page = $page;
-        $this->middleware('auth-admin');
+        $this->middleware('auth-admin',['except' => ['getJson','getPaketJson']]);
     }
 
     /**
@@ -136,5 +136,30 @@ class PaketCategoryController extends Controller
         }
         Session::flash('paket-category-deleted','Terdelete~');
         return redirect()->back();
+    }
+
+    public function getJson(){
+        return response()->json([
+            'status' => true,
+            'data' => PaketCategory::all()
+        ]);
+    }
+
+    public function getPaketJson($id){
+        $paketCategory = PaketCategory::find($id);
+        if(is_null($paketCategory)){
+            abort(404);
+        }
+
+        $arr = array();
+
+        foreach ($paketCategory->pakets as $y){
+            array_push($arr,$y->load('hotelMekah','hotelMadinah','pesawat','embarkasi'));
+        }
+
+        return response()->json([
+            'status' => true,
+            'data' => $arr
+        ]);
     }
 }

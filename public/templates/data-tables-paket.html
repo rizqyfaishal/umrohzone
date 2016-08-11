@@ -1,0 +1,103 @@
+<div class="tabs-package-content">
+    <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="paket-table package-choice-table data-entry-table table-custom table table-hover">
+        <thead>
+        <tr>
+            <td>Tanggal</td>
+            <td>Durasi</td>
+            <td>Embarkasi</td>
+            <td>Airlines</td>
+            <td>Mekah</td>
+            <td>Madinah</td>
+            <td>Rating</td>
+            <td>Kuota</td>
+            <td>Harga</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="paket in data">
+            <td>
+                <span class="package-choice-table-icon">
+                    <i class="fa fa-calendar"></i>
+                </span><br/>
+                {{ paket.waktu }}
+            </td>
+            <td>
+                <span class="package-choice-table-icon">
+                    <i class="fa fa-clock-o"></i>
+                </span><br/>
+                {{ paket.durasi }}
+            </td>
+            <td>
+                <span class="package-choice-table-icon">
+                    <i class="fa fa-map-marker"></i>
+                </span><br/>
+                {{ paket.embarkasi.nama }}
+            </td>
+            <td>
+                <span class="package-choice-table-icon">
+                    <i class="fa fa-plane"></i>
+                </span><br/>
+                {{ paket.pesawat.nama }}
+            </td>
+            <td>
+                <span class="package-choice-table-icon">
+                    <i class="fa fa-hospital-o"></i>
+                </span><br/>
+                <span class="package-choice-table-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </span> <br>
+                <span class="text-center">{{ paket.hotel_mekah.nama }}</span>
+            </td>
+            <td>
+                <span class="package-choice-table-icon">
+                    <i class="fa fa-hospital-o"></i>
+                </span><br/>
+                <span class="package-choice-table-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                </span> <br>
+                <span class="text-center">{{ paket.hotel_madinah.nama }}</span>
+            </td>
+            <td>
+                Bronze <br/>
+                <span class="package-choice-table-rating-category text-center">
+                    6/10
+                </span><br/>
+                <span class="package-choice-table-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                </span>
+            </td>
+            <td>
+                <span class="package-choice-table-icon">
+                    <i class="fa fa-users"></i>
+                </span><br/>
+                {{ paket.kuota }}
+            </td>
+            <td class="price-section">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-lg-offset-1">
+                        <a href="#">Pin <i class="fa fa-pinterest-square">&nbsp;</i></a>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5">
+                        <a ui-sref="paket-details.home({paketId : paket.id})">Info <i
+                                class="fa fa-info-circle">&nbsp;</i></a>
+                    </div>
+                </div>
+                <span class="package-price">$ {{ paket.harga }}</span><br/>
+                <button class="btn btn-orange" role="button">Pilih Sekarang!</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

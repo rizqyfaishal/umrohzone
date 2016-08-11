@@ -68,7 +68,7 @@ class BandaraController extends Controller
      */
     public function show($id)
     {
-        $bandara = Bandara::where('id','=',$id)->first()->first();
+        $bandara = Bandara::where('id','=',$id)->first();
         if(is_null($bandara)){
             abort(404);
         }
@@ -86,7 +86,7 @@ class BandaraController extends Controller
      */
     public function edit($id)
     {
-        $bandara = Bandara::where('id','=',$id)->first()->first();
+        $bandara = Bandara::where('id','=',$id)->first();
         if(is_null($bandara)){
             abort(404);
         }
