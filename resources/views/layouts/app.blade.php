@@ -20,7 +20,10 @@
     @yield('select2-css')
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
     @yield('ajax-image-css')
+
+    {{--docs nya ada di sini : http://www.eyecon.ro/bootstrap-datepicker/#--}}
     <link rel="stylesheet" href="{{ URL::asset('css/datepicker.css') }}">
+
     <script src="{{ URL::asset('js/jquery-2.2.1.min.js') }}"></script>
 </head>
 <body>
@@ -62,6 +65,7 @@
 
 {{--script datepicker--}}
 <script src="{{ URL::asset('js/bootstrap-datepicker.js') }}"></script>
+    {{--docs nya ada di sini : http://www.eyecon.ro/bootstrap-datepicker/#--}}
 <script type="text/javascript">
     // When the document is ready
     $(document).ready(function () {

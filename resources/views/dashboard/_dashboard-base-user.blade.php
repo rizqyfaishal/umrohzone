@@ -26,7 +26,7 @@
                             <p>No HP : 087884187967</p>
 
                             <!-- Ubah ini menuju ke menu Informasi akun -->
-                            <div class="text-right"><a href="#">ubah</a></div>
+                            <div class="text-right"><a href="{{ action('PageController@dashboardUserInfoAkun') }}">ubah</a></div>
                         </div>
                     </div>
                     <div class="col-sm-7">
@@ -63,7 +63,7 @@
                             </div>
 
                             <!-- More ini akan menuju menu sidebar "Booking Summary" -->
-                            <div class="text-right"><a href="#">more..</a></div>
+                            <div class="text-right"><a href="{{ action('PageController@dashboardUserBooking') }}">more..</a></div>
                         </div>
                     </div>
                 </div>
