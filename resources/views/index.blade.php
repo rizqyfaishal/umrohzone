@@ -354,25 +354,90 @@
     <div class="banner">
         <div class="container">
             <div class="row text-center">
-                <div class="col-lg-6">
-                    <h2 class="green">Hubungi Kami : </h2>
+                <div class="col-lg-9">
+                    {{--<img src="img/home/partners_official_payment.png" style="width:100%;"/>--}}
+                    <img src="img/home/partners_official_payment_atas.jpg" style="width:100%;"/>
+                    <br><br><br>
+                    <img src="img/home/partners_official_payment_bawah.jpg" style="width:100%;"/>
+                    <br><br><br><br><br><br>
+
+
+                    <div class="row">
+                        <div class="col-sm-2 col-sm-offset-1">
+                            <img src="img/home/payment_logos.png" style="height: 70px;"/>
+                        </div>
+                        <div class="col-sm-3">
+                            <img src="img/home/idea_logo.png" style="height: 70px;"/>
+                        </div>
+                        <div class="col-sm-3">
+                            <img src="img/home/ssl_icon.png" style="height: 70px;"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <img src="img/home/paypal_veritrans_logo.png" style="height: 70px;"/>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="col-lg-4">
-                    <ul class="list-inline banner-social-buttons">
-                        <li>
-                            <a href="https://twitter.com/umrohzone" class="btn btn-orange btn-lg">
-                                <i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                        </li>
-                        <li>
-                            <a href="http://www.fb.com/umrohzone" class="btn btn-orange btn-lg">
-                                <i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn btn-orange btn-lg"><i class="fa fa-instagram fa-fw">
-                                </i> <span class="network-name">Instagram</span></a>
-                        </li>
-                    </ul>
+
+
+                <div class="col-lg-3">
+                    <div class="row">
+                        <img src="img/home/gplay.png" style="height: 50px; float: right;"/>
+                        <br><br><br>
+                        <img src="img/home/appstore.png" style="height: 50px; float: right;"/>
+                    </div>
+                    <br><br>
+                    <div class="row">
+
+                        <p style="color: black;" class="text-right">
+                            Kantor kami:
+                        </p>
+                        <p style="margin:0;padding:0;color: black;" class="text-right">
+                            Ruko PPG Widya Kartika
+                        </p>
+                        <p style="margin:0;padding:0;color: black;" class="text-right">
+                            Mulyosari No. 156 Surabaya
+                        </p>
+                        <p style="color: black;" class="text-right">
+                            INDONESIA 60113
+                        </p>
+                        <br>
+                        <p style="margin:0;padding:0;color: black;" class="text-right">
+                            0800 123 4122
+                        </p>
+                        <p style="color: black;" class="text-right">
+                            webmaster@umrohzone.com
+                        </p>
+                        <br>
+                    </div>
+                    <div class="row">
+
+                            <a target="_blank" href="https://www.google.co.id/maps/place/Jl.+Raya+Mulyosari+No.156,+Kalisari,+Mulyorejo,+Kota+SBY,+Jawa+Timur+60112/@-7.2636668,112.7998047,17.75z/data=!4m5!3m4!1s0x2dd7f9f62b500691:0x65c92c9f51a22ba4!8m2!3d-7.263846!4d112.7956096?hl=en">
+                                <img src="img/home/peta.jpg" style="width: 100%;"/>
+                            </a>
+                            <br><br>
+                            <img src="img/home/sosmed.jpg" style="width: 50%;float:right;"/>
+                    </div>
                 </div>
+                {{--<div class="col-lg-6">--}}
+                    {{--<h2 class="green">Hubungi Kami : </h2>--}}
+                {{--</div>--}}
+                {{--<div class="col-lg-4">--}}
+                    {{--<ul class="list-inline banner-social-buttons">--}}
+                        {{--<li>--}}
+                            {{--<a href="https://twitter.com/umrohzone" class="btn btn-orange btn-lg">--}}
+                                {{--<i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="http://www.fb.com/umrohzone" class="btn btn-orange btn-lg">--}}
+                                {{--<i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="#" class="btn btn-orange btn-lg"><i class="fa fa-instagram fa-fw">--}}
+                                {{--</i> <span class="network-name">Instagram</span></a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>
