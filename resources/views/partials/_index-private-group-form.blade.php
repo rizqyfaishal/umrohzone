@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
             {!! Form::label('embarkasi','Embarkasi') !!}
-            {!! Form::select('embarkasi',[1 => 'Juni 2016'],null,['class' => 'form-control text-center', 'placeholder'  => 'Embarksi']) !!}
+            {!! Form::select('embarkasi',[1 => 'Jakarta','Surabaya'],null,['class' => 'form-control text-center', 'placeholder'  => 'Embarksi']) !!}
             @if ($errors->has('embarkasi'))
                 <span class="help-block text-center">
                             <strong>{{ $errors->first('embarkasi') }}</strong>
@@ -16,12 +16,18 @@
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
             {!! Form::label('waktu_keberangkatan','Waktu Keberangkatan (mingguan)') !!}
-            {!! Form::select('waktu_keberangkatan',[1 => 'Juni 2016'],null,['class' => 'form-control text-center', 'placeholder'  => 'Waktu Keberangkatan']) !!}
-            @if ($errors->has('waktu_keberangkatan'))
-                <span class="help-block text-center">
-                        <strong>{{ $errors->first('waktu_keberangkatan') }}</strong>
-                    </span>
-            @endif
+            {{--{!! Form::select('waktu_keberangkatan',[1 => 'Juni 2016'],null,['class' => 'form-control text-center', 'placeholder'  => 'Waktu Keberangkatan']) !!}--}}
+            {{--@if ($errors->has('waktu_keberangkatan'))--}}
+                {{--<span class="help-block text-center">--}}
+                        {{--<strong>{{ $errors->first('waktu_keberangkatan') }}</strong>--}}
+                    {{--</span>--}}
+            {{--@endif--}}
+
+                    <!-- coba datepicker -->
+            <input class="form-control text-center" type="text" id="datepicker-form-private" placeholder="Pilih Tanggal Keberangkatan">
+            {{--<input class="form-control text-center" type="text" placeholder="click to show datepicker"  id="datepicker-form">--}}
+                    <!-- end of coba datepicker -->
+
         </div>
     </div>
 </div>
@@ -31,7 +37,7 @@
     <div class="row">
         <div class="col-md-6 col-lg-6 col-sm-12">
             {!! Form::label('anggota_jamaah','Anggota Jamaah (min 8 orang)') !!}
-            {!! Form::select('anggota_jamaah',[1 => 1,2 => 2],null,['class' => 'form-control text-center', 'placeholder'  => 'Jumlah Jamaah']) !!}
+            {!! Form::select('anggota_jamaah',[8 => 8,9 => 9],null,['class' => 'form-control text-center', 'placeholder'  => 'Jumlah Jamaah']) !!}
             @if ($errors->has('anggota_jamaah'))
                 <span class="help-block text-center">
                         <strong>{{ $errors->first('anggota_jamaah') }}</strong>

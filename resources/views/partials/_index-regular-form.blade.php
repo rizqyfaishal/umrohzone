@@ -3,12 +3,18 @@
         <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12">
                 {!! Form::label('tanggal_keberangkatan','Tanggal Keberangkatan') !!}
-                {!! Form::select('tanggal_keberangkatan',[1 => 'Juni 2016'],null,['class' => 'form-control text-center', 'placeholder'  => 'Tanggal Keberangkatan']) !!}
-                @if ($errors->has('tanggal_keberangkatan'))
-                    <span class="help-block text-center">
-                        <strong>{{ $errors->first('tanggal_keberangkatan') }}</strong>
-                    </span>
-                @endif
+                {{--{!! Form::select('tanggal_keberangkatan',[1 => 'Juni 2016'],null,['class' => 'form-control text-center', 'placeholder'  => 'Tanggal Keberangkatan']) !!}--}}
+
+                        <!-- coba datepicker -->
+                <input class="form-control text-center" type="text" id="datepicker-form-regular" placeholder="Pilih Tanggal Keberangkatan">
+                {{--<input class="form-control text-center" type="text" placeholder="click to show datepicker"  id="datepicker-form">--}}
+                        <!-- end of coba datepicker -->
+
+                {{--@if ($errors->has('tanggal_keberangkatan'))--}}
+                    {{--<span class="help-block text-center">--}}
+                        {{--<strong>{{ $errors->first('tanggal_keberangkatan') }}</strong>--}}
+                    {{--</span>--}}
+                {{--@endif--}}
             </div>
         </div>
     </div>
@@ -16,7 +22,10 @@
         <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12">
                 {!! Form::label('embarkasi','Embarkasi') !!}
-                {!! Form::select('embarkasi',[1 => 'Juni 2016'],null,['class' => 'form-control text-center', 'placeholder'  => 'Embarksi']) !!}
+                {!! Form::select('embarkasi',[1 => 'Jakarta','Surabaya'],null,['class' => 'form-control text-center', 'placeholder'  => 'Embarksi']) !!}
+
+                 {{--<input class="form-control text-center" type="text" placeholder="click to show datepicker"  id="datepicker-form">--}}
+
                 @if ($errors->has('embarkasi'))
                     <span class="help-block text-center">
                             <strong>{{ $errors->first('embarkasi') }}</strong>
