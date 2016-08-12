@@ -30,7 +30,7 @@ class PageController extends Controller
 
     public function bookingStatus(){
         $this->page->setTitle('Booking Status');
-        $bookings = Booking::where('id_user','<>',0)->get();
+        $bookings = Booking::get();
         return view('booking-status')->with([
             'page' => $this->page,'bookings'=>$bookings
         ]);
