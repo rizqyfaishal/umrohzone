@@ -18,7 +18,7 @@ class AdminController extends Controller
 
     public function index(){
         $this->page->setTitle('Dashboard Home');
-        $bookings = Booking::get();
+        $bookings = Booking::where('status_payment','<>',2)->get();
         return view('admin.dashboard-home')->with([
             'page' => $this->page,'bookings' => $bookings
         ]);
