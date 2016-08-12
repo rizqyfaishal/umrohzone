@@ -38,16 +38,13 @@
         </div>
     </div>
 </div>
-<div class="form-group row" style="padding-left: 1em;">
+<div class="form-group row">
     <button type="submit" class="btn btn-custom">
         <i class="fa fa-btn fa-sign-in"></i> Login
     </button>
-    <a class="btn btn-success" href="{{ url('/register') }}" style="color: white;">Sign Up</a>
+    <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+</div>
 
-</div>
-<div class="row">
-    <a class="btn btn-link" href="{{ url('/password/reset') }}" style="color: white;">Forgot Your Password?</a>
-</div>
 {!! Form::close() !!}
 
 {{--<script>--}}

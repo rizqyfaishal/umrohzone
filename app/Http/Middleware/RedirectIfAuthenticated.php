@@ -23,7 +23,7 @@ class RedirectIfAuthenticated
             } elseif (Auth::user()->isAgen()){
                 return redirect('/agen/dashboard');
             } else {
-                return redirect('/dashboard-user');
+                return redirect('/user/dashboard');
             }
 
         }
