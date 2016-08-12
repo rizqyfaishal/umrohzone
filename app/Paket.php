@@ -17,17 +17,26 @@ class Paket extends Model
         'harga',
         'waktu',
         'durasi',
-        'lokasi_berangkat',
         'kuota',
         'discount',
+        'agen_id',
+        'pesawat_id',
+        'hotel_mekah_id',
+        'hotel_madinah_id',
+        'pesawat_id',
+        'manasik_id',
+        'embarkasi_id',
+        'paket_category_id',
+        'penerbangan_berangkat_id',
+        'penerbangan_pulang_id'
     ];
 
     public function penerbanganBerangkat(){
         return $this->belongsTo('App\Penerbangan','penerbangan_berangkat_id');
     }
 
-    public function penerbanganTujuan(){
-        return $this->belongsTo('App\Penerbangan','penerbangan_tujuan_id');
+    public function penerbanganPulang(){
+        return $this->belongsTo('App\Penerbangan','penerbangan_pulang_id');
     }
 
     public function embarkasi(){
@@ -53,7 +62,7 @@ class Paket extends Model
 
     public function pesawat()
     {
-        return $this->belongsTo('App\Pesawat');
+        return $this->belongsTo('App\Pesawat','pesawat_id');
     }
 
     public function hotelMekah(){

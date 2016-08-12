@@ -11,7 +11,7 @@ class Bandara extends Model
 
     protected $dates = ['delete_at'];
 
-    protected $fillable = ['nama','provinsi_id','regency_id'];
+    protected $fillable = ['nama','provinsi_id','regency_id','kode_bandara'];
 
     public function provinsi(){
         return $this->belongsTo('App\Provinsi','provinsi_id');

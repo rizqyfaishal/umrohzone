@@ -24,7 +24,7 @@
                                     </div>
 
                                     <div class="item">
-                                        <img src="img/slider2.jpeg" alt="Chania" width="460" height="345">
+                                        <img src="img/slider2_ori.jpg" alt="Chania" width="460" height="345">
                                     </div>
 
                                     <div class="item">
@@ -155,7 +155,8 @@
                 <div class="col-lg-2 col-lg-offset-1">
                     <div class="value-box">
                         <div class="val-icon">
-                            <i class="fa fa-archive"></i>
+                            {{--<i class="fa fa-archive"></i>--}}
+                            <img src="img/home/pilih_paket_umroh_icon.png" alt="Pilih Paket Murah">
                         </div>
                         <h4>Pilih Paket Murah</h4>
                     </div>
@@ -170,9 +171,10 @@
                 <div class="col-lg-2">
                     <div class="value-box">
                         <div class="val-icon">
-                            <i class="fa fa-apple"></i>
+                            {{--<i class="fa fa-apple"></i>--}}
+                            <img src="img/home/registrasi_icon.png" alt="Registrasi">
                         </div>
-                        <h4>Pilih Paket Murah</h4>
+                        <h4>Registrasi</h4>
                     </div>
                 </div>
                 <div class="col-lg-2">
@@ -185,9 +187,9 @@
                 <div class="col-lg-2">
                     <div class="value-box">
                         <div class="val-icon">
-                            <i class="fa fa-archive"></i>
+                            <img src="img/home/payment_check_icon.png" alt="Payment">
                         </div>
-                        <h4>Pilih Paket Murah</h4>
+                        <h4>Payment</h4>
                     </div>
                 </div>
             </div>
@@ -198,7 +200,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="text-center">Kapan harga paket Umroh termurah ?</h3>
+                    <h3 class="text-center"> Kapan harga paket Umroh termurah ?</h3>
+                    <br>
+                    <div class="row">
+                        <h4 class="text-left"><img src="img/home/listordericon.png"/> Indicates cheapest package in this frame | Price range $2130 to 3150</h4>
+                        <div class="col-sm-9"><img src="img/home/statistic_image.jpg" style="width:100%; height:100%;"/></div>
+                        <div class="col-sm-3"><img src="img/home/pilih_hijau.png" style="width:100%; height:100%;"/> </div>
+                    </div>
+                    <br><br><br>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <img src="img/home/weather_image.jpg" style="width:100%; height:100%;"/>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -225,14 +240,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="text-center">Umrohzone adalah</h3>
+                    <h3 class="text-center">Umrohzone.com adalah</h3>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-2 col-lg-offset-1">
                     <div class="value-box">
                         <div class="val-icon green">
-                            <i class="fa fa-thumbs-up"></i>
+                            {{--<i class="fa fa-thumbs-up"></i>--}}
+                            <img src="{{ URL::asset('img/home/fast_simple_icon.png') }}" alt="Fast Simple">
                         </div>
                         <h4 class="text-center">Fast & Simple</h4>
                         <p class="text-center">Umrohzone.com menghimpun
@@ -244,7 +260,8 @@
                 <div class="col-lg-2">
                     <div class="value-box">
                         <div class="val-icon green">
-                            <i class="fa fa-tags"></i>
+                            {{--<i class="fa fa-tags"></i>--}}
+                            <img src="{{ URL::asset('img/home/cheap_icon.png') }}" alt="Cheaper">
                         </div>
                         <h4 class="text-center">Cheaper</h4>
                         <p class="text-center">Kami jamin Anda
@@ -256,7 +273,8 @@
                 <div class="col-lg-2">
                     <div class="value-box">
                         <div class="val-icon green">
-                            <i class="fa fa-check-square"></i>
+                            {{--<i class="fa fa-check-square"></i>--}}
+                            <img src="{{ URL::asset('img/home/trusted_icon.png') }}" alt="Trusted">
                         </div>
                         <h4 class="text-center">Trusted
                            </h4>
@@ -269,7 +287,8 @@
                 <div class="col-lg-2">
                     <div class="value-box">
                         <div class="val-icon green">
-                            <i class="fa fa-money"></i>
+                            {{--<i class="fa fa-money"></i>--}}
+                            <img src="{{ URL::asset('img/home/no_hidden_cost_icon.png') }}" alt="No Hidden Cost">
                         </div>
                         <h4 class="text-center">No Hidden Cost</h4>
                         <p class="text-center">
@@ -283,7 +302,8 @@
                 <div class="col-lg-2">
                     <div class="value-box">
                         <div class="val-icon green">
-                            <i class="fa fa-users"></i>
+                            {{--<i class="fa fa-users"></i>--}}
+                            <img src="{{ URL::asset('img/home/24-7-icon.png') }}" alt="24 Jam">
                         </div>
                         <h4 class="text-center">24 / 7</h4>
                         <p class="text-center">
@@ -301,7 +321,7 @@
             <div class="row text-center">
                 <div class="col-lg-4">
                     <div class="user-icon">
-                        <img src="{{ URL::asset('img/user.png') }}" alt="Testimoni User">
+                        <img src="{{ URL::asset('img/home/tokoh_agama_image.png') }}" alt="Testimoni Tokoh Agama">
                     </div>
                     <p>Program Kemenag
                         5-Pasti Umrah
@@ -311,7 +331,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="user-icon">
-                        <img src="{{ URL::asset('img/user.png') }}" alt="Testimoni User">
+                        <img src="{{ URL::asset('img/home/bu_tani_image.png') }}" alt="Testimoni Bu Tani">
                     </div>
                     <p>Berkat cucu saya,
                         semua urusan umroh
@@ -321,7 +341,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="user-icon">
-                        <img src="{{ URL::asset('img/user.png') }}" alt="Testimoni User">
+                        <img src="{{ URL::asset('img/home/pakar_komputer_image.png') }}" alt="Testimoni Pakar Komputer">
                     </div>
                     <p>Futuristic is
                         when the system
@@ -334,25 +354,90 @@
     <div class="banner">
         <div class="container">
             <div class="row text-center">
-                <div class="col-lg-6">
-                    <h2 class="green">Hubungi Kami : </h2>
+                <div class="col-lg-9">
+                    {{--<img src="img/home/partners_official_payment.png" style="width:100%;"/>--}}
+                    <img src="img/home/partners_official_payment_atas.jpg" style="width:100%;"/>
+                    <br><br><br>
+                    <img src="img/home/partners_official_payment_bawah.jpg" style="width:100%;"/>
+                    <br><br><br><br><br><br>
+
+
+                    <div class="row">
+                        <div class="col-sm-2 col-sm-offset-1">
+                            <img src="img/home/payment_logos.png" style="height: 70px;"/>
+                        </div>
+                        <div class="col-sm-3">
+                            <img src="img/home/idea_logo.png" style="height: 70px;"/>
+                        </div>
+                        <div class="col-sm-3">
+                            <img src="img/home/ssl_icon.png" style="height: 70px;"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <img src="img/home/paypal_veritrans_logo.png" style="height: 70px;"/>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="col-lg-4">
-                    <ul class="list-inline banner-social-buttons">
-                        <li>
-                            <a href="https://twitter.com/umrohzone" class="btn btn-orange btn-lg">
-                                <i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                        </li>
-                        <li>
-                            <a href="http://www.fb.com/umrohzone" class="btn btn-orange btn-lg">
-                                <i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
-                        </li>
-                        <li>
-                            <a href="#" class="btn btn-orange btn-lg"><i class="fa fa-instagram fa-fw">
-                                </i> <span class="network-name">Instagram</span></a>
-                        </li>
-                    </ul>
+
+
+                <div class="col-lg-3">
+                    <div class="row">
+                        <img src="img/home/gplay.png" style="height: 50px; float: right;"/>
+                        <br><br><br>
+                        <img src="img/home/appstore.png" style="height: 50px; float: right;"/>
+                    </div>
+                    <br><br>
+                    <div class="row">
+
+                        <p style="color: black;" class="text-right">
+                            Kantor kami:
+                        </p>
+                        <p style="margin:0;padding:0;color: black;" class="text-right">
+                            Ruko PPG Widya Kartika
+                        </p>
+                        <p style="margin:0;padding:0;color: black;" class="text-right">
+                            Mulyosari No. 156 Surabaya
+                        </p>
+                        <p style="color: black;" class="text-right">
+                            INDONESIA 60113
+                        </p>
+                        <br>
+                        <p style="margin:0;padding:0;color: black;" class="text-right">
+                            0800 123 4122
+                        </p>
+                        <p style="color: black;" class="text-right">
+                            webmaster@umrohzone.com
+                        </p>
+                        <br>
+                    </div>
+                    <div class="row">
+
+                            <a target="_blank" href="https://www.google.co.id/maps/place/Jl.+Raya+Mulyosari+No.156,+Kalisari,+Mulyorejo,+Kota+SBY,+Jawa+Timur+60112/@-7.2636668,112.7998047,17.75z/data=!4m5!3m4!1s0x2dd7f9f62b500691:0x65c92c9f51a22ba4!8m2!3d-7.263846!4d112.7956096?hl=en">
+                                <img src="img/home/peta.jpg" style="width: 100%;"/>
+                            </a>
+                            <br><br>
+                            <img src="img/home/sosmed.jpg" style="width: 50%;float:right;"/>
+                    </div>
                 </div>
+                {{--<div class="col-lg-6">--}}
+                    {{--<h2 class="green">Hubungi Kami : </h2>--}}
+                {{--</div>--}}
+                {{--<div class="col-lg-4">--}}
+                    {{--<ul class="list-inline banner-social-buttons">--}}
+                        {{--<li>--}}
+                            {{--<a href="https://twitter.com/umrohzone" class="btn btn-orange btn-lg">--}}
+                                {{--<i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="http://www.fb.com/umrohzone" class="btn btn-orange btn-lg">--}}
+                                {{--<i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="#" class="btn btn-orange btn-lg"><i class="fa fa-instagram fa-fw">--}}
+                                {{--</i> <span class="network-name">Instagram</span></a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>

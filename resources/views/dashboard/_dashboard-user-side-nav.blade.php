@@ -10,7 +10,7 @@
             <a href="{{ action('PageController@dashboardUserBooking') }}">My Booking</a>
         </li>
         <li>
-            <a href="{{ action('PageController@dashboardAgentDaftarPaket') }}">Data Calon Jamaah</a>
+            <a style="pointer-events: none;cursor: default;" href="{{ action('PageController@dashboardAgentDaftarPaket') }}">Data Calon Jamaah</a>
         </li>
     </ul>
 </div>

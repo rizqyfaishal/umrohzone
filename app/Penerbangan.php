@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -23,6 +24,8 @@ class Penerbangan extends Model
         'pesawat_id',
         'jenis_penerbangan'
     ];
+
+
 
     public function pesawat(){
         return $this->belongsTo('App\Pesawat','pesawat_id');

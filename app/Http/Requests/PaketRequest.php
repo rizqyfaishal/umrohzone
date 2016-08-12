@@ -30,8 +30,14 @@ class PaketRequest extends Request
             'hotel_mekah_id' => 'required|integer|exists:hotel,id',
             'hotel_madinah_id' => 'required|integer|exists:hotel,id',
             'kuota' => 'required',
-            'discount' => 'required|decimal',
-            ''
+            'discount' => 'required|numeric',
+            'pesawat_id' => 'required|integer|exists:pesawat,id',
+            'agen_id' => 'required|integer|exists:agen,id',
+            'manasik_id' => 'required|integer|exists:manasik,id',
+            'paket_category_id' => 'required|integer|exists:paket_categories,id',
+            'embarkasi_id' => 'required|integer|exists:embarkasis,id',
+            'penerbangan_berangkat_id' => 'required|integer|exists:penerbangan,id',
+            'penerbangan_pulang_id' => 'required|integer|exists:penerbangan,id'
         ];
     }
 }

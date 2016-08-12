@@ -1,11 +1,22 @@
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group {{ $errors->has('nama') ? ' has-error' : '' }}">
             {!! Form::label('nama','Nama Pesawat') !!}
             {!! Form::text('nama',old('nama'),['class' => 'form-control', 'placeholder' => 'Nama Pesawat']) !!}
             @if ($errors->has('nama'))
                 <span class="help-block">
                     <strong>{{ $errors->first('nama') }}</strong>
+                 </span>
+            @endif
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group {{ $errors->has('logo') ? ' has-error' : '' }}">
+            {!! Form::label('logo','Logo Pesawat') !!}
+            {!! Form::file('logo',['class' => 'form-control', 'placeholder' => 'Logo Pesawat']) !!}
+            @if ($errors->has('logo'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('logo') }}</strong>
                  </span>
             @endif
         </div>
@@ -72,27 +83,39 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="form-group {{ $errors->has('makanan') ? ' has-error' : '' }}">
-            {!! Form::label('rating','Rating Pesawat') !!}
-            {!! Form::number('rating',old('rating'),['class' => 'form-control', 'placeholder' => 'Rating Pesawat', 'step' => 0.1]) !!}
-            @if ($errors->has('rating'))
+<hr>
+<h3>Foto Pesawat</h3>
+<div class="row" id="photos-form">
+    <div class="col-lg-6 col-md-6 col-sm-12" id="photos-template">
+        <div class="form-group {{ $errors->has('photos') ? ' has-error' : '' }}">
+            {!! Form::label('photos','Photo Pesawat') !!}
+            {!! Form::file('photos[]',['class' => 'form-control', 'placeholder' => 'Photo Pesawat', 'multiple']) !!}
+            @if ($errors->has('photos'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('rating') }}</strong>
-                 </span>
-            @endif
-        </div>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="form-group {{ $errors->has('logo') ? ' has-error' : '' }}">
-            {!! Form::label('logo','Logo Pesawat') !!}
-            {!! Form::file('logo',['class' => 'form-control', 'placeholder' => 'Logo Pesawat']) !!}
-            @if ($errors->has('logo'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('logo') }}</strong>
+                    <strong>{{ $errors->first('photos') }}</strong>
                  </span>
             @endif
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-lg-3">
+        <button id="add-template" style="margin: 1em 0;" class="btn btn-orange" type="button"><i class="fa fa-plus">&nbsp;</i>Tambah Foto</button>
+    </div>
+</div>
+<script>
+    var count = 1;
+    var btn = $('#add-template').on('click',function () {
+        if(count <= 5){
+            var template = $('#photos-template').html();
+            var con = $('#photos-form');
+            var elem = document.createElement('div');
+            elem.className = 'col-lg-6 col-md-6 col-sm-12';
+            elem.innerHTML = template;
+            $(con).append(elem);
+            count++;
+        } else {
+            alert('Photo tidak boleh lebih dari 6');
+        }
+    })
+</script>

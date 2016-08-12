@@ -1,11 +1,22 @@
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group {{ $errors->has('nama') ? ' has-error' : '' }}">
             {!! Form::label('nama','Nama Bandara') !!}
             {!! Form::text('nama',old('nama'),['class' => 'form-control','placeholder' => 'Nama Bandara']) !!}
             @if ($errors->has('nama'))
                 <span class="help-block">
                     <strong>{{ $errors->first('nama') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group {{ $errors->has('kode_bandara') ? ' has-error' : '' }}">
+            {!! Form::label('kode_bandara','Kode Bandara') !!}
+            {!! Form::text('kode_bandara',old('kode_bandara'),['class' => 'form-control','placeholder' => 'Kode Bandara']) !!}
+            @if ($errors->has('kode_bandara'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('kode_bandara') }}</strong>
                 </span>
             @endif
         </div>

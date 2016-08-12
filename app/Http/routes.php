@@ -108,4 +108,13 @@ Route::resource('manasik','ManasikController');
 Route::resource('paket-category','PaketCategoryController');
 Route::resource('rekening','RekeningController');
 Route::get('/attachments/all','AttachmentController@index');
+Route::get('/list-paket','PageController@listPakets');
 
+Route::group(['prefix' => 'api'],function (){
+    Route::get('/paket-kategori','PaketCategoryController@getJson');
+    Route::get('/paket-kategori/{id}/getPaket','PaketCategoryController@getPaketJson');
+    Route::get('/paket/{id}','PaketController@show');
+    Route::get('/paket/{id}/penerbangan','AngularController@getPaketPenerbangan');
+});
+
+Route::get('p/{hashcode}','AttachmentController@get');

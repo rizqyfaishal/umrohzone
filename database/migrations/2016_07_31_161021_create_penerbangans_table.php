@@ -14,7 +14,7 @@ class CreatePenerbangansTable extends Migration
     {
         Schema::create('penerbangan', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('tanggal_berangkat');
+            $table->time('tanggal_berangkat');
             $table->integer('waktu_tempuh')->unsigned();
             $table->softDeletes();
             $table->timestamps();

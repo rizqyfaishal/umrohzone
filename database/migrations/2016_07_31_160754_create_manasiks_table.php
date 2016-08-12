@@ -14,7 +14,7 @@ class CreateManasiksTable extends Migration
     {
         Schema::create('manasik', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('waktu_manasik');
+            $table->time('waktu_manasik');
             $table->softDeletes();
             $table->timestamps();
         });

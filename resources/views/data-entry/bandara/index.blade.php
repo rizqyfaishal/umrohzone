@@ -36,6 +36,7 @@
                         <td>Nama Bandara</td>
                         <td>Provinsi</td>
                         <td>Kota</td>
+                        <td>Kode Bandara</td>
                         <td>Action</td>
                     </tr>
                     </thead>
@@ -45,6 +46,7 @@
                             <td>{{ $bandara->nama }}</td>
                             <td>{{ $bandara->provinsi->name }}</td>
                             <td>{{ $bandara->kota->name }}</td>
+                            <td>{{ $bandara->kode_bandara }}</td>
                             <td>
                                 {!! Form::model($bandara,['method' => 'DELETE','action' => ['BandaraController@destroy',$bandara->id]]) !!}
                                 <a href="{{ action('BandaraController@edit',$bandara->id) }}" class="btn btn-orange">

@@ -132,5 +132,13 @@ class PageController extends Controller
         ]);
     }
     // end of tambahan luthfi dashboard
+
+
+    public function listPakets(){
+        $this->page->setTitle('List of all paket');
+        return view('paket.index')->with([
+            'page' => $this->page
+        ]);
+    }
     
 }

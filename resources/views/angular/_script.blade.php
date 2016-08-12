@@ -7,9 +7,8 @@
     <script src="{{ URL::asset('js/angular-ui-router.min.js') }}"></script>
     <script src="{{ URL::asset('js/angular-animate.min.js') }}"></script>
     <script src="{{ URL::asset('js/angular-datatables.min.js') }}"></script>
-    <script src="{{ URL::asset('js/angular-app.js') }}"></script>
 @endsection
 
 @section('angular-js-script')
-
+    <script src="{{ URL::asset('js/angular-app.js') }}"></script>
 @endsection
