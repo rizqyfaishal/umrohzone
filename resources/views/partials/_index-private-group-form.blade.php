@@ -50,8 +50,8 @@
 <div class="form-group{{ $errors->has('hotel_mekah') ? ' has-error' : '' }}">
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
-            {!! Form::label('hotel_mekah','Embarkasi') !!}
-            {!! Form::select('hotel_mekah',[1 => 'Juni 2016'],null,['class' => 'form-control text-center', 'placeholder'  => 'Hotel Mekah']) !!}
+            {!! Form::label('hotel_mekah','Hotel Mekah (start 4 star)') !!}
+            {!! Form::select('hotel_mekah',[1 => 'Hilton', 2 => 'Pullman'],null,['class' => 'form-control text-center', 'placeholder'  => 'Hilton / Pullmann / Zamzam / Setara']) !!}
             @if ($errors->has('hotel_mekah'))
                 <span class="help-block text-center">
                             <strong>{{ $errors->first('hotel_mekah') }}</strong>
@@ -63,8 +63,8 @@
 <div class="form-group{{ $errors->has('hotel_madinah') ? ' has-error' : '' }}">
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
-            {!! Form::label('hotel_madinah','Waktu Keberangkatan (mingguan)') !!}
-            {!! Form::select('hotel_madinah',[1 => 'Juni 2016'],null,['class' => 'form-control text-center', 'placeholder'  => 'Hotel Madinah']) !!}
+            {!! Form::label('hotel_madinah','Hotel Madinah (start 4 star)') !!}
+            {!! Form::select('hotel_madinah',[1 => 'Hilton', 2 => 'Pullman'],null,['class' => 'form-control text-center', 'placeholder'  => 'Hyatt / Movenpick / Setara']) !!}
             @if ($errors->has('hotel_madinah'))
                 <span class="help-block text-center">
                         <strong>{{ $errors->first('hotel_madinah') }}</strong>

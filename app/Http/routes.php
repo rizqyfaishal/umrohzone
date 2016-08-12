@@ -76,6 +76,7 @@ Route::get('/dashboard-user/booking','PageController@dashboardUserBooking');
 
 Route::get('/invoice','PDFController@invoice');
 Route::get('/pemesan','PemesanController@showRegister');
+Route::get('/register','PemesanController@showRegister');
 Route::post('/pemesan','PemesanController@postRegister');
 
 Route::group(['prefix' => 'admin'], function (){
