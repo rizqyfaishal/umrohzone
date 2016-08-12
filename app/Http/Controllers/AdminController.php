@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\PageDescription;
 use Illuminate\Http\Request;
+use App\Booking;
 
 use App\Http\Requests;
 
@@ -17,8 +18,9 @@ class AdminController extends Controller
 
     public function index(){
         $this->page->setTitle('Dashboard Home');
+        $bookings = Booking::get();
         return view('admin.dashboard-home')->with([
-            'page' => $this->page
+            'page' => $this->page,'bookings' => $bookings
         ]);
     }
 }
