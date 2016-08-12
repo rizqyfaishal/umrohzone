@@ -1,4 +1,4 @@
-{!! Form::open(['action' => ['PageController@index'],'class' => 'form']) !!}
+{!! Form::open(['action' => ['PageController@bookingStatus'],'class' => 'form', 'method' => 'get']) !!}
 <div class="form-group{{ $errors->has('booking_status_phone_number') ? ' has-error' : '' }}">
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
@@ -32,4 +32,5 @@
         </div>
     </div>
 </div>
+<input type='hidden' value={{csrf_token()}}>
 {!! Form::close() !!}
