@@ -62,8 +62,15 @@ class HotelController extends Controller
         }
         $hotel->address()->save(Address::create($request->all()));
         if($request->hasFile('logo')){
-            $file = $this->saveFile($request->file('logo'),4);
+            $file = $this->saveFile($request->file('logo'),1);
             $hotel->attachments()->save($file);
+        }
+        if($request->hasFile('photos')){
+            $photos = $request->file('photos');
+            foreach ($photos as $photo){
+                $file = $this->saveFile($photo,4);
+                $hotel->attachments()->save($file);
+            }
         }
         $hotel->fasilitas()->sync($request->input('hotel_fasilitas'));
         Session::flash('hotel-registered','Hotel Telah dibuat');
@@ -123,6 +130,13 @@ class HotelController extends Controller
         if(!is_null($logo)){
             if($request->hasFile('logo')){
                 $file = $this->updateFile($logo,$request->file('logo'));
+            }
+        }
+        if($request->hasFile('photos')){
+            $photos = $request->file('photos');
+            foreach ($photos as $photo){
+                $file = $this->saveFile($photo,4);
+                $hotel->attachments()->save($file);
             }
         }
         Session::flash('hotel-edited','Hotel telah diedit');

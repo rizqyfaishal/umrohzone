@@ -96,4 +96,40 @@
         </div>
     </div>
 </div>
+<hr>
+<h3>Foto Hotel</h3>
+<div class="row" id="photos-form">
+    <div class="col-lg-6 col-md-6 col-sm-12" id="photos-template">
+        <div class="form-group {{ $errors->has('photos') ? ' has-error' : '' }}">
+            {!! Form::label('photos','Photo Hotel') !!}
+            {!! Form::file('photos[]',['class' => 'form-control', 'placeholder' => 'Photo Pesawat', 'multiple']) !!}
+            @if ($errors->has('photos'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('photos') }}</strong>
+                 </span>
+            @endif
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3">
+        <button id="add-template" style="margin: 1em 0;" class="btn btn-orange" type="button"><i class="fa fa-plus">&nbsp;</i>Tambah Foto</button>
+    </div>
+</div>
+<script>
+    var count = 1;
+    var btn = $('#add-template').on('click',function () {
+        if(count <= 15){
+            var template = $('#photos-template').html();
+            var con = $('#photos-form');
+            var elem = document.createElement('div');
+            elem.className = 'col-lg-6 col-md-6 col-sm-12';
+            elem.innerHTML = template;
+            $(con).append(elem);
+            count++;
+        } else {
+            alert('Photo tidak boleh lebih dari 16');
+        }
+    })
+</script>
 @include('partials._select2')

@@ -106,7 +106,7 @@
 <script>
     var count = 1;
     var btn = $('#add-template').on('click',function () {
-        if(count <= 5){
+        if(count <= 15){
             var template = $('#photos-template').html();
             var con = $('#photos-form');
             var elem = document.createElement('div');
@@ -115,7 +115,7 @@
             $(con).append(elem);
             count++;
         } else {
-            alert('Photo tidak boleh lebih dari 6');
+            alert('Photo tidak boleh lebih dari 16');
         }
     })
 </script>
