@@ -6,8 +6,8 @@
         <div class="container">
             <div class="row">
                 <h2 class="text-center">jamaah Summary</h2>
+                <div class="right"><a href="#" class="button">[Tambah]</a></div>
                 <table class="table table-hover table-custom">
-
                     <thead>
                     <tr>
                         <td>Id Jamaah</td>
@@ -22,6 +22,7 @@
                         <td>Mahrom</td>
                         <td>Upgrade Kamar</td>
                         <td>Upgrade Asuransi</td>
+                        <td>Action</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -39,6 +40,8 @@
                             <td>{{$jamaah->mahrom}}</td>
                             <td>{{$jamaah->upgrade_kamar}}</td>
                             <td>{{$jamaah->upgrade_asuransi}}</td>
+                            <!--TODO buat modal konfirmasi hapus!-->
+                            <td><td><a href="/admin/jamaah/edit/{{$jamaah->id}}" class="button">[Edit]</a><a href="/admin/jamaah/hapus/{{$jamaah->id}}" class="button">[Hapus]</a></td>
                         </tr>
                     @endforeach
                     </tbody>

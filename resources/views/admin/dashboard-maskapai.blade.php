@@ -6,6 +6,7 @@
         <div class="container">
             <div class="row">
                 <h2 class="text-center">pesawat Summary</h2>
+                <div class="right"><a href="#" class="button">[Tambah]</a></div>
                 <table class="table table-hover table-custom">
 
                     <thead>
@@ -17,6 +18,7 @@
                         <td>Makanan</td>
                         <td>Hiburan</td>
                         <td>Penghargaan</td>
+                        <td>Action</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -28,6 +30,7 @@
                             <td>{{$pesawat->makanan}}</td>
                             <td>{{$pesawat->hiburan}}</td>
                             <td>{{$pesawat->penghargaan}}</td>
+                            <td><a href="/admin/maskapai/edit/{{$pesawat->id}}" class="button">[Edit]</a><a href="/admin/maskapai/edit/{{$pesawat->id}}" class="button">[Hapus]</a></td>
                         </tr>
                     @endforeach
                     </tbody>
