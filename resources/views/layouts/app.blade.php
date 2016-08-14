@@ -1,5 +1,21 @@
 <!doctype html>
 <html lang="en">
+<!-- Chatra {literal} -->
+<script>
+    ChatraID = '5LGb3BvwKLyEJc5Ah';
+    (function(d, w, c) {
+        var n = d.getElementsByTagName('script')[0],
+                s = d.createElement('script');
+        w[c] = w[c] || function() {
+                    (w[c].q = w[c].q || []).push(arguments);
+                };
+        s.async = true;
+        s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
+                + '//call.chatra.io/chatra.js';
+        n.parentNode.insertBefore(s, n);
+    })(document, window, 'Chatra');
+</script>
+<!-- /Chatra {/literal} -->
 <head>
     <meta charset="UTF-8">
     <title>{{ $page->getTitle() }}</title>
