@@ -80,6 +80,10 @@ Route::post('/pemesan','PemesanController@postRegister');
 
 Route::group(['prefix' => 'admin'], function (){
     Route::get('dashboard','AdminController@index');
+    Route::get('jamaah','AdminController@getJamaah');
+    Route::get('travel-agent','AdminController@getTA');
+    Route::get('hotel','AdminController@getHotels');
+    Route::get('maskapai','AdminController@getAirlines');
 });
 
 Route::group(['prefix' => 'password'],function (){
