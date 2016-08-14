@@ -41,7 +41,13 @@
                             <td>{{$jamaah->upgrade_kamar}}</td>
                             <td>{{$jamaah->upgrade_asuransi}}</td>
                             <!--TODO buat modal konfirmasi hapus!-->
-                            <td><td><a href="/jamaah/{{$jamaah->id}}/edit" class="button">[Edit]</a><a href="/jamaah/{{$jamaah->id}}/delete" class="button">[Hapus]</a></td>
+                            <td><td><a href="/jamaah/{{$jamaah->id}}/edit" class="button">[Edit]</a>
+                                <form action="/jamaah/{{$jamaah->id}}" method="POST">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <button type="submit" class="button">[Hapus]</button>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

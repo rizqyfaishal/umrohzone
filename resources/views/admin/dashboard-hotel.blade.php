@@ -27,7 +27,13 @@
                             <td>{{$hotel->hotel_primary_lokasi}}</td>
                             <td>{{$hotel->deskripsi}}</td>
                             <td>{{$hotel->review}}</td>
-                            <td><td><a href="/hotel/{{$hotel->id}}/edit" class="button">[Edit]</a><a href="/hotel/{{$hotel->id}}/delete" class="button">[Hapus]</a></td></td>
+                            <td><a href="/hotel/{{$hotel->id}}/edit" class="button">[Edit]</a>
+                                <form action="/hotel/{{$hotel->id}}" method="POST">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <button type="submit" class="button">[Hapus]</button>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

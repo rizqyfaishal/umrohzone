@@ -30,7 +30,13 @@
                             <td>{{$pesawat->makanan}}</td>
                             <td>{{$pesawat->hiburan}}</td>
                             <td>{{$pesawat->penghargaan}}</td>
-                            <td><a href="/pesawat/{{$pesawat->id}}/edit" class="button">[Edit]</a><a href="/pesawat/{{$pesawat->id}}/delete" class="button">[Hapus]</a></td>
+                            <td><a href="/pesawat/{{$pesawat->id}}/edit" class="button">[Edit]</a>
+                                <form action="/pesawat/{{$pesawat->id}}" method="POST">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <button type="submit" class="button">[Hapus]</button>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

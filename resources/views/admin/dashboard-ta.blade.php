@@ -35,7 +35,13 @@
                             <td>{{$agen->provinsi_id}}</td>
                             <td>{{$agen->regency_id}}</td>
                             <td>{{$agen->phone2}}</td>
-                            <td><a href="/agen/{{$agen->id}}/edit" class="button">[Edit]</a><a href="/agen/{{$agen->id}}/delete" class="button">[Hapus]</a></td>
+                            <td><a href="/agen/{{$agen->id}}/edit" class="button">[Edit]</a>
+                                <form action="/agen/{{$agen->id}}" method="POST">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <button type="submit" class="button">[Hapus]</button>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
