@@ -10,6 +10,8 @@ class Bandara extends Model
     use SoftDeletes;
 
     protected $dates = ['delete_at'];
+    protected $hidden = ['created_at','deleted_at','updated_at'];
+
 
     protected $fillable = ['nama','provinsi_id','regency_id','kode_bandara'];
 

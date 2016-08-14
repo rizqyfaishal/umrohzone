@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/landing-page.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/slick.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/slick-theme.css') }}">
+    @yield('fotorama-css')
     @yield('angular-css')
     <script src="{{ URL::asset('js/jquery-2.2.1.min.js') }}"></script>
     <script src="{{ URL::asset('js/datatables.min.js') }}"></script>
@@ -62,5 +63,6 @@
 @yield('select2-js')
 @yield('data-tables-js')
 @yield('angular-js-script')
+@yield('fotorama-js')
 </body>
 </html>

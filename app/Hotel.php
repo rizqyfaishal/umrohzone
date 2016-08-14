@@ -10,6 +10,8 @@ class Hotel extends Model
     use SoftDeletes;
 
     protected $dates = ['delete_at'];
+    protected $hidden = ['created_at','deleted_at','updated_at'];
+
 
     protected $table = 'hotel';
 
@@ -26,7 +28,7 @@ class Hotel extends Model
     }
 
     public function photos(){
-        return $this->attachments()->where('attachment_category_id','=',4)->all();
+        return $this->attachments()->where('attachment_category_id','=',4);
     }
 
     public function logo(){

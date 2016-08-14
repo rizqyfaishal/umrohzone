@@ -71,7 +71,9 @@ class PesawatController extends Controller
         }
         if(!is_null($photos)){
             foreach ($photos as $photo){
-                $pesawat->attachments()->save($this->saveFile($photo,4));
+                if(!is_null($photo)){
+                    $pesawat->attachments()->save($this->saveFile($photo,4));
+                }
             }
         }
         Session::flash('pesawat-registered','Pesawat telah ditambahkan');
@@ -131,7 +133,7 @@ class PesawatController extends Controller
         $pesawat->update($request->all());
         $file = $request->file('logo');
         if(!is_null($file)){
-            $pesawat->attachments()->save($this->saveFile($file,4));
+            $pesawat->attachments()->save($this->saveFile($file,1));
         }
         Session::flash('pesawat-edited','Pesawat telah di edit');
         return redirect(action('PesawatController@index'));

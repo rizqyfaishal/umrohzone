@@ -6,7 +6,7 @@
 */
 
 /* ini kodingan luthfi*/
-.nav {
+.nav:not(.nav-tabs) {
     float: right;
 }
 
@@ -736,10 +736,22 @@ ul.feature-function li select
     font-size: 70%;
 }
 
+.hotel-description {
+    padding: 1em;
+    border: 1px solid #bcbcbc;
+}
+
+.pesawat-details {
+    margin-top: 1em;
+    color: #939393;
+    background-color: #cecece;
+    padding: 1em;
+}
 .modal-body .bottom-bordered {
     border-bottom: 1px solid #e5e5e5;
     padding-bottom: 0.5em;
 }
+
 
 .feature-tabs ul{
     border: none;

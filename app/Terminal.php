@@ -11,6 +11,8 @@ class Terminal extends Model
 
     protected $dates = ['delete_at'];
     protected $fillable = ['nama'];
+    protected $hidden = ['created_at','deleted_at','updated_at'];
+
 
     public function penerbanganBerangkat(){
         return $this->hasMany('App\Penerbangan',['terminal_berangkat_id','terminal_pulang_id']);

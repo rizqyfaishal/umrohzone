@@ -2,7 +2,12 @@
     <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group {{ $errors->has('tanggal_berangkat') ? ' has-error' : '' }}">
             {!! Form::label('tanggal_berangkat','Tanggal Berangkat') !!}
-            {!! Form::date('tanggal_berangkat',old('tanggal_berangkat'),['class' => 'form-control','placeholder' => 'Tanggal Berangkat']) !!}
+            <div class='input-group date datetimepicker'>
+                {!! Form::text('tanggal_berangkat',old('tanggal_berangkat'),['class' => 'form-control','placeholder' => 'Tanggal Berangkat',]) !!}
+                <span class="input-group-addon">
+                <span class="fa fa-calendar"></span>
+            </span>
+            </div>
             @if ($errors->has('tanggal_berangkat'))
                 <span class="help-block">
                     <strong>{{ $errors->first('tanggal_berangkat') }}</strong>
@@ -95,4 +100,5 @@
         </div>
     </div>
 </div>
+@include('partials._datetimepicker')
 

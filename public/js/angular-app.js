@@ -23,6 +23,26 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         };
         return this;
     })
+    .factory('Paket', function () {
+        this.data = null;
+        this.setData = function (data) {
+            this.data = data;
+        };
+        this.getData = function () {
+            return this.data;
+        };
+        return this;
+    })
+    .factory('Hotel', function () {
+        this.data = null;
+        this.setData = function (data) {
+            this.data = data;
+        };
+        this.getData = function () {
+            return this.data;
+        };
+        return this;
+    })
     .config(function ($stateProvider,$urlRouterProvider) {
         $stateProvider
             .state('paket-list',{
@@ -30,36 +50,101 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
                 templateUrl: 'templates/tab-choice.html',
                 controller: 'TabsController'
             })
+            .state('pesan',{
+                url:'/pesan',
+                templateUrl: 'templates/pesan.html',
+                controller: 'PaketPesanController'
+            })
             .state('paket-list.data-table',{
                 url: '/:id',
                 templateUrl: 'templates/data-tables-paket.html',
                 controller: 'DataTableController'
             })
             .state('paket-details',{
-                url:'/:paketId',
+                url:'/paket/:paketId',
                 templateUrl: 'templates/paket-details.html',
                 controller: 'PaketDetailsController'
             })
-            .state('paket-details.penerbangan',{
+            .state('paket-details.home',{
+                url: '',
+                templateUrl: 'templates/paket-details-home-tabs.html',
+                controller: 'PaketDetailsHomeController'
+            })
+            .state('paket-details.home.penerbangan',{
                 url: '/penerbangan',
                 templateUrl: 'templates/penerbangan.html',
                 controller: 'PaketPenerbanganDetailsController'
             })
-            .state('paket-details.agenda',{
+            .state('paket-details.home.agenda',{
                 url: '/agenda',
                 templateUrl: 'templates/persyaratan.html',
                 controller: 'PaketAgendaDetailsController'
             })
-            .state('paket-details.fasilitas',{
+            .state('paket-details.home.fasilitas',{
                 url: '/fasilitas',
                 templateUrl: 'templates/persyaratan.html',
                 controller: 'PaketAgendaDetailsController'
             })
-            .state('paket-details.home',{
+            .state('paket-details.home.persyaratan',{
                 url: '/persyaratan',
                 templateUrl: 'templates/persyaratan.html',
+            })
+            .state('paket-details.pesawat',{
+                url: '/pesawat',
+                templateUrl: 'templates/pesawat.html',
+                controller: 'PaketDetailsPesawatController'
+            })
+            .state('paket-details.hotel-mekah',{
+                url: '/hotel-mekah',
+                templateUrl: 'templates/hotel.html',
+                controller: 'PaketDetailsHotelMekahController'
+            })
+            .state('paket-details.hotel-madinah',{
+                url: '/hotel-madinah',
+                templateUrl: 'templates/hotel.html',
+                controller: 'PaketDetailsHotelMadinahController'
+            })
+            .state('paket-details.hotel-mekah.review',{
+                url: '/review',
+                templateUrl: 'templates/hotel-review.html',
+                controller: 'HotelReviewController'
+            })
+            .state('paket-details.hotel-mekah.lokasi',{
+                url: '/lokasi',
+                templateUrl: 'templates/hotel-lokasi.html',
+                controller: 'HotelLokasiController'
+            })
+            .state('paket-details.hotel-mekah.foto',{
+                url: '/photos',
+                templateUrl: 'templates/hotel-foto.html',
+                controller: 'HotelFotoController'
+            })
+            .state('paket-details.hotel-mekah.fasilitas',{
+                url: '/fasilitas',
+                templateUrl: 'templates/hotel-fasilitas.html',
+                controller: 'HotelFasilitasController'
+            })
+            .state('paket-details.hotel-madinah.review',{
+                url: '/review',
+                templateUrl: 'templates/hotel-review.html',
+                controller: 'HotelReviewController'
+            })
+            .state('paket-details.hotel-madinah.lokasi',{
+                url: '/lokasi',
+                templateUrl: 'templates/hotel-lokasi.html',
+                controller: 'HotelLokasiController'
+            })
+            .state('paket-details.hotel-madinah.foto',{
+                url: '/photos',
+                templateUrl: 'templates/hotel-foto.html',
+                controller: 'HotelFotoController'
+            })
+            .state('paket-details.hotel-madinah.fasilitas',{
+                url: '/fasilitas',
+                templateUrl: 'templates/hotel-fasilitas.html',
+                controller: 'HotelFasilitasController'
             });
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/1');
     })
     .directive('progressBar',['$templateCache',function ($templateCache) {
         return {
@@ -72,12 +157,100 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             }
         }
     }])
+    .controller('PaketPesanController',function ($scope,$stateParams) {
+
+    })
+    .controller('HotelReviewController',function ($scope, $stateParams,Collection,PAKET_URL,$state) {
+        $scope.paketId = $stateParams.paketId;
+        if($state.current.name == 'paket-details.hotel-mekah.review'){
+            Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMekah/review');
+        } else {
+            Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMadinah/review');
+        }
+        Collection.getData().then(function (data) {
+            $scope.data = data.data;
+        })
+    })
+    .controller('HotelFotoController',function ($scope, $stateParams,$state,Collection,PAKET_URL) {
+        $scope.paketId = $stateParams.paketId;
+        if($state.current.name == 'paket-details.hotel-mekah.foto'){
+            Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMekah/photos');
+        } else {
+            Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMadinah/photos');
+        }
+        Collection.getData().then(function (data) {
+            $scope.data = data.data;
+            var photos = [];
+            for(var i = 0;i<$scope.data.length;i++){
+                var obj = {
+                    img: 'p/' + $scope.data[i].hashcode
+                };
+                photos.push(obj);
+            }
+            console.log(photos);
+            $('.fotorama').fotorama({
+                data: photos
+            });
+        })
+    })
+    .controller('HotelFasilitasController',function ($scope, $stateParams) {
+
+    })
+    .controller('HotelLokasiController',function ($scope, $stateParams) {
+
+    })
+    .controller('PaketDetailsHomeController',function ($scope,$location,$stateParams) {
+        $scope.id = $stateParams.paketId;
+        $scope.changeTabs = function (url) {
+            $location.path('/paket/' + $scope.id + '/' + url);
+        }
+    })
+    .controller('PaketDetailsPesawatController',function ($scope, $location, Collection,PAKET_URL,$stateParams) {
+        $scope.paketId = $stateParams.paketId;
+        Collection.setUrl(PAKET_URL + $scope.paketId + '/pesawat');
+        Collection.getData().then(function (data) {
+            $scope.data = data.data;
+            var photos = [];
+            for(var i = 0;i<$scope.data.photos.length;i++){
+                var obj = {
+                    img: 'p/' + $scope.data.photos[i].hashcode
+                };
+                photos.push(obj);
+            }
+            $('.fotorama').fotorama({
+                data: photos
+            });
+        })
+    })
+    .controller('PaketDetailsHotelMekahController',function ($scope, $location, Collection,PAKET_URL,$stateParams) {
+        $scope.paketId = $stateParams.paketId;
+        Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMekah');
+        Collection.getData().then(function (data) {
+            $scope.data = data.data;
+            console.log($scope.data);
+        });
+        $scope.changeTabs = function (url) {
+            $location.path('/paket/' + $scope.id + '/hotel-mekah/' + url);
+        };
+        $location.path('/paket/' + $scope.id + '/hotel-mekah/review');
+    })
+    .controller('PaketDetailsHotelMadinahController',function ($scope, $location, Collection,PAKET_URL,$stateParams) {
+        $scope.paketId = $stateParams.paketId;
+        Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMadinah');
+        Collection.getData().then(function (data) {
+            $scope.data = data.data;
+            console.log($scope.data);
+        });
+        $scope.changeTabs = function (url) {
+            $location.path('/paket/' + $scope.id + '/hotel-madinah/' + url);
+        };
+        $location.path('/paket/' + $scope.id + '/hotel-madinah/review');
+    })
     .controller('ProgressController',function ($scope) {
 
     })
-    .controller('PaketPenerbanganDetailsController',function ($scope,Collection,$stateParams,PAKET_URL) {
+    .controller('PaketPenerbanganDetailsController',function ($scope,Collection,$stateParams,PAKET_URL,Paket) {
         $scope.id = $stateParams.paketId;
-        console.log(Collection);
         Collection.setUrl(PAKET_URL + $scope.id + '/penerbangan');
         Collection.getData().then(function (data) {
             if(data.status){
@@ -87,20 +260,22 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             }
         })
     })
-    .controller('PaketDetailsController',function ($scope,$stateParams,$http,$q,PAKET_URL,$location,$state) {
+    .controller('PaketDetailsController',function ($scope,$stateParams,$http,$q,PAKET_URL,$location,$state,Paket) {
         $scope.id = $stateParams.paketId;
         var defered = $q.defer();
         $http.get(PAKET_URL + $scope.id).then(function (response) {
             defered.resolve(response.data);
         });
-
         defered.promise.then(function (data) {
            $scope.data = data.data;
+            Paket.setData($scope.data);
+            console.log(Paket.getData());
         });
 
         $scope.changeTabs = function (url) {
-            $location.path('/' + $scope.id + '/' + url);
+            $location.path('/paket/' + $scope.id + '/' + url);
         }
+
     })
     .controller('TabsController',function ($scope, TabContent,$location) {
         TabContent.then(function (data) {

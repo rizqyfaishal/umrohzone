@@ -35,7 +35,7 @@ class AgentRegisterRequest extends Request
             'phone2' => 'required|max:12',
             'direktur' => 'required|min:3|max:50',
             'phone_direktur' => 'required|max:12',
-            'logo' => 'required|mimes:jpg,jpeg',
+            'logo' => 'required|mimes:jpg,jpeg,png',
             'bank' => 'required|max:50|min:2',
             'no_rekening' => 'required|max:255',
             'agree' => 'required',

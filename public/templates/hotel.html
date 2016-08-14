@@ -1,0 +1,37 @@
+<h2>{{ data.nama }}</h2>
+<p><i class="fa fa-map-marker">&nbsp;</i>{{ data.address.full_address }} - <a ng-href="{{ data.address.google_map_url }}">Tampilkan Peta</a></p>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <div class="features-modal-tabs tabs-custom">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a ng-click="changeTabs('review')" aria-controls="home" role="tab" data-toggle="tab">
+                                <i class="fa fa-exchange">&nbsp;</i> Review
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a  ng-click="changeTabs('photos')" aria-controls="profile" role="tab" data-toggle="tab">
+                                <i class="fa fa-calendar">&nbsp;</i> Foto
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a ng-click="changeTabs('lokasi')" aria-controls="messages" role="tab" data-toggle="tab">
+                                <i class="fa fa-pencil-square">&nbsp;</i>Lokasi
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a ng-click="changeTabs('fasilitas')" aria-controls="settings" role="tab" data-toggle="tab">
+                                <i class="fa fa-life-saver">&nbsp;</i> Fasilitas
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <ui-view></ui-view>
+    </div>
+</div>

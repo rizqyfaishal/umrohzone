@@ -7,4 +7,5 @@
     <ui-view></ui-view>
 @endsection
 
+@include('partials._fotorama')
 @include('angular._script')

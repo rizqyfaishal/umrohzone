@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\PageDescription;
 use App\Penerbangan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -63,6 +64,9 @@ class PenerbanganController extends Controller
         }
 
         $penerbangan = Penerbangan::create($request->all());
+        $waktu = Carbon::parse($penerbangan->tanggal_berangkat);
+        $penerbangan->tanggal_tiba = $waktu->addHours((int) $request->input('waktu_tempuh'))->toDateTimeString();
+        $penerbangan->save();
         if(is_null($penerbangan)){
             abort(500);
         }
@@ -130,6 +134,9 @@ class PenerbanganController extends Controller
             abort(404);
         }
         $penerbangan->update($request->all());
+        $waktu = Carbon::parse($penerbangan->tanggal_berangkat);
+        $penerbangan->tanggal_tiba = $waktu->addHours((int) $request->input('waktu_tempuh'))->toDateTimeString();
+        $penerbangan->save();
         Session::flash('penerbangan-registered','Telah Ditambahkan');
         return redirect(action('PenerbanganController@index'));
     }

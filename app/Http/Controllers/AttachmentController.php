@@ -16,7 +16,7 @@ class AttachmentController extends Controller
 
     public function __construct(PageDescription $page)
     {
-        $this->middleware('auth-admin');
+//        $this->middleware('auth-admin');
     }
 
     public function index(){
@@ -32,7 +32,7 @@ class AttachmentController extends Controller
         if(is_null($file)){
             abort(404);
         }
-        $dir = $this->helper->getHashDirectory($file->hashcode,$file->extension);
+        $dir = $this->getHashDirectory($file->hashcode,$file->extension);
         $base = storage_path('app/');
         return response()->download($base.$dir,$file->filename,[
             'Content-Type' => $file->mime_types

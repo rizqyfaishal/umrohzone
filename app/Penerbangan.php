@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Penerbangan extends Model
 {
     protected $table = 'penerbangan';
+    protected $hidden = ['created_at','deleted_at','updated_at'];
 
     use SoftDeletes;
 
@@ -25,7 +26,19 @@ class Penerbangan extends Model
         'jenis_penerbangan'
     ];
 
+    public function getTanggalBerangkatAttribute($value){
+        return Carbon::parse($value)->toDayDateTimeString();
+    }
 
+    public function setTanggalBerangkatAttribute($r){
+        $r = date('m/d/Y H:i',strtotime($r));
+        $waktu = Carbon::createFromFormat('d/m/Y H:i',$r);
+        $this->attributes['tanggal_berangkat'] = $waktu->toDateTimeString();
+    }
+
+    public function getTanggalTibaAttribute($value){
+        return Carbon::parse($value)->toDayDateTimeString();
+    }
 
     public function pesawat(){
         return $this->belongsTo('App\Pesawat','pesawat_id');

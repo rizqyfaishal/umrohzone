@@ -1,5 +1,5 @@
 <div class="container paket-details-content">
-    <div class="row bottom-bordered">
+    <div class="row">
         <div class="col-lg-10 col-md-10 col-sm-12 text-left">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3">
@@ -23,37 +23,36 @@
                 </div>
             </div>
             <div class="feature-tabs">
-                <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
+                <ul class="nav nav-tabs nav-tabs-custom  bottom-bordered" role="tablist">
                     <li role="presentation" class="active tabs-li-custom">
-                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                        <a ng-click="changeTabs('persyaratan')" aria-controls="home" role="tab" data-toggle="tab">
                             <i class="fa fa-calendar"></i><br>
                             {{ data.waktu }}
                         </a>
-                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                        <a  ng-click="changeTabs('persyaratan')" aria-controls="home" role="tab" data-toggle="tab">
                             <i class="fa fa-clock-o"></i><br>
                             {{ data.durasi }} Hari
                         </a>
-                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                        <a  ng-click="changeTabs('persyaratan')" aria-controls="home" role="tab" data-toggle="tab">
                             <i class="fa fa-shield"></i><br>
                             {{ data.embarkasi.nama }}
                         </a>
                     </li>
                     <li role="presentation">
-                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
-                            <i class="fa fa-plane"></i><br>
-                            {{ data.pesawat.nama }}
+                        <a href="" ng-click="changeTabs('pesawat')" aria-controls="home" role="tab" data-toggle="tab">
+                            <!--<i class="fa fa-plane"></i><br>-->
+                            <!--{{ data.pesawat.nama }}-->
+                            <img ng-src="p/{{ data.pesawat.logo[0].hashcode }}" alt="Logo" width="100%">
                         </a>
                     </li>
                     <li role="presentation">
-                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
-                            <i class="fa fa-hospital-o"></i><br>
-                            {{ data.hotel_mekah.nama }}
+                        <a href=""  ng-click="changeTabs('hotel-mekah')" aria-controls="home" role="tab" data-toggle="tab">
+                            <img src="/img/hotel_icon.png" alt="Logo" height="60">
                         </a>
                     </li>
                     <li role="presentation">
-                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
-                            <i class="fa fa-calendar"></i><br>
-                            {{ data.hotel_madinah.nama }}
+                        <a href="" ng-click="changeTabs('hotel-madinah')" aria-controls="home" role="tab" data-toggle="tab">
+                            <img src="/img/hotel_icon.png" alt="Logo" height="60">
                         </a>
                     </li>
                 </ul>
@@ -80,37 +79,6 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="home">
-                    <div class="features-modal-tabs tabs-custom">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active">
-                                <a ng-click="changeTabs('persyaratan')" aria-controls="home" role="tab" data-toggle="tab">
-                                    <i class="fa fa-exchange">&nbsp;</i> Persyaratan
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a  ng-click="changeTabs('penerbangan')" aria-controls="profile" role="tab" data-toggle="tab">
-                                    <i class="fa fa-calendar">&nbsp;</i>Waktu dan Tempat
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a ng-click="changeTabs('agenda')" aria-controls="messages" role="tab" data-toggle="tab">
-                                    <i class="fa fa-pencil-square">&nbsp;</i>Agenda
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a ng-click="changeTabs('fasilitas')" aria-controls="settings" role="tab" data-toggle="tab">
-                                    <i class="fa fa-life-saver">&nbsp;</i>Fasilitas
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <hr>
     <ui-view></ui-view>
 </div>

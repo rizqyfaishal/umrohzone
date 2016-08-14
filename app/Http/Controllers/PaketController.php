@@ -78,7 +78,7 @@ class PaketController extends Controller
         }
         return response()->json([
             'status' => true,
-            'data' => $paket->load('agen','hotelMekah','hotelMadinah','pesawat','embarkasi')
+            'data' => $paket->load('agen','hotelMekah','hotelMadinah','pesawat.logo','embarkasi')
         ]);
     }
 

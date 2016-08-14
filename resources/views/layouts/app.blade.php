@@ -18,6 +18,7 @@
     @yield('angular-js')
     @yield('data-tables-css')
     @yield('select2-css')
+    @yield('fotorama-css')
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
     @yield('ajax-image-css')
 
@@ -25,6 +26,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/datepicker.css') }}">
 
     <script src="{{ URL::asset('js/jquery-2.2.1.min.js') }}"></script>
+    @yield('date-time-picker')
 </head>
 <body>
 @include('partials._navbar')
@@ -46,42 +48,27 @@
         });
     });
 </script>
-<script>
+{{--<script>--}}
 
-    if(window.location.href == "https://umrohzone.com/beta/v3/dashboard") {
-        document.getElementById("cobalogin").innerHTML = "Logout";
-    }
-    if(window.location.href == "http://umrohzone.com/beta/v3/dashboard") {
-        document.getElementById("cobalogin").innerHTML = "Logout";
-    }
-    if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {
-        document.getElementById("cobalogin").innerHTML = "Logout";
-    }
-    if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {
-        document.getElementById("cobalogin").innerHTML = "Logout";
-    }
+    {{--if(window.location.href == "https://umrohzone.com/beta/v3/dashboard") {--}}
+        {{--document.getElementById("cobalogin").innerHTML = "Logout";--}}
+    {{--}--}}
+    {{--if(window.location.href == "http://umrohzone.com/beta/v3/dashboard") {--}}
+        {{--document.getElementById("cobalogin").innerHTML = "Logout";--}}
+    {{--}--}}
+    {{--if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {--}}
+        {{--document.getElementById("cobalogin").innerHTML = "Logout";--}}
+    {{--}--}}
+    {{--if(window.location.href == "http://umrohzone.com/beta/v3/dashboardAgent") {--}}
+        {{--document.getElementById("cobalogin").innerHTML = "Logout";--}}
+    {{--}--}}
 
-</script>
+{{--</script>--}}
 
 {{--script datepicker--}}
-<script src="{{ URL::asset('js/bootstrap-datepicker.js') }}"></script>
-    {{--docs nya ada di sini : http://www.eyecon.ro/bootstrap-datepicker/#--}}
-<script type="text/javascript">
-    // When the document is ready
-    $(document).ready(function () {
-
-        $('#datepicker-form-regular').datepicker({
-            format: "dd/mm/yyyy"
-        });
-
-        $('#datepicker-form-private').datepicker({
-            format: "dd/mm/yyyy"
-        });
-
-    });
-</script>
+@yield('date-picker')
 {{--end of script datepicker--}}
-
+@yield('fotorama-js')
 @yield('ajax-image-js')
 @yield('select2-js')
 @yield('data-tables-js')

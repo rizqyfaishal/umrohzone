@@ -39,7 +39,7 @@
     <div class="col-lg-6 col-md-6 col-sm-6">
         <div class="form-group {{ $errors->has('full_address') ? ' has-error' : '' }}">
             {!! Form::label('full_address','Alamat Hotel') !!}
-            {!! Form::textarea('full_address',old('full_address'),['class' => 'form-control','placeholder' => 'Alamat']) !!}
+            {!! Form::textarea('full_address',is_null($hotel->address) ? old('full_address') : $hotel->address->full_address ,['class' => 'form-control','placeholder' => 'Alamat']) !!}
             @if ($errors->has('full_address'))
                 <span class="help-block">
                     <strong>{{ $errors->first('full_address') }}</strong>
@@ -63,7 +63,7 @@
     <div class="col-lg-6 col-md-6 col-sm-6">
         <div class="form-group {{ $errors->has('google_map_url') ? ' has-error' : '' }}">
             {!! Form::label('google_map_url','Google Map URL') !!}
-            {!! Form::text('google_map_url',old('google_map_url'),['class' => 'form-control','placeholder' => 'Google Map URL']) !!}
+            {!! Form::text('google_map_url',is_null($hotel->address) ? old('google_map_url') : $hotel->address->google_map_url ,['class' => 'form-control','placeholder' => 'Google Map URL']) !!}
             @if ($errors->has('google_map_url'))
                 <span class="help-block">
                     <strong>{{ $errors->first('google_map_url') }}</strong>

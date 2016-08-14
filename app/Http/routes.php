@@ -115,6 +115,13 @@ Route::group(['prefix' => 'api'],function (){
     Route::get('/paket-kategori/{id}/getPaket','PaketCategoryController@getPaketJson');
     Route::get('/paket/{id}','PaketController@show');
     Route::get('/paket/{id}/penerbangan','AngularController@getPaketPenerbangan');
+    Route::get('/paket/{id}/pesawat','AngularController@getPaketPesawat');
+    Route::get('/paket/{id}/hotelMekah/review','AngularController@getPaketHotelMekahReview');
+    Route::get('/paket/{id}/hotelMekah','AngularController@getPaketHotelMekah');
+    Route::get('/paket/{id}/hotelMadinah/review','AngularController@getPaketHotelMadinahReview');
+    Route::get('/paket/{id}/hotelMadinah','AngularController@getPaketHotelMadinah');
+    Route::get('/paket/{id}/hotelMadinah/photos','AngularController@getPaketHotelMadinahPhotos');
+    Route::get('/paket/{id}/hotelMekah/photos','AngularController@getPaketHotelMekahPhotos');
 });
 
 Route::get('p/{hashcode}','AttachmentController@get');

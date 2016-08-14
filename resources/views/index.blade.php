@@ -442,3 +442,23 @@
         </div>
     </div>
 @endsection
+@section('date-picker')
+    <script src="{{ URL::asset('js/bootstrap-datepicker.js') }}"></script>
+    {{--docs nya ada di sini : http://www.eyecon.ro/bootstrap-datepicker/#--}}
+    <script type="text/javascript">
+        // When the document is ready
+        $(document).ready(function () {
+
+            $('#datepicker-form-regular').datepicker({
+                format: "dd/mm/yyyy"
+            });
+
+            $('#datepicker-form-private').datepicker({
+                format: "dd/mm/yyyy"
+            });
+
+            $('#date-picker').datepicker();
+
+        });
+    </script>
+@endsection

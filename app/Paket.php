@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Paket extends Model
 {
     use SoftDeletes;
+    protected $hidden = ['created_at','deleted_at','updated_at','hotel_mekah_id','hotel_madinah_id','pesawat_id',
+        'agen_id','penerbangan_berangkat_id','penerbangan_pulang_id','embarkasi_id','paket_category_id'
+    ];
+
 
     protected $dates = ['delete_at'];
 

@@ -2,21 +2,27 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
             <div class="row bottom-bordered">
-                <div class="manasik">
-                    <div class="col-lg-11 col-lg-offset-1">
-                        <h4>Manasik</h4>
+                <div class="penerbangan col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-11 col-lg-offset-2">
+                            <h4>Manasik</h4>
+                        </div>
                     </div>
-                    <div class="col-lg-4 col-lg-offset-1">
-                        <h5 class="text-right">Waktu :</h5>
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Waktu :</h5>
+                        </div>
+                        <div class="col-lg-6">
+                            <h5><strong>{{ data.manasik.waktu_manasik }}</strong></h5>
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                        <h5><strong>{{ data.manasik.waktu_manasik }}</strong></h5>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-1">
-                        <h5 class="text-right">Tempat :</h5>
-                    </div>
-                    <div class="col-lg-6">
-                        <h5><strong>{{ data.manasik.address.full_address}}</strong></h5>
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Tempat :</h5>
+                        </div>
+                        <div class="col-lg-6">
+                            <h5><strong>{{ data.manasik.address.full_address}}</strong></h5>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -24,108 +30,108 @@
                 <div class="col-lg-11 col-lg-offset-1">
                     <h4>Penerbangan</h4>
                 </div>
-                <div class="penerbangan">
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Tanggal keberangkatan : </h5>
+                <div class="penerbangan col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Tanggal keberangkatan : </h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5 class="text-left">{{ data.penerbangan_berangkat.tanggal_berangkat }}</h5>
+                        </div>
                     </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">{{ data.penerbangan_berangkat.tanggal_berangkat }}</h5>
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Airport : </h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5 class="text-left">{{ data.penerbangan_berangkat.bandara_berangkat.nama }}</h5>
+                        </div>
                     </div>
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Jam : </h5>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">16.35 Local Time</h5>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Airport : </h5>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">Jakarta, Cengkareng (CG)</h5>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Terminal : </h5>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">2F Garuda - Umroh</h5>
-                    </div>
-                </div>
-                <div class="penerbangan">
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Tanggal keberangkatan : </h5>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">20 December 2016</h5>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Jam : </h5>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">16.35 Local Time</h5>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Airport : </h5>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">Jakarta, Cengkareng (CG)</h5>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Terminal : </h5>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">2F Garuda - Umroh</h5>
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Terminal : </h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5 class="text-left">{{  data.penerbangan_berangkat.terminal_berangkat.nama }} - Umroh</h5>
+                        </div>
                     </div>
                 </div>
-                <div class="penerbangan">
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Tanggal keberangkatan : </h5>
+                <div class="penerbangan col-lg-12 bottom-bordered">
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Tanggal Kedatangan Arab : </h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5 class="text-left">{{ data.penerbangan_berangkat.tanggal_tiba }}</h5>
+                        </div>
                     </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">20 December 2016</h5>
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Airport : </h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5 class="text-left">{{ data.penerbangan_berangkat.bandara_tujuan.nama }}</h5>
+                        </div>
                     </div>
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Jam : </h5>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">16.35 Local Time</h5>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Airport : </h5>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">Jakarta, Cengkareng (CG)</h5>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Terminal : </h5>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">2F Garuda - Umroh</h5>
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Terminal : </h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5 class="text-left">{{  data.penerbangan_berangkat.terminal_tujuan.nama }} - Umroh</h5>
+                        </div>
                     </div>
                 </div>
-                <div class="penerbangan">
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Tanggal keberangkatan : </h5>
+                <div class="penerbangan col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Tanggal Kepulangan : </h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5 class="text-left">{{ data.penerbangan_pulang.tanggal_berangkat }}</h5>
+                        </div>
                     </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">20 December 2016</h5>
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Airport : </h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5 class="text-left">{{ data.penerbangan_pulang.bandara_berangkat.nama }}</h5>
+                        </div>
                     </div>
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Jam : </h5>
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Terminal : </h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5 class="text-left">{{  data.penerbangan_pulang.terminal_berangkat.nama }} - Umroh</h5>
+                        </div>
                     </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">16.35 Local Time</h5>
+                </div>
+                <div class="penerbangan col-lg-12 bottom-bordered">
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Tanggal Kedatangan INA : </h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5 class="text-left">{{ data.penerbangan_pulang.tanggal_tiba }}</h5>
+                        </div>
                     </div>
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Airport : </h5>
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Airport : </h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5 class="text-left">{{ data.penerbangan_pulang.bandara_tujuan.nama }}</h5>
+                        </div>
                     </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">Jakarta, Cengkareng (CG)</h5>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-2">
-                        <h5 class="text-right">Terminal : </h5>
-                    </div>
-                    <div class="col-lg-4">
-                        <h5 class="text-left">2F Garuda - Umroh</h5>
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h5 class="text-right">Terminal : </h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5 class="text-left">{{  data.penerbangan_pulang.terminal_tujuan.nama }} - Umroh</h5>
+                        </div>
                     </div>
                 </div>
             </div>

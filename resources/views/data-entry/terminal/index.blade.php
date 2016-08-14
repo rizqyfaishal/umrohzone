@@ -40,10 +40,9 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <table class="table-hover table data-entry-table table-custom">
+                <table id="dataTables" class="table-hover table data-entry-table table-custom">
                     <thead>
                     <tr>
-                        <td>No</td>
                         <td>Nama Terminal</td>
                         <td>Created At</td>
                         <td>Action</td>
@@ -52,7 +51,6 @@
                     <tbody>
                     @foreach($terminals as $terminal)
                         <tr>
-                            <td>{{ $terminal->id }}</td>
                             <td>{{ $terminal->nama }}</td>
                             <td>{{ $terminal->created_at }}</td>
                             <td>
@@ -77,3 +75,4 @@
         </div>
     </div>
 @endsection
+@include('partials._data-tables')

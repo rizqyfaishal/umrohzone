@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Provinsi;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,7 +28,6 @@ class RedirectIfAuthenticated
             }
 
         }
-
         return $next($request);
     }
 }
