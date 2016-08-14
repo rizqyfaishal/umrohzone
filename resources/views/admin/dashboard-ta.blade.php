@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <h2 class="text-center">agen Summary</h2>
-                <div class="right"><a href="#" class="button">[Tambah]</a></div>
+                <div class="right"><a href="/auth/travel-agen/register" class="button">[Tambah]</a></div>
                 <table class="table table-hover table-custom">
 
                     <thead>
@@ -35,7 +35,7 @@
                             <td>{{$agen->provinsi_id}}</td>
                             <td>{{$agen->regency_id}}</td>
                             <td>{{$agen->phone2}}</td>
-                            <td><a href="/admin/ta/edit/{{$agen->id}}" class="button">[Edit]</a><a href="/admin/ta/hapus/{{$agen->id}}" class="button">[Hapus]</a></td>
+                            <td><a href="/agen/{{$agen->id}}/edit" class="button">[Edit]</a><a href="/agen/{{$agen->id}}/delete" class="button">[Hapus]</a></td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -35,6 +35,13 @@ class AdminController extends Controller
             'page' => $this->page,'jamaahs' => $jamaahs
         ]);
     }
+
+    public function removeJamaah($id)   {
+        $jamaah = Jamaah::find($id);
+        $jamaah->delete();
+        return redirect()->back();
+    }
+
     public function getTA()    {
         $this->page->setTitle('Dashboard Travel Agent');
         $agens = Agen::get();
@@ -42,6 +49,13 @@ class AdminController extends Controller
             'page' => $this->page,'agens' => $agens
         ]);
     }
+
+    public function removeTA($id)   {
+        $agen = Agen::find($id);
+        $agen->delete();
+        return redirect()->back();
+    }
+
     public function getHotels()    {
         $this->page->setTitle('Dashboard Hotel');
         $hotels = Hotel::get();
@@ -49,11 +63,24 @@ class AdminController extends Controller
             'page' => $this->page,'hotels' => $hotels
         ]);
     }
+
+    public function removeHotel($id)   {
+        $hotel = Hotel::find($id);
+        $hotel->delete();
+        return redirect()->back();
+    }
+
     public function getAirlines()    {
         $this->page->setTitle('Dashboard Maskapai');
         $pesawats = Pesawat::get();
         return view('admin.dashboard-maskapai')->with([
             'page' => $this->page,'pesawats' => $pesawats
         ]);
+    }
+
+    public function removeAirline($id)   {
+        $pesawat = Pesawat::find($id);
+        $pesawat->delete();
+        return redirect()->back();
     }
 }

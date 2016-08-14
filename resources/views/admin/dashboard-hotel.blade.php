@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <h2 class="text-center">hotel Summary</h2>
-                <div class="right"><a href="#" class="button">[Tambah]</a></div>
+                <div class="right"><a href="/hotel/create" class="button">[Tambah]</a></div>
                 <table class="table table-hover table-custom">
 
                     <thead>
@@ -27,7 +27,7 @@
                             <td>{{$hotel->hotel_primary_lokasi}}</td>
                             <td>{{$hotel->deskripsi}}</td>
                             <td>{{$hotel->review}}</td>
-                            <td><td><a href="/admin/hotel/edit/{{$hotel->id}}" class="button">[Edit]</a><a href="/admin/hotel/edit/{{$hotel->id}}" class="button">[Hapus]</a></td></td>
+                            <td><td><a href="/hotel/{{$hotel->id}}/edit" class="button">[Edit]</a><a href="/hotel/{{$hotel->id}}/delete" class="button">[Hapus]</a></td></td>
                         </tr>
                     @endforeach
                     </tbody>
