@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Paket;
+use App\Provinsi;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -104,4 +106,25 @@ class AngularController extends Controller
     public function getPeketFasilitas(){
 
     }
+
+    public function checkEmailUnique($email){
+        $email = User::where('email','=',$email)->first();
+        if(is_null($email)){
+            return response()->json([
+                'status' => true
+            ]);
+        }
+        return response()->json([
+            'status' => false
+        ]);
+    }
+
+    public function getAllProvinsi(){
+        return response()->json([
+            'status' => true,
+            'data' => Provinsi::all()
+        ]);
+    }
+
+
 }

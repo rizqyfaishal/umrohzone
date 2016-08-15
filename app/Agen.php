@@ -53,7 +53,7 @@ class Agen extends Model
     }
 
     public function logo(){
-        return $this->attachments()->where('category_id','=',1)->first();
+        return $this->attachments()->where('category_id','=',1);
     }
 
     public function provinsi(){
