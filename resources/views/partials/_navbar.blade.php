@@ -31,7 +31,7 @@
                 </li>
                 <li>
                     <a id="cobalogin" href="{{ is_null(\Illuminate\Support\Facades\Auth::user()) ? action('PageController@dashboard') : url('dashboard') }}">
-                        {{ is_null(\Illuminate\Support\Facades\Auth::user()) ? ' ' : 'Dashboard' }}
+                        {{ is_null(\Illuminate\Support\Facades\Auth::user()) ? '' : 'Dashboard' }}
                     </a>
                 </li>
             </ul>

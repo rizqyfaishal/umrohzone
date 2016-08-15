@@ -16,7 +16,9 @@ class PageController extends Controller
 {
     public function __construct(PageDescription $pageDescription){
         $this->page = $pageDescription;
-        $this->middleware('guest',['only' => ['login','dashboard']]);
+        $this->middleware('guest',['only' => ['login']]);
+        $this->middleware('auth-pemesan',['only'=> ['dashboardUser','dashboardAgent']]);
+
     }
 
     public function index(){
