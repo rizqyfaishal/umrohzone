@@ -154,7 +154,7 @@ class PaketCategoryController extends Controller
         $arr = array();
 
         foreach ($paketCategory->pakets as $y){
-            array_push($arr,$y->load('hotelMekah','hotelMadinah','pesawat','embarkasi'));
+            array_push($arr,$y->load(['hotelMekah','hotelMadinah','pesawat.attachments','embarkasi']));
         }
 
         return response()->json([

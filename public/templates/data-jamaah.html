@@ -508,11 +508,30 @@ sagittis lacus vel augue laoreet rutrum faucibus.">Mahrom</a>
 <div class="container">
     <table class="table table-hover">
         <thead>
-        <tr>No.</tr>
-        <tr>Nama</tr>
-        <tr>Memiliki Paspor Masih Berlaku</tr>
-        <tr>KTP terdiri dari 3 Suku Kata</tr>
-        <tr>Paspor </tr>
+        <tr>
+            <td>No.</td>
+            <td>Nama</td>
+            <td>Memiliki Paspor</td>
+            <td>KTP terdiri dari 3 Suku Kata</td>
+            <td>Paspor dengan 3 suku kata</td>
+            <td>Butuh Mahrom</td>
+            <td>Alamat</td>
+            <td>Kelas Kamar</td>
+            <td>Asuransi Tambahan</td>
+        </tr>
         </thead>
+        <tbody>
+        <tr ng-repeat="jamaah in daftarJamaah">
+            <td>Jamaah #{{ jamaah.num }}</td>
+            <td>{{ jamaah.fname }} {{ jamaah.mname == '-' ? '' : jamaah.mname }} {{ jamaah.lname == '-' ? '' : jamaah.lname }}</td>
+            <td>Memiliki Paspor</td>
+            <td>KTP terdiri dari 3 Suku Kata</td>
+            <td>Paspor dengan 3 suku kata</td>
+            <td>Butuh Mahrom</td>
+            <td>Alamat</td>
+            <td>Kelas Kamar</td>
+            <td>Asuransi Tambahan</td>
+        </tr>
+        </tbody>
     </table>
 </div>

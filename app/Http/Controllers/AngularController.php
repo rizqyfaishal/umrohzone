@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Paket;
 use App\Provinsi;
 use App\User;
+use Hashids\Hashids;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class AngularController extends Controller
 {
@@ -20,6 +22,26 @@ class AngularController extends Controller
             'status' => true,
             'data' => $paket->load('penerbanganBerangkat.bandaraBerangkat','penerbanganBerangkat.bandaraTujuan','penerbanganPulang.bandaraBerangkat','penerbanganPulang.bandaraTujuan','manasik.address','penerbanganBerangkat.terminalBerangkat','penerbanganPulang.terminalBerangkat','penerbanganBerangkat.terminalTujuan','penerbanganPulang.terminalTujuan')
         ]);
+    }
+
+    public function checkAuth(Request $request){
+        if(!is_null(Auth::user())){
+            $paketId = $request->query('paketId');
+            if(is_null($paketId)){
+                return response()->json([
+                    'status' => true
+                ]);
+            }
+            $hashids = new Hashids(env('RECAPTCHA_PRIVATE_KEY'), 9, 'abcdefghijlmnopqwrstuvwxyzABCKSJASAKNAKS1234567890');
+            return response()->json([
+                'status' => true,
+                'redirectTo' => action('PemesanController@isiDataJamaah',$hashids->encode($paketId))
+            ]);
+        }
+        return response()->json([
+            'status' => false,
+        ]);
+
     }
 
     public function getToken(){

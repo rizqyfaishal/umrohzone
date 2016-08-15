@@ -47,6 +47,9 @@ class PemesanController extends Controller
     public function registerPemesan(Requests\RegisterPemesanRequest $request){
         $pemesan = $this->reg($request);
         $pemesan->paket()->attach($request->input('paket_id'));
+        $paket = Paket::find($request->input('paket_id'));
+        $paket->setSisaKuota();
+        $paket->save();
         $hashids = new Hashids(env('RECAPTCHA_PRIVATE_KEY'), 9, 'abcdefghijlmnopqwrstuvwxyzABCKSJASAKNAKS1234567890');
         return redirect(action('PemesanController@isiDataJamaah',$hashids->encode($request->input('paket_id'))));
     }
