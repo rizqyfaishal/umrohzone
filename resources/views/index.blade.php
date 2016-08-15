@@ -210,7 +210,8 @@
                     <br><br><br>
                     <div class="row">
                         <div class="col-lg-12">
-                            <img src="img/home/weather_image.jpg" style="width:100%; height:100%;"/>
+                            <iframe id="forecast_embed" type="text/html" frameborder="0" height="245"
+                                    width="100%" src="http://forecast.io/embed/#lat=21.389082&lon=-39.8579123&name=Mecca"> </iframe>
                         </div>
                     </div>
 

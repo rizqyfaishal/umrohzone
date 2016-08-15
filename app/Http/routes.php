@@ -114,9 +114,11 @@ Route::resource('paket-category','PaketCategoryController');
 Route::resource('rekening','RekeningController');
 Route::get('/attachments/all','AttachmentController@index');
 Route::get('/list-paket','PageController@listPakets');
+Route::get('/q','PageController@getListPaketRedirect');
 
 Route::group(['prefix' => 'api'],function (){
     Route::get('/token','AngularController@getToken');
+    Route::get('/check','AngularController@checkAuth');
     Route::get('/paket-kategori','PaketCategoryController@getJson');
     Route::get('/paket-kategori/{id}/getPaket','PaketCategoryController@getPaketJson');
     Route::get('/paket/{id}','PaketController@show');

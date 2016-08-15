@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Helper\PageDescription;
+use App\Paket;
 use App\Provinsi;
 use App\Booking;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Input;
@@ -14,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
+
+
     public function __construct(PageDescription $pageDescription){
         $this->page = $pageDescription;
         $this->middleware('guest',['only' => ['login']]);
@@ -153,6 +157,19 @@ class PageController extends Controller
         return view('paket.index')->with([
             'page' => $this->page
         ]);
+    }
+
+    public function getListPaketRedirect(Requests\ListPaketQueryRequest $request){
+        $date = Carbon::createFromFormat('d/m/Y',$request->query('tanggal_keberangkatan'));
+        if($request->query('flexible_date')){
+            return redirect('/list-paket#/1?jumlah_jamaah=' . $request->query('jumlah_jamaah').'&embarkasi='.$request->query('embarkasi'));
+        }
+        return redirect('/list-paket#/1?jumlah_jamaah=' .
+            $request->query('jumlah_jamaah').'&embarkasi='.$request->query('embarkasi')
+            .'&tanggal_keberangkatan='.$date->toDateString()
+            .(!is_null($request->query('hotel_mekah')) ? '&hotel_mekah=' . $request->query('hotel_mekah') : '')
+            .(!is_null($request->query('hotel_madinah')) ? '&hotel_madinah=' . $request->query('hotel_madinah') : ''));
+
     }
     
 }

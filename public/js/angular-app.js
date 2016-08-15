@@ -22,6 +22,29 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         });
         return defer.promise;
     })
+    .factory('Currency',function ($q, $http) {
+        var defer = $q.defer();
+        $http.get('http://api.fixer.io/latest?base=USD&symbols=USD,IDR').then(function (res) {
+            defer.resolve(res.data);
+        });
+        return defer.promise;
+    })
+    .factory('Auth',function ($q, $http) {
+        var defer = $q.defer();
+        this.url = null;
+        this.setUrl = function (url) {
+            this.url = url;
+        };
+
+        this.check = function () {
+            $http.get(this.url).then(function (res) {
+                defer.resolve(res.data);
+            });
+            return defer.promise;
+        };
+
+        return this;
+    })
     .service('TabContent',function ($http,$q) {
         var defer = $q.defer();
         $http.get('api/paket-kategori').then(function (response) {
@@ -75,10 +98,26 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             .state('pesan',{
                 url:'/paket_terpilih/:paketId/pesan',
                 templateUrl: 'templates/pesan.html',
-                controller: 'PaketPesanController'
+                controller: 'PaketPesanController',
+                resolve: {
+                    checkAuth: function (Auth,$q,$stateParams) {
+                        var defer = $q.defer();
+                        Auth.setUrl('/api/check?paketId=' + $stateParams.paketId);
+                        Auth.check().then(function (data) {
+                            if(data.status){
+                                var redirectTo = data.redirectTo;
+                                console.log(redirectTo);
+                                window.location.href = redirectTo;
+                            } else {
+                                defer.resolve();
+                            }
+                        });
+                        return defer.promise;
+                    }
+                }
             })
             .state('paket-list.data-table',{
-                url: '/:id',
+                url: '/:id?jumlah_jamaah&embarkasi&tanggal_keberangkatan',
                 templateUrl: 'templates/data-tables-paket.html',
                 controller: 'DataTableController'
             })
@@ -217,7 +256,7 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             }
         }
     }])
-    .controller('PaketPesanController',function ($scope,$stateParams,Collection,PAKET_URL,Month,Token) {
+    .controller('PaketPesanController',function ($scope,$stateParams,Collection,PAKET_URL,Month,Token,Auth) {
         Token.then(function (data) {
             $scope.token = data.data;
             console.log($scope.token);
@@ -238,6 +277,7 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         $scope.showModalConfirmation = function () {
             $('#confirmationModal').modal('show')
         }
+
     })
     .controller('HotelReviewController',function ($scope, $stateParams,Collection,PAKET_URL,$state) {
         $scope.paketId = $stateParams.paketId;
@@ -339,16 +379,24 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             }
         })
     })
-    .controller('PaketDetailsController',function ($scope,$stateParams,$http,$q,PAKET_URL,$location,$state,Paket) {
+    .controller('PaketDetailsController',function (Month,$scope,$stateParams,$http,$q,PAKET_URL,$location,$state,Paket) {
         $scope.id = $stateParams.paketId;
         var defered = $q.defer();
         $http.get(PAKET_URL + $scope.id).then(function (response) {
             defered.resolve(response.data);
         });
         defered.promise.then(function (data) {
-           $scope.data = data.data;
+            $scope.data = data.data;
             Paket.setData($scope.data);
-            console.log(Paket.getData());
+            var waktu = new Date($scope.data.waktu);
+            var tahun = waktu.getFullYear();
+            var bulan = Month[waktu.getMonth()];
+            var tanggal = waktu.getDate() + 1;
+            $scope.data.waktu = {
+                tanggal: tanggal,
+                    tahun: tahun,
+                    bulan: bulan
+            };
         });
 
         $scope.changeTabs = function (url) {
@@ -371,8 +419,7 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         };
         $location.path('/1');
     })
-    .controller('DataTableController',function ($scope, TabContent,$location,DTOptionsBuilder,DTColumnDefBuilder,$http,$q,$stateParams) {
-
+    .controller('DataTableController',function (Month,$scope, TabContent,$location,DTOptionsBuilder,$state,DTColumnDefBuilder,$http,$q,$stateParams) {
 
         $scope.id = $stateParams.id;
         $scope.dtColumnDefs = [
@@ -380,11 +427,24 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         ];
         var defer = $q.defer();
         $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withDisplayLength(10);
-        $http.get('api/paket-kategori/' + $scope.id +'/getPaket').then(function (response) {
+        $http.get('api/paket-kategori/' + $scope.id +'/getPaket?jumlah_jamaah=' + $stateParams.jumlah_jamaah + '&embarkasi=' + $stateParams.embarkasi + '&tanggal_keberangkatan=' + $stateParams.tanggal_keberangkatan).then(function (response) {
             defer.resolve(response.data);
         });
 
         defer.promise.then(function (data) {
-           $scope.data = data.data;
+            $scope.data = data.data;
+            // console.log(new Date($scope.data[0].waktu));
+            for(var i = 0;i<$scope.data.length;i++){
+                var waktu = new Date($scope.data[i].waktu);
+                var tahun = waktu.getFullYear();
+                var bulan = Month[waktu.getMonth()];
+                var tanggal = waktu.getDate() + 1;
+                $scope.data[i].waktu = {
+                    tahun: tahun,
+                    bulan: bulan,
+                    tanggal: tanggal
+                };
+            }
+            console.log($scope.data);
         })
     });

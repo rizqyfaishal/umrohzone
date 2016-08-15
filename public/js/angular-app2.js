@@ -23,6 +23,13 @@ var app = angular.module('app',['ui.router'])
             });
         $urlRouterProvider.otherwise('/');
     })
+    .factory('Currency',function ($q, $http) {
+        var defer = $q.defer();
+        $http.get('http://api.fixer.io/latest?base=USD&symbols=USD,IDR').then(function (res) {
+            defer.resolve(res.data);
+        });
+        return defer.promise;
+    })
     .service('User',function ($http,$q) {
         this.url = null;
         this.data = null;

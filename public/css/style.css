@@ -14,6 +14,71 @@
     max-height: 90px;
 }
 
+.calendar-icon {
+    position: relative;
+}
+
+.calendar-icon .bulan {
+    position: absolute;
+    top: 12px;
+    left: 32px;
+    z-index: 33;
+    color: #FFFFff;
+}
+
+.calendar-icon .tanggal {
+    position: absolute;
+    top: 34px;
+    left: 40px;
+    font-size: 2.5em;
+}
+
+.durasi-icon {
+    padding-top: 1em;
+    position: relative;
+}
+
+.durasi-icon .durasi {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    font-size: 2.5em;
+}
+.calendar-icon .tahun {
+    position: absolute;
+    top: 78px;
+    left: 40px;
+    font-size: 1.3em;
+    color: #FFFFff;
+}
+
+.hotel-icon {
+    position: relative;
+}
+
+.hotel-icon .rating {
+    position: absolute;
+    top: 7px;
+    color: #ffffff;
+    font-size: 1.7em;
+}
+
+.hotel-icon .rating.mekah {
+    left: 52px;
+}
+
+.hotel-icon .rating.madinah {
+    left: 33px;
+}
+.embarkasi-icon,
+.hotel-icon {
+    padding-top: 1em;
+}
+
+.home-form .has-error .help-block {
+    color: red!important;
+}
+
 /* akhir kodingan luthfi */
 
 .panel-heading-custom {
@@ -60,19 +125,19 @@
     vertical-align: middle;
 }
 
-.nav-tabs-custom li.active a,
-.nav-tabs-custom li.active a:hover
-{
-    background-color: #9bac15;
-    color: white;
-}
+/*.nav-tabs-custom li.active a,*/
+/*.nav-tabs-custom li.active a:hover*/
+/*{*/
+    /*background-color: #9bac15;*/
+    /*color: white;*/
+/*}*/
 
 .nav-tabs-custom li a {
     background-color: #eee;
-    max-height: 7em!important;
-    height: 7em;
-    width: 8.5em;
-    max-width: 8.5em!important;
+    max-height: 9.5em!important;
+    height: 9.5em;
+    width: 9.5em;
+    max-width: 9.5em!important;
     padding-top: 1em;
     vertical-align: middle;
 }
@@ -80,13 +145,14 @@
 .nav-tabs-custom li a:hover,
 .nav-tabs-custom li a:focus,
 .nav-tabs-custom li a:active {
-    background-color: #9bac15;
+    background-color: #e2e2e2;
     color: white;
 }
 
 
 li.tabs-li-custom {
-    width: 375px;
+    width: 30em;
+    cursor: pointer;
 }
 
 li.tabs-li-custom > a {

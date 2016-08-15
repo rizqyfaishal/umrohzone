@@ -16,53 +16,52 @@
         <tbody>
         <tr ng-repeat="paket in data">
             <td>
-                <span class="package-choice-table-icon">
-                    <i class="fa fa-calendar"></i>
-                </span><br/>
-                {{ paket.waktu }}
+                <div class="calendar-icon">
+                    <img src="/img/calendar_paket_icon.png" alt="Calendar Icon" height="100">
+                    <span class="bulan">
+                        {{  paket.waktu.bulan  }}
+                    </span>
+                    <span class="tanggal">
+                        {{  paket.waktu.tanggal }}
+                    </span>
+                    <span class="tahun">
+                        {{  paket.waktu.tahun }}
+                    </span>
+                </div>
+
             </td>
             <td>
-                <span class="package-choice-table-icon">
-                    <i class="fa fa-clock-o"></i>
-                </span><br/>
-                {{ paket.durasi }}
+                <div class="durasi-icon">
+                    <img src="/img/durasi_icon.png" alt="Durasi Icon" height="80">
+                    <span class="durasi">
+                        {{ paket.durasi }}
+                    </span>
+                </div>
+                Hari
             </td>
             <td>
-                <span class="package-choice-table-icon">
-                    <i class="fa fa-map-marker"></i>
-                </span><br/>
+                <div class="embarkasi-icon">
+                    <img src="/img/embarkasi_icon.png" alt="Embarkasi Icon" height="80">
+                </div>
                 {{ paket.embarkasi.nama }}
             </td>
             <td>
-                <span class="package-choice-table-icon">
-                    <i class="fa fa-plane"></i>
-                </span><br/>
-                {{ paket.pesawat.nama }}
+                <div class="pesawat-icon">
+                    <img ng-src="/p/{{ paket.pesawat.attachments[0].hashcode }}" alt="Logo Pesawat" height="70">
+                </div>
             </td>
             <td>
-                <span class="package-choice-table-icon">
-                    <i class="fa fa-hospital-o"></i>
-                </span><br/>
-                <span class="package-choice-table-rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                </span> <br>
+                <div class="hotel-icon">
+                    <span class="rating mekah">3</span>
+                    <img src="/img/hotel_icon.png" alt="Hotel Icon" height="80">
+                </div>
                 <span class="text-center">{{ paket.hotel_mekah.nama }}</span>
             </td>
             <td>
-                <span class="package-choice-table-icon">
-                    <i class="fa fa-hospital-o"></i>
-                </span><br/>
-                <span class="package-choice-table-rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                    <i class="fa fa-star-o"></i>
-                </span> <br>
+                <div class="hotel-icon">
+                    <span class="rating madinah">3</span>
+                    <img src="/img/hotel_icon.png" alt="Hotel Icon" height="80">
+                </div>
                 <span class="text-center">{{ paket.hotel_madinah.nama }}</span>
             </td>
             <td>
@@ -82,7 +81,7 @@
                 <span class="package-choice-table-icon">
                     <i class="fa fa-users"></i>
                 </span><br/>
-                {{ paket.kuota }}
+                Sisa {{ paket.sisa_kuota }}
             </td>
             <td class="price-section">
                 <div class="row">
@@ -95,7 +94,10 @@
                     </div>
                 </div>
                 <span class="package-price">$ {{ paket.harga }}</span><br/>
-                <button class="btn btn-orange" role="button">Pilih Sekarang!</button>
+                <a ui-sref="pesan({paketId: paket.id })" class="btn btn-orange" role="button">
+                    <i class="fa fa-shopping-cart">&nbsp;</i>
+                    Pilih Sekarang!
+                </a>
             </td>
         </tr>
         </tbody>
