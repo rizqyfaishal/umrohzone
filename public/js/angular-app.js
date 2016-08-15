@@ -1,6 +1,20 @@
 var app = angular.module('app',['ui.router','ngAnimate','datatables'])
     .constant('PAKET_KATEGORI_URL','api/paket-kategori/')
     .constant('PAKET_URL','api/paket/')
+    .value('Month',[
+        'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+    ])
     .service('TabContent',function ($http,$q) {
         var defer = $q.defer();
         $http.get('api/paket-kategori').then(function (response) {
@@ -43,6 +57,7 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         };
         return this;
     })
+
     .config(function ($stateProvider,$urlRouterProvider) {
         $stateProvider
             .state('paket-list',{
@@ -51,7 +66,7 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
                 controller: 'TabsController'
             })
             .state('pesan',{
-                url:'/pesan',
+                url:'/paket_terpilih/:paketId/pesan',
                 templateUrl: 'templates/pesan.html',
                 controller: 'PaketPesanController'
             })
@@ -146,6 +161,44 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             });
         $urlRouterProvider.otherwise('/1');
     })
+    .directive("compareTo", function() {
+        return {
+            require: "ngModel",
+            scope: {
+                otherModelValue: "=compareTo"
+            },
+            link: function(scope, element, attributes, ngModel) {
+
+                ngModel.$validators.compareTo = function(modelValue) {
+                    return modelValue == scope.otherModelValue;
+                };
+
+                scope.$watch("otherModelValue", function() {
+                    ngModel.$validate();
+                });
+            }
+        };
+    })
+    .directive("unique", function($http) {
+        return {
+            require: "ngModel",
+            restrict: 'A',
+            link: function(scope, element, attributes, ngModel) {
+                element.bind('change blur', function (e) {
+                    if(element.val() != ''){
+                        ngModel.$setValidity('unique', true);
+                        $http.get("/api/unique/" + element.val()).success(function(data) {
+                            if(data.status){
+                                ngModel.$setValidity('unique',true);
+                            } else {
+                                ngModel.$setValidity('unique',false);
+                            }
+                        });
+                    }
+                });
+            }
+        };
+    })
     .directive('progressBar',['$templateCache',function ($templateCache) {
         return {
             restrict: 'E',
@@ -157,8 +210,22 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             }
         }
     }])
-    .controller('PaketPesanController',function ($scope,$stateParams) {
-
+    .controller('PaketPesanController',function ($scope,$stateParams,Collection,PAKET_URL,Month) {
+        $scope.id = $stateParams.paketId;
+        $scope.totalHarga = 0;
+        Collection.setUrl(PAKET_URL + $scope.id);
+        Collection.getData().then(function (data) {
+            $scope.data = data.data;
+            console.log($scope.data);
+            var waktu = new Date($scope.data.waktu);
+            var tahun = waktu.getFullYear();
+            var bulan = Month[waktu.getMonth()];
+            var tanggal = waktu.getDate() + 1;
+            $scope.data.waktu = tanggal + ' ' + bulan + ' ' + tahun;
+        });
+        $scope.showModalConfirmation = function () {
+            $('#confirmationModal').modal('show')
+        }
     })
     .controller('HotelReviewController',function ($scope, $stateParams,Collection,PAKET_URL,$state) {
         $scope.paketId = $stateParams.paketId;

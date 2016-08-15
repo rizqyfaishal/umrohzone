@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>{{ $page->getTitle() }}</title>
     <meta name="description" content="{{ $page->getDescription() }}">
+    @yield('hash_id_paket')
     <meta name="keyword" content="{{ $page->getKeyword() }}">
     <meta name="author" content="{{ $page->getAuthor() }}">
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">

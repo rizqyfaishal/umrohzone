@@ -12,6 +12,8 @@ class User extends Authenticatable
      * @var string
      */
     protected $table = 'users';
+    protected $hidden = ['created_at','deleted_at','updated_at','password','remember_token'];
+
 
     /**
      * The attributes that are mass assignable.
@@ -22,9 +24,6 @@ class User extends Authenticatable
         'phone', 'password', 'email'
     ];
 
-    protected $hidden = [
-        'password','remember_token'
-    ];
 
     /**
      * The attributes that should be hidden for arrays.

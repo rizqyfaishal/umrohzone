@@ -41,8 +41,6 @@ class AgenController extends Controller
     }
 
 
-
-
     public function store(Requests\AgentRegisterRequest $request)
     {
         $user = $this->register($request);

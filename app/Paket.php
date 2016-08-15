@@ -77,5 +77,9 @@ class Paket extends Model
         return $this->belongsTo('App\Hotel','hotel_madinah_id');
     }
 
+    public function pemesan(){
+        return $this->belongsToMany('App\Pemesan','pemesan_paket_pivot','paket_id');
+    }
+
 
 }

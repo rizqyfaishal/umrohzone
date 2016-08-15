@@ -127,6 +127,15 @@ Route::group(['prefix' => 'api'],function (){
     Route::get('/paket/{id}/hotelMadinah','AngularController@getPaketHotelMadinah');
     Route::get('/paket/{id}/hotelMadinah/photos','AngularController@getPaketHotelMadinahPhotos');
     Route::get('/paket/{id}/hotelMekah/photos','AngularController@getPaketHotelMekahPhotos');
+    Route::get('/unique/{email}','AngularController@checkEmailUnique');
+    Route::get('/user','PemesanController@getInformation');
+    Route::get('/user/paket/{hash}','PemesanController@getInformationPaket');
+    Route::post('/user/toogleCheckMitra','PemesanController@toogleCheckMitra');
+    Route::post('/user/toogleCheckPromo','PemesanController@toogleCheckPromo');
+    Route::get('/provinsi','AngularController@getAllProvinsi');
 });
 
 Route::get('p/{hashcode}','AttachmentController@get');
+Route::get('/{id}/isi-data-jamaah','PemesanController@isiDataJamaah');
+Route::post('pemesan-store-paket','PemesanController@registerPemesan');
+Route::get('getUserData','PemesanController@getInformation');
