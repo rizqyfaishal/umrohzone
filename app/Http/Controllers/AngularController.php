@@ -22,6 +22,13 @@ class AngularController extends Controller
         ]);
     }
 
+    public function getToken(){
+        return response()->json([
+            'status' => true,
+            'data' => csrf_token()
+        ]);
+    }
+
     public function getPaketPesawat($id){
         $paket = Paket::find($id);
         if(is_null($paket)){

@@ -15,6 +15,13 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         'November',
         'Desember'
     ])
+    .factory('Token',function ($q,$http) {
+        var defer = $q.defer();
+        $http.get('/api/token').then(function (res) {
+            defer.resolve(res.data);
+        });
+        return defer.promise;
+    })
     .service('TabContent',function ($http,$q) {
         var defer = $q.defer();
         $http.get('api/paket-kategori').then(function (response) {
@@ -210,7 +217,12 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             }
         }
     }])
-    .controller('PaketPesanController',function ($scope,$stateParams,Collection,PAKET_URL,Month) {
+    .controller('PaketPesanController',function ($scope,$stateParams,Collection,PAKET_URL,Month,Token) {
+        Token.then(function (data) {
+            $scope.token = data.data;
+            console.log($scope.token);
+        });
+
         $scope.id = $stateParams.paketId;
         $scope.totalHarga = 0;
         Collection.setUrl(PAKET_URL + $scope.id);

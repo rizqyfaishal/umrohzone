@@ -116,6 +116,7 @@ Route::get('/attachments/all','AttachmentController@index');
 Route::get('/list-paket','PageController@listPakets');
 
 Route::group(['prefix' => 'api'],function (){
+    Route::get('/token','AngularController@getToken');
     Route::get('/paket-kategori','PaketCategoryController@getJson');
     Route::get('/paket-kategori/{id}/getPaket','PaketCategoryController@getPaketJson');
     Route::get('/paket/{id}','PaketController@show');

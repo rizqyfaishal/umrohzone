@@ -6,7 +6,7 @@
                     <h3>Data Pemesan yang dapat dihubungi</h3>
                     <form method="POST" action="http://localhost:8000/pemesan-store-paket" accept-charset="UTF-8" name="pemesanForm" novalidate
                           class="data-pemesan-form data-pemesan-form-field" id="data-pemesan-form">
-                        <input name="_token" type="hidden" value="xTrp6bmT6hEtfr3Y8vldUdGEp5ODaz7MYRummxgc">
+                        <input name="_token" type="hidden" ng-attr-value="{{ token }}">
                         <input name="paket_id" type="hidden" ng-attr-value="{{ data.id }}">
                         <div class="row form-group" ng-class="{
                             'has-error' : pemesanForm.nama.$invalid && (pemesanForm.nama.$touched || pemesanForm.nama.$dirty),
