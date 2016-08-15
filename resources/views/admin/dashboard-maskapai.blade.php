@@ -2,35 +2,81 @@
 
 @include('admin.partials._dashboard-admin-side-nav')
 @section('dashboard-content')
-    <div class="pesawat-summary">
-        <div class="container">
+    <div class="container">
+        @if(\Illuminate\Support\Facades\Session::has('pesawat-registered'))
             <div class="row">
-                <h2 class="text-center">pesawat Summary</h2>
-                <div class="right"><a href="#" class="button">[Tambah]</a></div>
-                <table class="table table-hover table-custom">
-
+                <div class="col-lg-12">
+                    <div class="alert alert-success alert-dismissable" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <p>{{ \Illuminate\Support\Facades\Session::get('pesawat-registered') }}</p>
+                    </div>
+                </div>
+            </div>
+        @endif
+        @if(\Illuminate\Support\Facades\Session::has('pesawat-edited'))
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert-success alert-dismissable" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <p>{{ \Illuminate\Support\Facades\Session::get('pesawat-edited') }}</p>
+                    </div>
+                </div>
+            </div>
+        @endif
+        @if(\Illuminate\Support\Facades\Session::has('pesawat-deleted'))
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert-success alert-dismissable" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <p>{{ \Illuminate\Support\Facades\Session::get('pesawat-deleted') }}</p>
+                    </div>
+                </div>
+            </div>
+        @endif
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Data Pesawat All</h1>
+                <a class="btn btn-orange" href="{{ action('PesawatController@create') }}"><i class="fa fa-pencil-square">&nbsp;</i>Create New</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="dataTables" class="table-hover table data-entry-table table-custom">
                     <thead>
                     <tr>
-                        <td>Id</td>
-                        <td>Nama</td>
-                        <td>Janis</td>
+                        {{--<td>Logo</td>--}}
+                        <td>Nama Pesawat</td>
+                        <td>Jenis</td>
                         <td>Kelas</td>
                         <td>Makanan</td>
                         <td>Hiburan</td>
                         <td>Penghargaan</td>
+                        {{--<td>Rating</td>--}}
                         <td>Action</td>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($pesawats as $pesawat)
                         <tr>
-                            <td>{{$pesawat->nama}}</td>
-                            <td>{{$pesawat->jenis}}</td>
-                            <td>{{$pesawat->kelas}}</td>
-                            <td>{{$pesawat->makanan}}</td>
-                            <td>{{$pesawat->hiburan}}</td>
-                            <td>{{$pesawat->penghargaan}}</td>
-                            <td><a href="/admin/maskapai/edit/{{$pesawat->id}}" class="button">[Edit]</a><a href="/admin/maskapai/edit/{{$pesawat->id}}" class="button">[Hapus]</a></td>
+                            {{--                            <td>{{ $pesawat->logo->first()->hashcode }}</td>--}}
+                            <td>{{ $pesawat->nama }}</td>
+                            <td>{{ $pesawat->jenis }}</td>
+                            <td>{{ $pesawat->kelas }}</td>
+                            <td>{{ $pesawat->makanan }}</td>
+                            <td>{{ $pesawat->hiburan }}</td>
+                            <td>{{ $pesawat->penghargaan }}</td>
+                            {{--                            <td>{{ $pesawat->rating->rating_value }}</td>--}}
+                            <td>
+                                {!! Form::model($pesawat,['method' => 'DELETE','action' => ['PesawatController@destroy',$pesawat->id]]) !!}
+                                <a href="{{ action('PesawatController@edit',$pesawat->id) }}" class="btn btn-orange">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <button type="button" class="btn btn-orange" data-toggle="modal" data-target="#deleteConfirmationModal">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                @include('partials._action-data-entry')
+                                {!! Form::close() !!}
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

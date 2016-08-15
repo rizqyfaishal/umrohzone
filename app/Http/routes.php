@@ -78,6 +78,7 @@ Route::get('/invoice','PDFController@invoice');
 Route::get('/pemesan','PemesanController@showRegister');
 Route::post('/pemesan','PemesanController@postRegister');
 
+//================== ROUTE FOR ADMIN ==========================
 Route::group(['prefix' => 'admin'], function (){
     Route::get('dashboard','AdminController@index');
     Route::get('jamaah','AdminController@getJamaah');
