@@ -57,7 +57,8 @@
                 @endif
             </div>
             <div class="col-md-6 col-lg-6 col-sm-12">
-                {!! Form::submit('Cari',['class' => 'btn btn-orange extra-padd-top']) !!}
+                {{--{!! Form::submit('Cari',['class' => 'btn btn-orange extra-padd-top']) !!}--}}
+                <a class="btn btn-orange extra-padd-top" href="http://localhost:8000/list-paket" role="button">Cari</a>
             </div>
         </div>
     </div>
