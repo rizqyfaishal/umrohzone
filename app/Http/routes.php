@@ -61,6 +61,7 @@ Route::group(['middleware' => 'auth'],function()    {
 Route::get('/logout','Auth\AuthController@logout');
 Route::get('/api/provinsi/{id}','PageController@getRegencies');
 Route::get('/dashboard','PageController@dashboard');
+Route::get('/dashboard','AdminController@index');
 
 //tambahan luthfi dashboard
 Route::get('/agent/dashboard','PageController@dashboardAgent');

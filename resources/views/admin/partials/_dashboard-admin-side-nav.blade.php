@@ -5,5 +5,6 @@
         <li><a href="{{ action('AdminController@getTA') }}">Travel Agent</a></li>
         <li><a href="{{ action('AdminController@getHotels') }}">Hotel</a></li>
         <li><a href="{{ action('AdminController@getAirlines') }}">Maskapai</a></li>
+        <li><a href="{{ action('PaketController@create') }}">Buat Paket</a></li>
     </ul>
 @endsection
