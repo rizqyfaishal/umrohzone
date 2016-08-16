@@ -40,7 +40,7 @@
                                 <td> Valid </td>
                             @endif
                             <td><a href="#" class="pdf-submit"><i class="fa fa-file-pdf-o"></i></a></td>
-                            <td> <a href="/payment/process/{{$booking->no_booking}}">Validate</a> </td>
+                            <td> <a href="{{action('UserController@profile', ['id' => $booking->no_booking])}}">Validate</a> </td>
                         </tr>
                     @endforeach
                     </tbody>
