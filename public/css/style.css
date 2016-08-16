@@ -58,7 +58,7 @@
 
 .hotel-icon .rating {
     position: absolute;
-    top: 7px;
+    top: 21px;
     color: #ffffff;
     font-size: 1.7em;
 }
@@ -951,6 +951,10 @@ ul.feature-function li select
 .values-section,
 .chart-section {
     padding: 2em 0;
+}
+
+.values-section {
+    padding-bottom: 0;
 }
 
 .values-section h3,

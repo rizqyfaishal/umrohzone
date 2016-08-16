@@ -427,7 +427,14 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         ];
         var defer = $q.defer();
         $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withDisplayLength(10);
-        $http.get('api/paket-kategori/' + $scope.id +'/getPaket?jumlah_jamaah=' + $stateParams.jumlah_jamaah + '&embarkasi=' + $stateParams.embarkasi + '&tanggal_keberangkatan=' + $stateParams.tanggal_keberangkatan).then(function (response) {
+        $http.get('api/paket-kategori/' + $scope.id +'/getPaket?'  +
+            ((typeof $stateParams.jumlah_jamaah) != 'undefined' ?  '&jumlah_jamaah=' + $stateParams.jumlah_jamaah : '') +
+            ((typeof $stateParams.embarkasi) != 'undefined' ? '&embarkasi=' + $stateParams.embarkasi : '')  +
+            ((typeof $stateParams.tanggal_keberangkatan) != 'undefined' ? '&tanggal_keberangkatan=' + $stateParams.tanggal_keberangkatan : '') +
+            ((typeof $stateParams.hotel_mekah) != 'undefined' ? '&hotel_mekah=' + $stateParams.hotel_mekah : '') +
+            ((typeof $stateParams.hotel_madinah) != 'undefined' ? '&hotel_madinah=' + $stateParams.hotel_madinah : ''))
+            .then(function (response) {
+                console.log($stateParams.hotel_mekah)
             defer.resolve(response.data);
         });
 
