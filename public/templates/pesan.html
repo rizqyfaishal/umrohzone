@@ -1,7 +1,265 @@
-<div class="container">
-    .state('pesan',{
-    url:'/pesan',
-    templateUrl: 'templates/pesan.html',
-    controller: 'PaketPesanController'
-    })
+<div class="data-pemesan-field">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <div class="data-pemesan-form">
+                    <h3>Data Pemesan yang dapat dihubungi</h3>
+                    <form method="POST" action="http://localhost:8000/pemesan-store-paket" accept-charset="UTF-8" name="pemesanForm" novalidate
+                          class="data-pemesan-form data-pemesan-form-field" id="data-pemesan-form">
+                        <input name="_token" type="hidden" ng-attr-value="{{ token }}">
+                        <input name="paket_id" type="hidden" ng-attr-value="{{ data.id }}">
+                        <div class="row form-group" ng-class="{
+                            'has-error' : pemesanForm.nama.$invalid && (pemesanForm.nama.$touched || pemesanForm.nama.$dirty),
+                            'has-success' : pemesanForm.nama.$valid && (pemesanForm.nama.$touched || pemesanForm.nama.$dirty)
+                        }">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <label for="nama">Nama</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12">
+                                <input class="form-control" placeholder="Nama" ng-model="user.nama"
+                                       ng-required="true"
+                                       ng-minlength="3"
+                                       ng-maxlength="60"
+                                       name="nama" type="text" id="nama">
+                                <span class="help-block" ng-show="pemesanForm.nama.$invalid && pemesanForm.nama.$touched && pemesanForm.nama.$error.required">
+                                    <strong>* Required</strong>
+                                </span>
+                                <span class="help-block" ng-show="pemesanForm.nama.$invalid && pemesanForm.nama.$touched && pemesanForm.nama.$error.minlength">
+                                    <strong>Minimal harus 3 karakter</strong>
+                                </span>
+                                <span class="help-block" ng-show="pemesanForm.nama.$invalid && pemesanForm.nama.$touched && pemesanForm.nama.$error.maxlength">
+                                    <strong>Maksimal harus di bawah 40 karakter</strong>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row form-group" ng-class="{
+                            'has-error' : pemesanForm.email.$invalid && (pemesanForm.email.$touched || pemesanForm.email.$dirty),
+                            'has-success' : pemesanForm.email.$valid && (pemesanForm.email.$touched || pemesanForm.email.$dirty)
+                        }">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12">
+                                <input class="form-control" placeholder="Email"
+                                       ng-model="user.email"
+                                       ng-required="true"
+                                       ng-minlength="3"
+                                       ng-maxlength="60"
+                                       unique=""
+                                       name="email" type="email" id="email">
+                                <span class="help-block" ng-show="pemesanForm.email.$invalid && pemesanForm.email.$touched && pemesanForm.email.$error.required">
+                                    <strong>* Required</strong>
+                                </span>
+                                <span class="help-block" ng-show="pemesanForm.email.$invalid && pemesanForm.email.$touched && pemesanForm.email.$error.minlength">
+                                    <strong>Minimal Harus 3 karakter</strong>
+                                </span>
+                                <span class="help-block" ng-show="pemesanForm.email.$invalid && pemesanForm.email.$touched && pemesanForm.email.$error.maxlength">
+                                    <strong>Maksimal 60 karakter</strong>
+                                </span>
+                                <span class="help-block" ng-show="pemesanForm.email.$invalid && pemesanForm.email.$touched && pemesanForm.email.$error.unique">
+                                    <strong>Email telah terpakai</strong>
+                                </span>
+                                <span class="help-block" ng-show="pemesanForm.email.$invalid && pemesanForm.email.$touched && pemesanForm.email.$error.email">
+                                    <strong>Email tidak valid</strong>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row form-group" ng-class="{
+                            'has-error' : pemesanForm.phone.$invalid && (pemesanForm.phone.$touched || pemesanForm.phone.$dirty),
+                            'has-success' : pemesanForm.phone.$valid && (pemesanForm.phone.$touched || pemesanForm.phone.$dirty)
+                        }">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <label for="phone">Nomor Handphone</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12">
+                                <input class="form-control"
+                                       ng-model="user.phone"
+                                       ng-required="true"
+                                       ng-pattern="/^[0-9\-\+]{9,15}$/"
+                                       placeholder="Nomor Handphone" name="phone" type="text" id="phone">
+                                <span class="help-block"
+                                    ng-show="pemesanForm.phone.$invalid && pemesanForm.phone.$touched && pemesanForm.phone.$error.required">
+                                    <strong>* Required</strong>
+                                </span>
+                                <span class="help-block"
+                                      ng-show="pemesanForm.phone.$invalid && pemesanForm.phone.$touched && pemesanForm.phone.$error.pattern">
+                                    <strong>Nomor Telepon Tidak Valid</strong>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row form-group " ng-class="{
+                                 'has-error' : pemesanForm.password.$invalid && (pemesanForm.password.$touched || pemesanForm.password.$dirty),
+                                 'has-success' : pemesanForm.password.$valid && (pemesanForm.password.$touched || pemesanForm.password.$dirty)
+                            }">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <label for="password">Password</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12">
+                                <input class="form-control" ng-model="user.password"
+                                       placeholder="Password"
+                                       ng-required="true"
+                                       ng-minlength="6"
+                                       ng-maxlength="70"
+                                       name="password" type="password" value=""
+                                       id="password">
+                                <div class="help-block" ng-show="pemesanForm.password.$invalid && pemesanForm.password.$touched && pemesanForm.password.$error.required">
+                                    <strong>
+                                        * Required
+                                    </strong>
+                                </div>
+                                <div class="help-block" ng-show="pemesanForm.password.$invalid && pemesanForm.password.$touched && pemesanForm.password.$error.minlength">
+                                    <strong>
+                                        Minimal 6 karakter
+                                    </strong>
+                                </div>
+                                <div class="help-block" ng-show="pemesanForm.password.$invalid && pemesanForm.password.$touched && pemesanForm.password.$error.maxlength">
+                                    <strong>
+                                        Maksimal 70 karakter
+                                    </strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group "  ng-class="{
+                                 'has-error' : pemesanForm.password_confirmation.$invalid && (pemesanForm.password_confirmation.$touched || pemesanForm.password_confirmation.$dirty),
+                                 'has-success' : pemesanForm.password_confirmation.$valid && (pemesanForm.password_confirmation.$touched || pemesanForm.password_confirmation.$dirty)
+                            }">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <label for="password_confirmation">Password Confirmation</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12">
+                                <input class="form-control" ng-model="user.password_confirmation" compare-to="user.password" ng-required="true"
+                                       placeholder="Password Confirmation" name="password_confirmation" type="password" value="" id="password_confirmation">
+                                <div class="help-block" ng-show="pemesanForm.password_confirmation.$invalid && pemesanForm.password_confirmation.$touched && pemesanForm.password_confirmation.$error.required">
+                                    <strong>
+                                        * Required
+                                    </strong>
+                                </div>
+                                <div class="help-block" ng-show="pemesanForm.password_confirmation.$invalid && pemesanForm.password_confirmation.$touched && pemesanForm.password_confirmation.$error.compareTo">
+                                    <strong>
+                                        Password tidak match
+                                    </strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group ">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <script type="text/javascript">
+                                    var RecaptchaOptions = {"curl_timeout":1};
+                                </script>
+                                <script src='https://www.google.com/recaptcha/api.js?render=onload'></script>
+                                <div class="g-recaptcha" data-sitekey="6LfAkSYTAAAAACIlI9fTob3-UmJBFyRo9y9w7y0F" ></div>
+                                <noscript>
+                                    <div style="width: 302px; height: 352px;">
+                                        <div style="width: 302px; height: 352px; position: relative;">
+                                            <div style="width: 302px; height: 352px; position: absolute;">
+                                                <iframe src="https://www.google.com/recaptcha/api/fallback?k=6LfAkSYTAAAAACIlI9fTob3-UmJBFyRo9y9w7y0F"
+                                                        frameborder="0" scrolling="no"
+                                                        style="width: 302px; height:352px; border-style: none;">
+                                                </iframe>
+                                            </div>
+                                            <div style="width: 250px; height: 80px; position: absolute; border-style: none;
+                  bottom: 21px; left: 25px; margin: 0; padding: 0; right: 25px;">
+        <textarea id="g-recaptcha-response" name="g-recaptcha-response" ng-required="true" ng-model="user.captcha"
+                  class="g-recaptcha-response"
+                  style="width: 250px; height: 80px; border: 1px solid #c1c1c1;
+                         margin: 0; padding: 0; resize: none;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </noscript>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" ng-disabled="pemesanForm.$invalid && (user.captcha == null)" class="btn btn-orange" ng-click="showModalConfirmation()">
+                                Lanjutkan !
+                            </button>
+                        </div>
+                        <!--Modal-->
+                        <div class="modal fade custom-modal" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="logo-company">
+                                            <img src="img/logo-color.jpg" alt="Logo">
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                                <div class="model-picture-field">
+                                                    <div class="model-picture">
+                                                        <img src="http://localhost:8000/img/gambar-model.jpg" alt="Gambar">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9">
+                                                <div class="modal-content-status">
+                                                    <h5>Seluruh informasi perjalanan umroh anda akan kami kirimkan melalui :</h5>
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                                            No. Hp&nbsp;&nbsp;:
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                                            <strong>{{ user.phone }}</strong>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                                            Email&nbsp;&nbsp;&nbsp;&nbsp;:
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                                            <strong>{{ user.email }}</strong>
+                                                        </div>
+                                                    </div>
+                                                    <h5>Apakah email dan nomer HP Anda sudah benar?</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Ganti</button>
+                                        <button type="submit" ng-disabled="pemesanForm.$invalid" class="btn btn-orange">Lanjutkan!</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>                    </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="data-pemesan-status">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="status-title">
+                                <h4>Keberangkatan</h4>
+                                <h2>{{ data.waktu }}</h2>
+                            </div>
+                            <div class="status-detail">
+                                <div class="status-logo">
+                                    <img ng-src="/p/{{ data.agen.attachments[0].hashcode }}" alt="Logo" width="110">
+                                </div>
+                                <div class="status-detail-item">
+                                    <h5 class="first">Embarkasi</h5>
+                                    <h5 class="second">{{ data.embarkasi.nama }}</h5>
+                                </div>
+                                <div class="status-detail-item">
+                                    <h5 class="first">Airlines</h5>
+                                    <h5 class="second">{{ data.pesawat.nama }}</h5>
+                                </div>
+                                <div class="status-detail-item">
+                                    <h5 class="first">Durasi Perjalanan</h5>
+                                    <h5 class="second">{{ data.durasi }} Hari</h5>
+                                </div>
+                                <div class="status-detail-item">
+                                    <h5 class="first">Total Harga</h5>
+                                    <h5 class="second">{{ totalHarga}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

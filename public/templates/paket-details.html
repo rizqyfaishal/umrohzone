@@ -26,33 +26,58 @@
                 <ul class="nav nav-tabs nav-tabs-custom  bottom-bordered" role="tablist">
                     <li role="presentation" class="active tabs-li-custom">
                         <a ng-click="changeTabs('persyaratan')" aria-controls="home" role="tab" data-toggle="tab">
-                            <i class="fa fa-calendar"></i><br>
-                            {{ data.waktu }}
+                            <div class="calendar-icon">
+                                <img src="/img/calendar_paket_icon.png" alt="Calendar Icon" height="100">
+                                <span class="bulan" style="left: 24px;">
+                                    {{  data.waktu.bulan  }}
+                                </span>
+                                            <span class="tanggal" style="left: 30px;">
+                                    {{  data.waktu.tanggal }}
+                                </span>
+                                            <span class="tahun" style="left: 32px;">
+                                    {{  data.waktu.tahun }}
+                                </span>
+                            </div>
                         </a>
                         <a  ng-click="changeTabs('persyaratan')" aria-controls="home" role="tab" data-toggle="tab">
-                            <i class="fa fa-clock-o"></i><br>
-                            {{ data.durasi }} Hari
+                            <div class="durasi-icon" style="padding-top: 0;">
+                                <img src="/img/durasi_icon.png" alt="Durasi Icon" height="80">
+                                <span class="durasi" style="top: 18px;left: 28px;">
+                                    {{ data.durasi }}
+                                </span>
+                                        </div>
+                                        Hari
                         </a>
                         <a  ng-click="changeTabs('persyaratan')" aria-controls="home" role="tab" data-toggle="tab">
-                            <i class="fa fa-shield"></i><br>
+                            <div class="embarkasi-icon" style="padding-top: 0;">
+                                <img src="/img/embarkasi_icon.png" alt="Embarkasi Icon" height="80">
+                            </div>
                             {{ data.embarkasi.nama }}
                         </a>
                     </li>
                     <li role="presentation">
                         <a href="" ng-click="changeTabs('pesawat')" aria-controls="home" role="tab" data-toggle="tab">
-                            <!--<i class="fa fa-plane"></i><br>-->
-                            <!--{{ data.pesawat.nama }}-->
-                            <img ng-src="p/{{ data.pesawat.logo[0].hashcode }}" alt="Logo" width="100%">
+                            <div class="pesawat-icon" style="padding-top: 1em;">
+                                <img ng-src="p/{{ data.pesawat.logo[0].hashcode }}" alt="Logo Pesawat" width="105">
+                            </div>
                         </a>
                     </li>
                     <li role="presentation">
                         <a href=""  ng-click="changeTabs('hotel-mekah')" aria-controls="home" role="tab" data-toggle="tab">
-                            <img src="/img/hotel_icon.png" alt="Logo" height="60">
+                            <div class="hotel-icon" style="padding-top: 0;">
+                                <span class="rating mekah" style="left: 43px;">3</span>
+                                <img src="/img/hotel_icon.png" alt="Hotel Icon" height="80">
+                            </div>
+                            <span class="text-center">{{ data.hotel_mekah.nama }}</span>
                         </a>
                     </li>
                     <li role="presentation">
                         <a href="" ng-click="changeTabs('hotel-madinah')" aria-controls="home" role="tab" data-toggle="tab">
-                            <img src="/img/hotel_icon.png" alt="Logo" height="60">
+                            <div class="hotel-icon" style="padding-top: 0;">
+                                <span class="rating madinah" style="left: 43px;">3</span>
+                                <img src="/img/hotel_icon.png" alt="Hotel Icon" height="80">
+                            </div>
+                            <span class="text-center">{{ data.hotel_madinah.nama }}</span>
                         </a>
                     </li>
                 </ul>
@@ -73,7 +98,7 @@
                 <div class="form-field">
                     <div class="col-lg-12">
                         <br>
-                        <button class="btn btn-orange">Pilih Sekarang !</button>
+                        <a ui-sref="pesan({paketId: data.id})" class="btn btn-orange"><i class="fa fa-shopping-cart">&nbsp;</i>Pilih Sekarang</a>
                     </div>
                 </div>
             </div>

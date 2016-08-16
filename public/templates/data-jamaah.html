@@ -1,0 +1,537 @@
+<div class="data-pemesan-field">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <div class="data-pemesan-form">
+                    <h3>Data Pemesan yang dapat dihubungi</h3>
+                    <div class="data-pemesan-result">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h6>Nama</h6>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h6>: {{ data.user.nama }}</h6>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h6>Telepon</h6>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h6>: {{ data.phone }}</h6>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h6>Email</h6>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <h6>: {{ data.email }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="row">
+                                    <div class="col-lg-9 col-md-9 col-sm-9">
+                                        <p>Saya Ingin mendapat info PROMO</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                        <div class="checkbox">
+                                            <label for="check-for-promo">
+                                                <input ng-change="toogleCheckPromo()" ng-model="userCheckPromo"
+                                                       type="checkbox" id="check-for-promo"/> YA
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-9 col-md-9 col-sm-9">
+                                        <p>Saya berminat menjadi mitra bisnis umrohzone.com</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                        <div class="checkbox">
+                                            <label for="check-for-mitra">
+                                                <input ng-change="toogleCheckMitra()" ng-model="userForMitra"
+                                                       type="checkbox" id="check-for-mitra"/> YA
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-pemesan-warning">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="warning-logo">
+                                    <h2 class="text-center"><i class="fa fa-warning"></i></h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-10">
+                                <div class="warning-content">
+                                    <p><strong>Penting.</strong>Untuk mendapatkan dokumen perjalanan umroh, kami akan
+                                        melakukan verifikasi berdasarkan
+                                        form isian data Jamaah tersebut dibawah ini. Isikan data dengan benar</p>
+
+                                    <p>Hasil verifikasi akan kami kirimkan melalui email Anda : <a
+                                            href="#">{{ data.email }}</a>, selambatnya 2 x 24 jam setelah proses
+                                        payment atau Anda juga dapat menghubungi kami
+                                        <a href="/">di sini</a></p>
+
+                                    <p>Contoh dokumen perjalanan umroh : Visa Umroh, Surat Mahron, Surat nama 3 suku
+                                        kata</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-pemesan-form-field-2">
+                        <form action="" novalidate name="jamaahForm" class="data-jamaah-form">
+                            <input type="hidden" ng-attr-value="{{ count }}">
+                            <div class="tabs">
+                                <div>
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs" role="tablist" id="daftarJamaahTabs">
+                                        <li ng-repeat="jamaah in daftarJamaah" role="presentation">
+                                            <a ng-href="#jamaah{{ jamaah.num }}"
+                                               ng-attr-aria-controls="jamaah{{ jamaah.num }}"
+                                               role="tab" data-toggle="tab">Jamaah #{{ jamaah.num }}</a>
+                                        </li>
+
+                                        <li role="presentation">
+                                            <a href="" style="cursor: pointer" ng-click="tambahJamaah()"
+                                               role="tab" data-toggle="tab"><i class="fa fa-plus">&nbsp;</i></a>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div ng-repeat="jamaah in daftarJamaah" role="tabpanel"
+                                             ng-class="{'active' : $first }" class="tab-pane"
+                                             ng-attr-id="jamaah{{ jamaah.num }}">
+                                            <div class="form-content">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-lg-5 col-md-5 col-sm-5">
+                                                            <h5>Memiliki paspor yang masih berlaku ?</h5>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-2">
+                                                            <div class="checkbox">
+                                                                <label class="extra"
+                                                                       ng-attr-for="data-jamaah-paspor{{ jamaah.num }}">
+                                                                    <input ng-model="jamaah.paspor_expired"
+                                                                           ng-attr-name="paspor_expired{{ jamaah.num }}"
+                                                                           type="checkbox"
+                                                                           ng-attr-id="data-jamaah-paspor{{ jamaah.num }}"/>
+                                                                    YA
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-5 col-md-5 col-sm-5">
+                                                            <input type="date" ng-show="jamaah.paspor_expired"
+                                                                   ng-attr-name="paspor_expired{{ jamaah.num }}"
+                                                                   ng-model="jamaah.paspor_date_expired"
+                                                                   class="form-control date-pick"
+                                                                   id="data-jamaah-paspor-expired"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-lg-10 col-md-10 col-sm-10">
+                                                            <h5 ng-attr-for="data-jamaah-ktp-confirm{{ jamaah.num }}">
+                                                                Nama saya dalam KTP terdiri dari 3 Suku kata
+                                                                <i>
+                                                                    <small>Ex: Ratna Putri Sari</small>
+                                                                </i>
+                                                            </h5>
+
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-2">
+                                                            <div class="checkbox">
+                                                                <label ng-attr-for="data-jamaah-ktp-confirm{{ jamaah.num }}">
+                                                                    <input ng-model="jamaah.nama_validate"
+                                                                           ng-attr-name="nama_validate{{ jamaah.num}}"
+                                                                           type="checkbox"
+                                                                           ng-attr-id="data-jamaah-ktp-confirm{{ jamaah.num }}"/>
+                                                                    YA
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-10 col-md-10 col-sm-10">
+                                                            <h5 ng-attr-for="data-jamaah-paspor-confirm{{ jamaah.num }}">
+                                                                Paspor saya sudah memiliki keterangan nama 3 Suku kata
+                                                            </h5>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-2">
+                                                            <div class="checkbox">
+                                                                <label ng-attr-for="data-jamaah-paspor-confirm{{ jamaah.num }}">
+                                                                    <input ng-model="jamaah.paspor_nama_validate"
+                                                                           ng-attr-name="paspor_nama_validate{{ jamaah.num }}"
+                                                                           type="checkbox"
+                                                                           ng-attr-id="data-jamaah-paspor-confirm{{ jamaah.num }}"/>
+                                                                    YA
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-10 col-md-10 col-sm-10">
+                                                            <h5 ng-attr-for="data-jamaah-mahrom-confirm{{ jamaah.num }}">
+                                                                Saya membutuhkan <a id="popover-mahrom" href="#"
+                                                                                    data-container="body"
+                                                                                    data-toggle="popover"
+                                                                                    data-trigger="focus"
+                                                                                    data-placement="bottom"
+                                                                                    data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus.">Mahrom</a>
+                                                            </h5>
+
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-2">
+                                                            <div class="checkbox">
+                                                                <label ng-attr-for="data-jamaah-mahrom-confirm{{ jamaah.num }}">
+                                                                    <input ng-model="jamaah.mahrom" type="checkbox"
+                                                                           ng-attr-id="data-jamaah-mahrom-confirm{{ jamaah.num }}"/>
+                                                                    YA
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                                        <div class="form-group" ng-class="{
+                                                                'has-error' : jamaahForm.fname{{ jamaah.num }}.$invalid && (jamaahForm.fname{{ jamaah.num }}.$touched || jamaahForm.fname{{ jamaah.num }}.$dirty ),
+                                                                'has-success' : jamaahForm.fname{{ jamaah.num }}.$valid && (jamaahForm.fname{{ jamaah.num }}.$touched || jamaahForm.fname{{ jamaah.num }}.$dirty )
+                                                            }">
+                                                            <label ng-attr-for="data-jamaah-first-name-confirm{{ jamaah.num }}">Nama
+                                                                Depan - <span class="text-right">1</span></label>
+                                                            <input type="text" class="form-control"
+                                                                   ng-model="jamaah.fname"
+                                                                   ng-attr-name="fname{{ jamaah.num }}"
+                                                                   ng-required="true"
+                                                                   ng-minlength="1"
+                                                                   ng-maxlength="30"
+                                                                   placeholder="Nama depan"
+                                                                   ng-attr-id="data-jamaah-first-name-confirm{{ jamaah.num }}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                                        <div class="form-group" ng-class="{
+                                                                'has-error' : jamaahForm.mname{{ jamaah.num }}.$invalid && (jamaahForm.mname{{ jamaah.num }}.$touched || jamaahForm.mname{{ jamaah.num }}.$dirty ),
+                                                                'has-success' : jamaahForm.mname{{ jamaah.num }}.$valid && (jamaahForm.mname{{ jamaah.num }}.$touched || jamaahForm.mname{{ jamaah.num }}.$dirty )
+                                                            }">
+                                                            <label ng-attr-for="data-jamaah-middle-name-confirm{{ jamaah.num }}">Nama
+                                                                Tengah - <span class="text-right">2</span></label>
+                                                            <input type="text" class="form-control"
+                                                                   ng-model="jamaah.mname"
+                                                                   ng-attr-name="mname{{ jamaah.num }}"
+                                                                   ng-required="true"
+                                                                   ng-minlength="1"
+                                                                   ng-maxlength="30"
+                                                                   placeholder="Nama tengah"
+                                                                   ng-attr-id="data-jamaah-middle-name-confirm{{ jamaah.num }}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                                        <div class="form-group" ng-class="{
+                                                                'has-error' : jamaahForm.lname{{ jamaah.num }}.$invalid && (jamaahForm.lname{{ jamaah.num }}.$touched || jamaahForm.lname{{ jamaah.num }}.$dirty ),
+                                                                'has-success' : jamaahForm.lname{{ jamaah.num }}.$valid && (jamaahForm.lname{{ jamaah.num }}.$touched || jamaahForm.lname{{ jamaah.num }}.$dirty )
+                                                            }">
+                                                            <label ng-attr-for="data-jamaah-last-name-confirm{{ jamaah.num }}">Nama
+                                                                belakang - <span class="text-right">3</span></label>
+                                                            <input type="text" class="form-control"
+                                                                   ng-model="jamaah.lname"
+                                                                   ng-attr-name="lname{{ jamaah.num }}"
+                                                                   ng-required="true"
+                                                                   ng-minlength="1"
+                                                                   ng-maxlength="30"
+                                                                   placeholder="Nama belakang"
+                                                                   ng-attr-id="data-jamaah-last-name-confirm{{ jamaah.num }}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group has-error">
+                                                            <ul>
+                                                                <li ng-show="jamaahForm.fname{{ jamaah.num }}.$invalid && jamaahForm.fname{{ jamaah.num }}.$touched && jamaahForm.fname{{ jamaah.num }}.$error.required">
+                                                                    <span class="help-block">
+                                                                        <strong>Nama Depan - required</strong>
+                                                                    </span>
+                                                                </li>
+                                                                <li ng-show="jamaahForm.mname{{ jamaah.num }}.$invalid && jamaahForm.mname{{ jamaah.num }}.$touched && jamaahForm.mname{{ jamaah.num }}.$error.required">
+                                                                    <span class="help-block">
+                                                                        <strong>Nama Tengah - required (jika data tidak tersedia isikian dengan karakter -)</strong>
+                                                                    </span>
+                                                                </li>
+                                                                <li ng-show="jamaahForm.lname{{ jamaah.num }}.$invalid && jamaahForm.lname{{ jamaah.num }}.$touched && jamaahForm.lname{{ jamaah.num }}.$error.required">
+                                                                    <span class="help-block">
+                                                                        <strong>Nama Belakang - required (jika data tidak tersedia isikian dengan karakter '-')</strong>
+                                                                    </span>
+                                                                </li>
+                                                                <li ng-show="jamaahForm.fname{{ jamaah.num }}.$invalid && jamaahForm.fname{{ jamaah.num }}.$touched && jamaahForm.fname{{ jamaah.num }}.$error.maxlength">
+                                                                    <span class="help-block">
+                                                                        <strong>Nama Depan - maksimal 30 karakter</strong>
+                                                                    </span>
+                                                                </li>
+                                                                <li ng-show="jamaahForm.mname{{ jamaah.num }}.$invalid && jamaahForm.mname{{ jamaah.num }}.$touched && jamaahForm.mname{{ jamaah.num }}.$error.maxlength">
+                                                                    <span class="help-block">
+                                                                        <strong>Nama Tengah - maksimal 30 karakter</strong>
+                                                                    </span>
+                                                                </li>
+                                                                <li ng-show="jamaahForm.lname{{ jamaah.num }}.$invalid && jamaahForm.lname{{ jamaah.num }}.$touched && jamaahForm.lname{{ jamaah.num }}.$error.maxlength">
+                                                                    <span class="help-block">
+                                                                        <strong>Nama Belakang - maksimal 30 karakter</strong>
+                                                                    </span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr class="separate-form-line"/>
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                                        <div class="form-group" ng-class="{
+                                                            'has-error' : jamaahForm.address{{ jamaah.num }}.$invalid && (jamaahForm.address{{ jamaah.num }}.$touched || jamaahForm.address{{ jamaah.num }}.$dirty ),
+                                                            'has-success' : jamaahForm.address{{ jamaah.num }}.$valid && (jamaahForm.address{{ jamaah.num }}.$touched || jamaahForm.address{{ jamaah.num }}.$dirty )
+                                                        }">
+                                                            <label ng-attr-for="data-jamaah-address-confirm{{ jamaah.num }}">Alamat</label>
+                                                            <input type="text" class="form-control"
+                                                                   ng-model="jamaah.address"
+                                                                   ng-required="true"
+                                                                   ng-maxlength="255"
+                                                                   ng-minlength="6"
+                                                                   ng-attr-name="address{{ jamaah.num }}"
+                                                                   placeholder="Alamat"
+                                                                   ng-attr-id="data-jamaah-address-confirm{{ jamaah.num }}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                                        <div class="form-group" ng-class="{
+                                                            'has-error' : jamaahForm.provinsi_id_{{ jamaah.num }}.$invalid && (jamaahForm.provinsi_id_{{ jamaah.num }}.$touched || jamaahForm.provinsi_id_{{ jamaah.num }}.$dirty ),
+                                                            'has-success' : jamaahForm.provinsi_id_{{ jamaah.num }}.$valid && (jamaahForm.provinsi_id_{{ jamaah.num }}.$touched || jamaahForm.provinsi_id_{{ jamaah.num }}.$dirty )
+                                                        }">
+                                                            <select ng-attr-name="provinsi_id_{{ jamaah.num }}"
+                                                                    ng-model="jamaah.provinsi_id"
+                                                                    ng-change="changeDataRegency(jamaah.provinsi_id)"
+                                                                    ng-required="true"
+                                                                    ng-options="provinsi.id as provinsi.name for provinsi in provinsiArray track by provinsi.id"
+                                                                    class="form-control"
+                                                                    id="data-jamaah-province-confirm">
+                                                                <option value="" selected>Provinsi</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                                        <div class="form-group" ng-class="{
+                                                            'has-error' : jamaahForm.regency_id_{{ jamaah.num }}.$invalid && (jamaahForm.regency_id_{{ jamaah.num }}.$touched || jamaahForm.regency_id_{{ jamaah.num }}.$dirty ),
+                                                            'has-success' : jamaahForm.regency_id_{{ jamaah.num }}.$valid && (jamaahForm.regency_id_{{ jamaah.num }}.$touched || jamaahForm.regency_id_{{ jamaah.num }}.$dirty )
+                                                        }">
+                                                            <select ng-attr-name="regency_id_{{ jamaah.num }}"
+                                                                    ng-model="jamaah.regency_id"
+                                                                    ng-required="true"
+                                                                    ng-options="regency.id as regency.name for regency in regencyArray track by regency.id"
+                                                                    class="form-control" id="data-jamaah-city-confirm">
+                                                                <option value="" selected>Kota</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group has-error">
+                                                            <ul>
+                                                                <li ng-show="jamaahForm.address{{ jamaah.num }}.$invalid && jamaahForm.address{{ jamaah.num }}.$touched && jamaahForm.address{{ jamaah.num }}.$error.required">
+                                                                    <span class="help-block">
+                                                                        <strong>Alamat - required</strong>
+                                                                    </span>
+                                                                </li>
+                                                                <li ng-show="jamaahForm.address{{ jamaah.num }}.$invalid && jamaahForm.address{{ jamaah.num }}.$touched && jamaahForm.address{{ jamaah.num }}.$error.minlength">
+                                                                    <span class="help-block">
+                                                                        <strong>Alamat - minimal 6 karakter</strong>
+                                                                    </span>
+                                                                </li>
+                                                                <li ng-show="jamaahForm.address{{ jamaah.num }}.$invalid && jamaahForm.address{{ jamaah.num }}.$touched && jamaahForm.address{{ jamaah.num }}.$error.maxlength">
+                                                                    <span class="help-block">
+                                                                        <strong>Alamat - maksimal 255 karakter</strong>
+                                                                    </span>
+                                                                </li>
+                                                                <li ng-show="jamaahForm.provinsi_id_{{ jamaah.num }}.$invalid && jamaahForm.provinsi_id_{{ jamaah.num }}.$touched && jamaahForm.provinsi_id_{{ jamaah.num }}.$error.required">
+                                                                    <span class="help-block">
+                                                                        <strong>Provinsi - required</strong>
+                                                                    </span>
+                                                                </li>
+                                                                <li ng-show="jamaahForm.regency_id_{{ jamaah.num }}.$invalid && jamaahForm.regency_id_{{ jamaah.num }}.$touched && jamaahForm.regency_id_{{ jamaah.num }}.$error.required">
+                                                                    <span class="help-block">
+                                                                        <strong>Kota - required</strong>
+                                                                    </span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <hr class="separate-form-line"/>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                                            <label>Upgrade kelas kamar hotel</label>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                                            <label>$100 &nbsp;<input type="radio" ng-value="true"
+                                                                                     ng-model="jamaah.upgrade_kamar"
+                                                                                     class="radio-custom"
+                                                                                     ng-attr-name="upgrade_kamar{{ jamaah.num }}"
+                                                                                     ng-checked="true"/>
+                                                                &nbsp;2 orang / kamar
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                                            <label>$70 &nbsp;<input type="radio" class="radio-custom"
+                                                                                    ng-value="false"
+                                                                                    ng-model="jamaah.upgrade_kamar"
+                                                                                    ng-attr-name="upgrade_kamar{{ jamaah.num }}"/>
+                                                                &nbsp;3 orang / kamar
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                                            <label>Asuransi perjalanan tambahan</label>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                                            <label>$10 &nbsp;<input type="radio"
+                                                                                    ng-model="jamaah.asuransi_tambahan"
+                                                                                    ng-value="true"
+                                                                                    class="radio-custom"
+                                                                                    ng-attr-name="asuransi_tambahan{{ jamaah.num }}"
+                                                                                    ng-checked="true"/>
+                                                                &nbsp;Pluto
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                                            <label>$7 &nbsp;&nbsp;<input type="radio"
+                                                                                         ng-model="jamaah.asuransi_tambahan"
+                                                                                         ng-value="false"
+                                                                                         ng-attr-name="asuransi_tambahan{{ jamaah.num }}"
+                                                                                         class="radio-custom"
+                                                                                         name="radio-upgrade-asuransi"/>
+                                                                &nbsp;Venus
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <button ng-click="hapusJamaah($index)" type="button"
+                                                                    class="btn btn-custom"><i class="fa fa-eraser">
+                                                                &nbsp;</i>Hapus Data Jamaah
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <!--<button class="btn btn-custom" ng-click="tambahJamaah()" type="button"><i class="fa fa-plus">&nbsp;</i>Tambah Jamaah</button>-->
+                                                <button class="btn btn-orange" ng-disabled="jamaahForm.$invalid"
+                                                        type="submit"><i class="fa fa-bookmark">&nbsp;</i>Booking
+                                                    sekarang !
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="data-pemesan-status">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="status-title">
+                                <h4>Keberangkatan</h4>
+
+                                <h2>{{ paket.waktu }}</h2>
+                            </div>
+                            <div class="status-detail">
+                                <div class="status-logo">
+                                    <img ng-src="/p/{{ paket.agen.attachments[0].hashcode }}" alt="Logo" width="100">
+                                </div>
+                                <div class="status-detail-item">
+                                    <h5 class="first">Embarkasi</h5>
+                                    <h5 class="second">{{ paket.embarkasi.nama }}</h5>
+                                </div>
+                                <div class="status-detail-item">
+                                    <h5 class="first">Airlines</h5>
+                                    <h5 class="second">{{ paket.pesawat.nama }}</h5>
+                                </div>
+                                <div class="status-detail-item">
+                                    <h5 class="first">Durasi Perjalanan</h5>
+                                    <h5 class="second">{{ paket.durasi }}</h5>
+                                </div>
+                                <div class="status-detail-item">
+                                    <h5 class="first">Total Harga</h5>
+                                    <h5 class="second">{{ totalHarga }}</h5>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <button class="btn btn-orange">
+                                                <i class="fa fa-shopping-cart">&nbsp;</i>
+                                                Cek detail pembayaran
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>No.</td>
+            <td>Nama</td>
+            <td>Memiliki Paspor</td>
+            <td>KTP terdiri dari 3 Suku Kata</td>
+            <td>Paspor dengan 3 suku kata</td>
+            <td>Butuh Mahrom</td>
+            <td>Alamat</td>
+            <td>Kelas Kamar</td>
+            <td>Asuransi Tambahan</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="jamaah in daftarJamaah">
+            <td>Jamaah #{{ jamaah.num }}</td>
+            <td>{{ jamaah.fname }} {{ jamaah.mname == '-' ? '' : jamaah.mname }} {{ jamaah.lname == '-' ? '' : jamaah.lname }}</td>
+            <td>Memiliki Paspor</td>
+            <td>KTP terdiri dari 3 Suku Kata</td>
+            <td>Paspor dengan 3 suku kata</td>
+            <td>Butuh Mahrom</td>
+            <td>Alamat</td>
+            <td>Kelas Kamar</td>
+            <td>Asuransi Tambahan</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

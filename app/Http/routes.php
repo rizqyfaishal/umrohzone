@@ -63,15 +63,15 @@ Route::get('/api/provinsi/{id}','PageController@getRegencies');
 Route::get('/dashboard','PageController@dashboard');
 
 //tambahan luthfi dashboard
-Route::get('/dashboard-agent','PageController@dashboardAgent');
-Route::get('/dashboard-agent/infoakun','PageController@dashboardAgentInfoAkun');
-Route::get('/dashboard-agent/daftarpemesan','PageController@dashboardAgentDaftarPemesan');
-Route::get('/dashboard-agent/daftarpaket','PageController@dashboardAgentDaftarPaket');
-Route::get('/dashboard-agent/buatpaket','PageController@dashboardAgentBuatPaket');
-Route::get('/dashboard-agent/editpaket','PageController@dashboardAgentEditPaket');
-Route::get('/dashboard-user','PageController@dashboardUser');
-Route::get('/dashboard-user/infoakun','PageController@dashboardUserInfoAkun');
-Route::get('/dashboard-user/booking','PageController@dashboardUserBooking');
+Route::get('/agent/dashboard','PageController@dashboardAgent');
+Route::get('/agent/dashboard/infoakun','PageController@dashboardAgentInfoAkun');
+Route::get('/agent/dashboard/daftarpemesan','PageController@dashboardAgentDaftarPemesan');
+Route::get('/agent/dashboard/daftarpaket','PageController@dashboardAgentDaftarPaket');
+Route::get('/agent/dashboard/buatpaket','PageController@dashboardAgentBuatPaket');
+Route::get('/agent/dashboard/editpaket','PageController@dashboardAgentEditPaket');
+Route::get('/user/dashboard','PageController@dashboardUser');
+Route::get('/user/dashboard/infoakun','PageController@dashboardUserInfoAkun');
+Route::get('/user/dashboard/booking','PageController@dashboardUserBooking');
 //end of tambahan luthfi dashboard
 
 Route::get('/invoice','PDFController@invoice');
@@ -114,8 +114,11 @@ Route::resource('paket-category','PaketCategoryController');
 Route::resource('rekening','RekeningController');
 Route::get('/attachments/all','AttachmentController@index');
 Route::get('/list-paket','PageController@listPakets');
+Route::get('/q','PageController@getListPaketRedirect');
 
 Route::group(['prefix' => 'api'],function (){
+    Route::get('/token','AngularController@getToken');
+    Route::get('/check','AngularController@checkAuth');
     Route::get('/paket-kategori','PaketCategoryController@getJson');
     Route::get('/paket-kategori/{id}/getPaket','PaketCategoryController@getPaketJson');
     Route::get('/paket/{id}','PaketController@show');
@@ -127,6 +130,15 @@ Route::group(['prefix' => 'api'],function (){
     Route::get('/paket/{id}/hotelMadinah','AngularController@getPaketHotelMadinah');
     Route::get('/paket/{id}/hotelMadinah/photos','AngularController@getPaketHotelMadinahPhotos');
     Route::get('/paket/{id}/hotelMekah/photos','AngularController@getPaketHotelMekahPhotos');
+    Route::get('/unique/{email}','AngularController@checkEmailUnique');
+    Route::get('/user','PemesanController@getInformation');
+    Route::get('/user/paket/{hash}','PemesanController@getInformationPaket');
+    Route::post('/user/toogleCheckMitra','PemesanController@toogleCheckMitra');
+    Route::post('/user/toogleCheckPromo','PemesanController@toogleCheckPromo');
+    Route::get('/provinsi','AngularController@getAllProvinsi');
 });
 
 Route::get('p/{hashcode}','AttachmentController@get');
+Route::get('/{id}/isi-data-jamaah','PemesanController@isiDataJamaah');
+Route::post('pemesan-store-paket','PemesanController@registerPemesan');
+Route::get('getUserData','PemesanController@getInformation');

@@ -77,5 +77,16 @@ class Paket extends Model
         return $this->belongsTo('App\Hotel','hotel_madinah_id');
     }
 
+    public function pemesan(){
+        return $this->belongsToMany('App\Pemesan','pemesan_paket_pivot','paket_id');
+    }
+
+    public function jumlahPemesan(){
+        return $this->pemesan()->count();
+    }
+
+    public function setSisaKuota(){
+        $this->sisa_kuota = $this->kuota - $this->pemesan()->count();
+    }
 
 }
