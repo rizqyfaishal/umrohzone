@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper\PageDescription;
+use App\Paket;
 use App\PaketCategory;
 use Illuminate\Http\Request;
 
@@ -145,21 +146,51 @@ class PaketCategoryController extends Controller
         ]);
     }
 
-    public function getPaketJson($id){
-        $paketCategory = PaketCategory::find($id);
-        if(is_null($paketCategory)){
-            abort(404);
+    public function getPaketJson($id,Request $request){
+//        $paketCategory = PaketCategory::find($id);
+//        if(is_null($paketCategory)){
+//            abort(404);
+//        }
+//
+//        $arr = array();
+//
+//        foreach ($paketCategory->pakets as $y){
+//            array_push($arr,$y->load(['hotelMekah','hotelMadinah','pesawat.attachments','embarkasi']));
+//        }
+//
+//        return response()->json([
+//            'status' => true,
+//            'data' => $arr
+//        ]);
+        $paket = Paket::where('paket_category_id','=',$id)->with(['hotelMekah' => function($q){
+            $q->select('nama','id');
+        },'hotelMadinah' => function($q){
+            $q->select('id','nama');
+        },'pesawat' => function($q){
+            $q->select('id','nama')->with('attachments')->get();
+        },'embarkasi' => function($q){
+            $q->select('id','nama');
+        }]);
+
+        if($request->has('jumlah_jamaah')){
+            $paket = $paket->where('sisa_kuota','>=',$request->query('jumlah_jamaah'));
+        }
+        if($request->has('tanggal_keberangkatan')){
+            $paket = $paket->where('waktu','>=',$request->query('tanggal_keberangkatan'));
+        }
+        if($request->has('embarkasi')){
+            $paket->where('embarkasi_id','=',$request->query('embarkasi'));
         }
 
-        $arr = array();
-
-        foreach ($paketCategory->pakets as $y){
-            array_push($arr,$y->load(['hotelMekah','hotelMadinah','pesawat.attachments','embarkasi']));
+        if($request->has('hotel_mekah')){
+            $paket->where('hotel_mekah_id','=',$request->query('hotel_mekah'));
         }
 
+        if($request->has('hotel_madinah')){
+            $paket->where('hotel_madinah_id','=',$request->query('hotel_madinah'));
+        }
         return response()->json([
-            'status' => true,
-            'data' => $arr
+            'data' => $paket->get()
         ]);
     }
 }

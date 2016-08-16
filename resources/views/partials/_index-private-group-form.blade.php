@@ -57,7 +57,7 @@
 <div class="form-group{{ $errors->has('hotel_madinah') ? ' has-error' : '' }}">
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
-            {!! Form::label('hotel_madinah','Waktu Keberangkatan (mingguan)') !!}
+            {!! Form::label('hotel_madinah','Hotel Madinah)') !!}
             {!! Form::select('hotel_madinah',\App\Hotel::where('hotel_primary_lokasi','=','Madinah')->lists('nama','id'),null,['class' => 'form-control text-center', 'placeholder'  => 'Hotel Madinah']) !!}
             @if ($errors->has('hotel_madinah'))
                 <span class="help-block text-center">
