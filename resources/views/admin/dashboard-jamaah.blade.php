@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <h2 class="text-center">jamaah Summary</h2>
-                <div class="right"><a href="auth/jamaah/register" class="button">[Tambah]</a></div>
+                <div class="right"><a href="{{action('PemesanController@showRegister')}}" class="button">[Tambah]</a></div>
                 <table class="table table-hover table-custom">
                     <thead>
                     <tr>
@@ -41,12 +41,16 @@
                             <td>{{$jamaah->upgrade_kamar}}</td>
                             <td>{{$jamaah->upgrade_asuransi}}</td>
                             <!--TODO buat modal konfirmasi hapus!-->
-                            <td><td><a href="/jamaah/{{$jamaah->id}}/edit" class="button">[Edit]</a>
-                                <form action="/jamaah/{{$jamaah->id}}" method="POST">
-                                    <input type="hidden" name="_method" value="delete">
-                                    <button type="submit" class="button">[Hapus]</button>
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                </form>
+                            <td>
+                                {!! Form::model($jamaah,['method' => 'DELETE','action' => ['JamaahController@destroy',$jamaah->id]]) !!}
+                                <a href="{{ action('PesawatController@edit',$jamaah->id) }}" class="btn btn-orange">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <button type="button" class="btn btn-orange" data-toggle="modal" data-target="#deleteConfirmationModal">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                @include('partials._action-data-entry')
+                                {!! Form::close() !!}
                             </td>
                         </tr>
                     @endforeach
