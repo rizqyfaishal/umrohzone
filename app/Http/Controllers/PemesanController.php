@@ -36,7 +36,10 @@ class PemesanController extends Controller
     public function postRegister(Requests\RegisterPemesanRequest $request)
     {
         $this->reg($request);
-        return redirect('/');
+        if ($request->user()->user_type == "App\Admin")
+            return redirect(action('AdminController@getJamaah'));
+        else
+            return redirect('/');
     }
 
     public function reg($request)
