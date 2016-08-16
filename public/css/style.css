@@ -711,6 +711,7 @@ ul.nav-tabs ul.feature-function {
 
 .modal-custom .modal-dialog {
     width: 920px;
+    top: 4em;
 }
 
 .modal-custom .modal-content {
@@ -745,6 +746,13 @@ ul.feature-function li {
     display: inline-block;
     margin: 0;
     padding: 0;
+}
+li.open {
+    position: relative;
+}
+ul.dropdown-menu li {
+    display: block;
+    position: relative;
 }
 
 ul.feature-function li button,
@@ -800,7 +808,12 @@ ul.feature-function li select
 }
 
 .package-price {
+    padding: 1em 0;
     font-size: 150%;
+}
+
+.package-price strong {
+    padding: 1em 0;
 }
 
 .package-detail {
@@ -953,9 +966,11 @@ ul.feature-function li select
     padding: 2em 0;
 }
 
-.values-section {
+.values-section:not(.customer) {
     padding-bottom: 0;
 }
+
+
 
 .values-section h3,
 .values-section h4{

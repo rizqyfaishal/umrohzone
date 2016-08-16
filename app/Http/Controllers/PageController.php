@@ -162,12 +162,15 @@ class PageController extends Controller
     public function getListPaketRedirect(Requests\ListPaketQueryRequest $request){
         $date = Carbon::createFromFormat('d/m/Y',$request->query('tanggal_keberangkatan'));
         if($request->query('flexible_date')){
-            return redirect('/list-paket#/1?jumlah_jamaah=' . $request->query('jumlah_jamaah').'&embarkasi='.$request->query('embarkasi'));
+            return redirect('/list-paket#/1?jumlah_jamaah='
+                . $request->query('jumlah_jamaah').'&embarkasi='.$request->query('embarkasi')
+                .'&flexible_date='.$request->query('flexible_date').'&tanggal_keberangkatan=' . $date->toDateString());
         }
         return redirect('/list-paket#/1?jumlah_jamaah=' .
             $request->query('jumlah_jamaah').'&embarkasi='.$request->query('embarkasi')
             .'&tanggal_keberangkatan='.$date->toDateString()
             .(!is_null($request->query('hotel_mekah')) ? '&hotel_mekah=' . $request->query('hotel_mekah') : '')
+            .'&flexible_date=0'
             .(!is_null($request->query('hotel_madinah')) ? '&hotel_madinah=' . $request->query('hotel_madinah') : ''));
 
     }

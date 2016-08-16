@@ -65,5 +65,6 @@
 @yield('data-tables-js')
 @yield('angular-js-script')
 @yield('fotorama-js')
+@yield('datepicker')
 </body>
 </html>

@@ -5,7 +5,10 @@
                 <li ng-repeat="tab in tabs" role="presentation" ng-class="{ 'active' : tab.active }">
                     <a class="tab-link" ng-click="changePage(tab.id)" aria-controls="home" role="tab" data-toggle="tab">
                         {{ tab.name }} <br>
-                        <span class="package-price">$ {{ tab.base_price }}</span><br/>
+                        <span class="package-price">
+                            <strong ng-hide="curr">{{ tab.base_price | currency }}</strong>
+                            <strong ng-show="curr">{{ tab.base_price | rupiah }}</strong>
+                        </span><br/>
                         <span class="package-detail">Paket 9 hari &nbsp; | &nbsp; Start Jakarta &nbsp; | &nbsp; Hotel 3/3</span>
                         <span class="package-logo">
                             <i ng-class="tab.icon"></i>
@@ -13,10 +16,19 @@
                     </a>
                 </li>
                 <ul class="feature-function">
-                    <li><a href="" class="btn btn-sm"><i class="fa fa-search-plus">&nbsp;</i>Ganti Pencarian</a>
+                    <li><a href="/" class="btn btn-sm"><i class="fa fa-search-plus">&nbsp;</i>Ganti
+                        Pencarian</a>
                     </li>
                     <li><a href="" class="btn btn-sm"><i class="fa fa-pie-chart">&nbsp;</i>Grafik Pencarian</a></li>
-                    <li><a href="" class="btn btn-sm"><i class="fa fa-pie-chart">&nbsp;</i>Pilih Mata Uang</a></li>
+                    <li><a href="" class="btn btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                        <i class="fa fa-money">&nbsp;</i>Pilih Mata Uang <i class="fa fa-caret-down">&nbsp;</i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href ng-click="changeCurrency('IDR')">IDR</a></li>
+                            <li><a href ng-click="changeCurrency('USD')">USD</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
             </ul>
             <div class="tab-content">

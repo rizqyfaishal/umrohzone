@@ -7,5 +7,8 @@
     <ui-view></ui-view>
 @endsection
 
+@section('datepicker')
+    @include('partials._datepicker')
+@endsection
 @include('partials._fotorama')
 @include('angular._script')

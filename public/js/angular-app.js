@@ -1,7 +1,15 @@
-var app = angular.module('app',['ui.router','ngAnimate','datatables'])
-    .constant('PAKET_KATEGORI_URL','api/paket-kategori/')
-    .constant('PAKET_URL','api/paket/')
-    .value('Month',[
+var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
+    .run(function (DTDefaultOptions) {
+        DTDefaultOptions.setLoadingTemplate('<i class="fa fa-cog fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
+    })
+    .run(function (Currency,$rootScope) {
+        Currency.get().then(function (data) {
+            Currency.set(data.date,data.rates.IDR);
+        });
+    })
+    .constant('PAKET_KATEGORI_URL', 'api/paket-kategori/')
+    .constant('PAKET_URL', 'api/paket/')
+    .value('Month', [
         'Januari',
         'Februari',
         'Maret',
@@ -15,21 +23,32 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         'November',
         'Desember'
     ])
-    .factory('Token',function ($q,$http) {
+    .factory('Token', function ($q, $http) {
         var defer = $q.defer();
         $http.get('/api/token').then(function (res) {
             defer.resolve(res.data);
         });
         return defer.promise;
     })
-    .factory('Currency',function ($q, $http) {
+    .factory('Currency', function ($q, $http) {
         var defer = $q.defer();
-        $http.get('http://api.fixer.io/latest?base=USD&symbols=USD,IDR').then(function (res) {
-            defer.resolve(res.data);
-        });
-        return defer.promise;
+        this.date = null;
+        this.IDR = null;
+
+        this.set = function (date,IDR) {
+            this.date = date;
+            this.IDR = IDR;
+        };
+
+        this.get = function () {
+            $http.get('http://api.fixer.io/latest?base=USD&symbols=USD,IDR').then(function (res) {
+                defer.resolve(res.data);
+            });
+            return defer.promise;
+        };
+        return this;
     })
-    .factory('Auth',function ($q, $http) {
+    .factory('Auth', function ($q, $http) {
         var defer = $q.defer();
         this.url = null;
         this.setUrl = function (url) {
@@ -45,14 +64,15 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
 
         return this;
     })
-    .service('TabContent',function ($http,$q) {
+    .service('TabContent', function ($http, $q) {
         var defer = $q.defer();
         $http.get('api/paket-kategori').then(function (response) {
             defer.resolve(response.data);
         });
         return defer.promise;
+
     })
-    .service('Collection',function ($q, $http) {
+    .service('Collection', function ($q, $http) {
         this.url = null;
         this.setUrl = function (url) {
             this.url = url
@@ -60,10 +80,10 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
 
         this.getData = function () {
             var defer = $q.defer();
-            $http.get(this.url).then(function (response){
+            $http.get(this.url).then(function (response) {
                 defer.resolve(response.data);
             });
-           return defer.promise;
+            return defer.promise;
         };
         return this;
     })
@@ -88,23 +108,23 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         return this;
     })
 
-    .config(function ($stateProvider,$urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
-            .state('paket-list',{
+            .state('paket-list', {
                 url: '',
                 templateUrl: 'templates/tab-choice.html',
                 controller: 'TabsController'
             })
-            .state('pesan',{
-                url:'/paket_terpilih/:paketId/pesan',
+            .state('pesan', {
+                url: '/paket_terpilih/:paketId/pesan',
                 templateUrl: 'templates/pesan.html',
                 controller: 'PaketPesanController',
                 resolve: {
-                    checkAuth: function (Auth,$q,$stateParams) {
+                    checkAuth: function (Auth, $q, $stateParams) {
                         var defer = $q.defer();
                         Auth.setUrl('/api/check?paketId=' + $stateParams.paketId);
                         Auth.check().then(function (data) {
-                            if(data.status){
+                            if (data.status) {
                                 var redirectTo = data.redirectTo;
                                 console.log(redirectTo);
                                 window.location.href = redirectTo;
@@ -116,128 +136,128 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
                     }
                 }
             })
-            .state('paket-list.data-table',{
-                url: '/:id?jumlah_jamaah&embarkasi&tanggal_keberangkatan',
+            .state('paket-list.data-table', {
+                url: '/:id?jumlah_jamaah&embarkasi&tanggal_keberangkatan&flexible_date&hotel_mekah&hotel_madinah',
                 templateUrl: 'templates/data-tables-paket.html',
                 controller: 'DataTableController'
             })
-            .state('paket-details',{
-                url:'/paket/:paketId',
+            .state('paket-details', {
+                url: '/paket/:paketId',
                 templateUrl: 'templates/paket-details.html',
                 controller: 'PaketDetailsController'
             })
-            .state('paket-details.home',{
+            .state('paket-details.home', {
                 url: '',
                 templateUrl: 'templates/paket-details-home-tabs.html',
                 controller: 'PaketDetailsHomeController'
             })
-            .state('paket-details.home.penerbangan',{
+            .state('paket-details.home.penerbangan', {
                 url: '/penerbangan',
                 templateUrl: 'templates/penerbangan.html',
                 controller: 'PaketPenerbanganDetailsController'
             })
-            .state('paket-details.home.agenda',{
+            .state('paket-details.home.agenda', {
                 url: '/agenda',
                 templateUrl: 'templates/persyaratan.html',
                 controller: 'PaketAgendaDetailsController'
             })
-            .state('paket-details.home.fasilitas',{
+            .state('paket-details.home.fasilitas', {
                 url: '/fasilitas',
                 templateUrl: 'templates/persyaratan.html',
                 controller: 'PaketAgendaDetailsController'
             })
-            .state('paket-details.home.persyaratan',{
+            .state('paket-details.home.persyaratan', {
                 url: '/persyaratan',
                 templateUrl: 'templates/persyaratan.html',
             })
-            .state('paket-details.pesawat',{
+            .state('paket-details.pesawat', {
                 url: '/pesawat',
                 templateUrl: 'templates/pesawat.html',
                 controller: 'PaketDetailsPesawatController'
             })
-            .state('paket-details.hotel-mekah',{
+            .state('paket-details.hotel-mekah', {
                 url: '/hotel-mekah',
                 templateUrl: 'templates/hotel.html',
                 controller: 'PaketDetailsHotelMekahController'
             })
-            .state('paket-details.hotel-madinah',{
+            .state('paket-details.hotel-madinah', {
                 url: '/hotel-madinah',
                 templateUrl: 'templates/hotel.html',
                 controller: 'PaketDetailsHotelMadinahController'
             })
-            .state('paket-details.hotel-mekah.review',{
+            .state('paket-details.hotel-mekah.review', {
                 url: '/review',
                 templateUrl: 'templates/hotel-review.html',
                 controller: 'HotelReviewController'
             })
-            .state('paket-details.hotel-mekah.lokasi',{
+            .state('paket-details.hotel-mekah.lokasi', {
                 url: '/lokasi',
                 templateUrl: 'templates/hotel-lokasi.html',
                 controller: 'HotelLokasiController'
             })
-            .state('paket-details.hotel-mekah.foto',{
+            .state('paket-details.hotel-mekah.foto', {
                 url: '/photos',
                 templateUrl: 'templates/hotel-foto.html',
                 controller: 'HotelFotoController'
             })
-            .state('paket-details.hotel-mekah.fasilitas',{
+            .state('paket-details.hotel-mekah.fasilitas', {
                 url: '/fasilitas',
                 templateUrl: 'templates/hotel-fasilitas.html',
                 controller: 'HotelFasilitasController'
             })
-            .state('paket-details.hotel-madinah.review',{
+            .state('paket-details.hotel-madinah.review', {
                 url: '/review',
                 templateUrl: 'templates/hotel-review.html',
                 controller: 'HotelReviewController'
             })
-            .state('paket-details.hotel-madinah.lokasi',{
+            .state('paket-details.hotel-madinah.lokasi', {
                 url: '/lokasi',
                 templateUrl: 'templates/hotel-lokasi.html',
                 controller: 'HotelLokasiController'
             })
-            .state('paket-details.hotel-madinah.foto',{
+            .state('paket-details.hotel-madinah.foto', {
                 url: '/photos',
                 templateUrl: 'templates/hotel-foto.html',
                 controller: 'HotelFotoController'
             })
-            .state('paket-details.hotel-madinah.fasilitas',{
+            .state('paket-details.hotel-madinah.fasilitas', {
                 url: '/fasilitas',
                 templateUrl: 'templates/hotel-fasilitas.html',
                 controller: 'HotelFasilitasController'
             });
         $urlRouterProvider.otherwise('/1');
     })
-    .directive("compareTo", function() {
+    .directive("compareTo", function () {
         return {
             require: "ngModel",
             scope: {
                 otherModelValue: "=compareTo"
             },
-            link: function(scope, element, attributes, ngModel) {
+            link: function (scope, element, attributes, ngModel) {
 
-                ngModel.$validators.compareTo = function(modelValue) {
+                ngModel.$validators.compareTo = function (modelValue) {
                     return modelValue == scope.otherModelValue;
                 };
 
-                scope.$watch("otherModelValue", function() {
+                scope.$watch("otherModelValue", function () {
                     ngModel.$validate();
                 });
             }
         };
     })
-    .directive("unique", function($http) {
+    .directive("unique", function ($http) {
         return {
             require: "ngModel",
             restrict: 'A',
-            link: function(scope, element, attributes, ngModel) {
+            link: function (scope, element, attributes, ngModel) {
                 element.bind('change blur', function (e) {
-                    if(element.val() != ''){
+                    if (element.val() != '') {
                         ngModel.$setValidity('unique', true);
-                        $http.get("/api/unique/" + element.val()).success(function(data) {
-                            if(data.status){
-                                ngModel.$setValidity('unique',true);
+                        $http.get("/api/unique/" + element.val()).success(function (data) {
+                            if (data.status) {
+                                ngModel.$setValidity('unique', true);
                             } else {
-                                ngModel.$setValidity('unique',false);
+                                ngModel.$setValidity('unique', false);
                             }
                         });
                     }
@@ -245,7 +265,7 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             }
         };
     })
-    .directive('progressBar',['$templateCache',function ($templateCache) {
+    .directive('progressBar', ['$templateCache', function ($templateCache) {
         return {
             restrict: 'E',
             replace: false,
@@ -256,7 +276,7 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             }
         }
     }])
-    .controller('PaketPesanController',function ($scope,$stateParams,Collection,PAKET_URL,Month,Token,Auth) {
+    .controller('PaketPesanController', function ($scope, $stateParams, Collection, PAKET_URL, Month, Token, Auth) {
         Token.then(function (data) {
             $scope.token = data.data;
             console.log($scope.token);
@@ -279,9 +299,9 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         }
 
     })
-    .controller('HotelReviewController',function ($scope, $stateParams,Collection,PAKET_URL,$state) {
+    .controller('HotelReviewController', function ($scope, $stateParams, Collection, PAKET_URL, $state) {
         $scope.paketId = $stateParams.paketId;
-        if($state.current.name == 'paket-details.hotel-mekah.review'){
+        if ($state.current.name == 'paket-details.hotel-mekah.review') {
             Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMekah/review');
         } else {
             Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMadinah/review');
@@ -290,9 +310,9 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             $scope.data = data.data;
         })
     })
-    .controller('HotelFotoController',function ($scope, $stateParams,$state,Collection,PAKET_URL) {
+    .controller('HotelFotoController', function ($scope, $stateParams, $state, Collection, PAKET_URL) {
         $scope.paketId = $stateParams.paketId;
-        if($state.current.name == 'paket-details.hotel-mekah.foto'){
+        if ($state.current.name == 'paket-details.hotel-mekah.foto') {
             Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMekah/photos');
         } else {
             Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMadinah/photos');
@@ -300,7 +320,7 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         Collection.getData().then(function (data) {
             $scope.data = data.data;
             var photos = [];
-            for(var i = 0;i<$scope.data.length;i++){
+            for (var i = 0; i < $scope.data.length; i++) {
                 var obj = {
                     img: 'p/' + $scope.data[i].hashcode
                 };
@@ -312,25 +332,25 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             });
         })
     })
-    .controller('HotelFasilitasController',function ($scope, $stateParams) {
+    .controller('HotelFasilitasController', function ($scope, $stateParams) {
 
     })
-    .controller('HotelLokasiController',function ($scope, $stateParams) {
+    .controller('HotelLokasiController', function ($scope, $stateParams) {
 
     })
-    .controller('PaketDetailsHomeController',function ($scope,$location,$stateParams) {
+    .controller('PaketDetailsHomeController', function ($scope, $location, $stateParams) {
         $scope.id = $stateParams.paketId;
         $scope.changeTabs = function (url) {
             $location.path('/paket/' + $scope.id + '/' + url);
         }
     })
-    .controller('PaketDetailsPesawatController',function ($scope, $location, Collection,PAKET_URL,$stateParams) {
+    .controller('PaketDetailsPesawatController', function ($scope, $location, Collection, PAKET_URL, $stateParams) {
         $scope.paketId = $stateParams.paketId;
         Collection.setUrl(PAKET_URL + $scope.paketId + '/pesawat');
         Collection.getData().then(function (data) {
             $scope.data = data.data;
             var photos = [];
-            for(var i = 0;i<$scope.data.photos.length;i++){
+            for (var i = 0; i < $scope.data.photos.length; i++) {
                 var obj = {
                     img: 'p/' + $scope.data.photos[i].hashcode
                 };
@@ -341,7 +361,7 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             });
         })
     })
-    .controller('PaketDetailsHotelMekahController',function ($scope, $location, Collection,PAKET_URL,$stateParams) {
+    .controller('PaketDetailsHotelMekahController', function ($scope, $location, Collection, PAKET_URL, $stateParams) {
         $scope.paketId = $stateParams.paketId;
         Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMekah');
         Collection.getData().then(function (data) {
@@ -353,7 +373,7 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         };
         $location.path('/paket/' + $scope.id + '/hotel-mekah/review');
     })
-    .controller('PaketDetailsHotelMadinahController',function ($scope, $location, Collection,PAKET_URL,$stateParams) {
+    .controller('PaketDetailsHotelMadinahController', function ($scope, $location, Collection, PAKET_URL, $stateParams) {
         $scope.paketId = $stateParams.paketId;
         Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMadinah');
         Collection.getData().then(function (data) {
@@ -365,21 +385,21 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         };
         $location.path('/paket/' + $scope.id + '/hotel-madinah/review');
     })
-    .controller('ProgressController',function ($scope) {
+    .controller('ProgressController', function ($scope) {
 
     })
-    .controller('PaketPenerbanganDetailsController',function ($scope,Collection,$stateParams,PAKET_URL,Paket) {
+    .controller('PaketPenerbanganDetailsController', function ($scope, Collection, $stateParams, PAKET_URL, Paket) {
         $scope.id = $stateParams.paketId;
         Collection.setUrl(PAKET_URL + $scope.id + '/penerbangan');
         Collection.getData().then(function (data) {
-            if(data.status){
+            if (data.status) {
                 $scope.data = data.data;
             } else {
                 alert('Something Error');
             }
         })
     })
-    .controller('PaketDetailsController',function (Month,$scope,$stateParams,$http,$q,PAKET_URL,$location,$state,Paket) {
+    .controller('PaketDetailsController', function (Month, $scope, $stateParams, $http, $q, PAKET_URL, $location, $state, Paket) {
         $scope.id = $stateParams.paketId;
         var defered = $q.defer();
         $http.get(PAKET_URL + $scope.id).then(function (response) {
@@ -394,8 +414,8 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             var tanggal = waktu.getDate() + 1;
             $scope.data.waktu = {
                 tanggal: tanggal,
-                    tahun: tahun,
-                    bulan: bulan
+                tahun: tahun,
+                bulan: bulan
             };
         });
 
@@ -404,7 +424,9 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
         }
 
     })
-    .controller('TabsController',function ($scope, TabContent,$location) {
+    .controller('TabsController', function ($scope, TabContent, $location) {
+
+
         TabContent.then(function (data) {
             $scope.tabs = data.data;
             console.log($scope.tabs);
@@ -414,34 +436,39 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             $scope.tabs[2].icon = 'fa fa-trophy';
         });
 
+        $scope.newSearchShow = function () {
+            $('#newSearchModal').modal('show');
+        };
+
         $scope.changePage = function (id) {
             $location.path('/' + id);
         };
         $location.path('/1');
     })
-    .controller('DataTableController',function (Month,$scope, TabContent,$location,DTOptionsBuilder,$state,DTColumnDefBuilder,$http,$q,$stateParams) {
-
+    .controller('DataTableController', function ($rootScope,Month, $scope, TabContent, $location, DTOptionsBuilder, $state, DTColumnDefBuilder, $http, $q, $stateParams) {
+        $('.dropdown-toggle').dropdown();
+        $rootScope.changeCurrency = function (curr) {
+            $rootScope.curr = curr == 'IDR';
+        };
         $scope.id = $stateParams.id;
-        $scope.dtColumnDefs = [
-
-        ];
+        $scope.dtColumnDefs = [];
+        console.log($stateParams);
         var defer = $q.defer();
         $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withDisplayLength(10);
-        $http.get('api/paket-kategori/' + $scope.id +'/getPaket?'  +
-            ((typeof $stateParams.jumlah_jamaah) != 'undefined' ?  '&jumlah_jamaah=' + $stateParams.jumlah_jamaah : '') +
-            ((typeof $stateParams.embarkasi) != 'undefined' ? '&embarkasi=' + $stateParams.embarkasi : '')  +
+        $http.get('api/paket-kategori/' + $scope.id + '/getPaket?' +
+            ((typeof $stateParams.jumlah_jamaah) != 'undefined' ? '&jumlah_jamaah=' + $stateParams.jumlah_jamaah : '') +
+            ((typeof $stateParams.flexible_date) != 'undefined' ? '&flexible_date=' + $stateParams.flexible_date : '') +
+            ((typeof $stateParams.embarkasi) != 'undefined' ? '&embarkasi=' + $stateParams.embarkasi : '') +
             ((typeof $stateParams.tanggal_keberangkatan) != 'undefined' ? '&tanggal_keberangkatan=' + $stateParams.tanggal_keberangkatan : '') +
             ((typeof $stateParams.hotel_mekah) != 'undefined' ? '&hotel_mekah=' + $stateParams.hotel_mekah : '') +
             ((typeof $stateParams.hotel_madinah) != 'undefined' ? '&hotel_madinah=' + $stateParams.hotel_madinah : ''))
             .then(function (response) {
-                console.log($stateParams.hotel_mekah)
-            defer.resolve(response.data);
-        });
+                defer.resolve(response.data);
+            });
 
         defer.promise.then(function (data) {
             $scope.data = data.data;
-            // console.log(new Date($scope.data[0].waktu));
-            for(var i = 0;i<$scope.data.length;i++){
+            for (var i = 0; i < $scope.data.length; i++) {
                 var waktu = new Date($scope.data[i].waktu);
                 var tahun = waktu.getFullYear();
                 var bulan = Month[waktu.getMonth()];
@@ -454,4 +481,15 @@ var app = angular.module('app',['ui.router','ngAnimate','datatables'])
             }
             console.log($scope.data);
         })
+    })
+    .filter('rupiah', function (Currency) {
+        return function (val) {
+            val = val * Currency.IDR;
+            while (/(\d+)(\d{3})/.test(val.toString())) {
+                val = val.toString().replace(/(\d+)(\d{3})/, '$1' + '.' + '$2');
+            }
+            var val = 'Rp' + val;
+            return val;
+        };
     });
+

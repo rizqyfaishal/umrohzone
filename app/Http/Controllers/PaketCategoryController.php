@@ -147,21 +147,7 @@ class PaketCategoryController extends Controller
     }
 
     public function getPaketJson($id,Request $request){
-//        $paketCategory = PaketCategory::find($id);
-//        if(is_null($paketCategory)){
-//            abort(404);
-//        }
-//
-//        $arr = array();
-//
-//        foreach ($paketCategory->pakets as $y){
-//            array_push($arr,$y->load(['hotelMekah','hotelMadinah','pesawat.attachments','embarkasi']));
-//        }
-//
-//        return response()->json([
-//            'status' => true,
-//            'data' => $arr
-//        ]);
+
         $paket = Paket::where('paket_category_id','=',$id)->with(['hotelMekah' => function($q){
             $q->select('nama','id');
         },'hotelMadinah' => function($q){
@@ -175,8 +161,13 @@ class PaketCategoryController extends Controller
         if($request->has('jumlah_jamaah')){
             $paket = $paket->where('sisa_kuota','>=',$request->query('jumlah_jamaah'));
         }
-        if($request->has('tanggal_keberangkatan')){
-            $paket = $paket->where('waktu','>=',$request->query('tanggal_keberangkatan'));
+        if($request->has('flexible_date') && $request->has('tanggal_keberangkatan')){
+            $flexible_date = $request->query('flexible_date');
+            if($flexible_date == 1){
+                $paket = $paket->where('waktu','>=',$request->query('tanggal_keberangkatan'));
+            } else {
+                $paket = $paket->where('waktu','=',$request->query('tanggal_keberangkatan'));
+            }
         }
         if($request->has('embarkasi')){
             $paket->where('embarkasi_id','=',$request->query('embarkasi'));

@@ -1,0 +1,1 @@
+<script src="{{ URL::asset('js/bootstrap-datepicker.js') }}"></script>
