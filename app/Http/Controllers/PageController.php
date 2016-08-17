@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Agen;
 use App\Helper\PageDescription;
 use App\Paket;
 use App\Provinsi;
