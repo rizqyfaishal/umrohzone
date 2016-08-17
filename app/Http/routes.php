@@ -23,6 +23,9 @@ Route::get('/login', 'PageController@login');
 //================== ROUTE FOR PAYMENT GATEWAY ==========================
 
 Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
+    route::get('init', function()   {
+        return view('UserArea.bayar');
+    });
     route::get('pay', function () {
         return view('PaymentArea.bayar-user');
     });
