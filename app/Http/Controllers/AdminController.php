@@ -95,7 +95,7 @@ class AdminController extends Controller
     public function rememberAgent()    {
         $this->page->setTitle('Tambah Paket');
         $namaagen = Input::get('agen');
-        $agen = Agen::where('nama_agen',$namaagen)->first();
+        $agen = Agen::where('id',$namaagen)->first();
         return view('data-entry.paket.create')->with([
             'page' => $this->page,'agen' => $agen
         ]);

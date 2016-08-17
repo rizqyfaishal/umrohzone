@@ -8,7 +8,7 @@
             Pilih Agen :
             <select class="form-control" name="agen">
                 @foreach($agens as $agen)
-                    <option value="{{$agen->nama_agen}}">{{$agen->nama_agen}}</option>
+                    <option value="{{$agen->id}}">{{$agen->nama_agen}}</option>
                 @endforeach
             </select>
             {{Form::submit('Lanjutkan', array('class' => 'btn btn-default'))}}
