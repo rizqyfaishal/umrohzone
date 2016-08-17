@@ -1,3 +1,100 @@
+<div class="compare-package-container" ng-show="!(comparePackages.length == 0)">
+    <h3>Compare Paket</h3>
+    <table class="paket-table package-choice-table data-entry-table table-custom table table-hover">
+        <tbody>
+        <tr ng-repeat="paket in comparePackages">
+            <td>
+                <div class="calendar-icon">
+                    <img src="/img/calendar_paket_icon.png" alt="Calendar Icon" height="100">
+                    <span class="bulan">
+                        {{  paket.waktu.bulan  }}
+                    </span>
+                    <span class="tanggal">
+                        {{  paket.waktu.tanggal }}
+                    </span>
+                    <span class="tahun">
+                        {{  paket.waktu.tahun }}
+                    </span>
+                </div>
+
+            </td>
+            <td>
+                <div class="durasi-icon">
+                    <img src="/img/durasi_icon.png" alt="Durasi Icon" height="80">
+                    <span class="durasi">
+                        {{ paket.durasi }}
+                    </span>
+                </div>
+                Hari
+            </td>
+            <td>
+                <div class="embarkasi-icon">
+                    <img src="/img/embarkasi_icon.png" alt="Embarkasi Icon" height="80">
+                </div>
+                {{ paket.embarkasi.nama }}
+            </td>
+            <td>
+                <div class="pesawat-icon">
+                    <img ng-src="/p/{{ paket.pesawat.attachments[0].hashcode }}" alt="Logo Pesawat" height="70">
+                </div>
+            </td>
+            <td>
+                <div class="hotel-icon">
+                    <span class="rating mekah">3</span>
+                    <img src="/img/hotel_icon.png" alt="Hotel Icon" height="80">
+                </div>
+                <span class="text-center">{{ paket.hotel_mekah.nama }}</span>
+            </td>
+            <td>
+                <div class="hotel-icon">
+                    <span class="rating madinah">3</span>
+                    <img src="/img/hotel_icon.png" alt="Hotel Icon" height="80">
+                </div>
+                <span class="text-center">{{ paket.hotel_madinah.nama }}</span>
+            </td>
+            <td>
+                Bronze <br/>
+                <span class="package-choice-table-rating-category text-center">
+                    6/10
+                </span><br/>
+                <span class="package-choice-table-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                </span>
+            </td>
+            <td>
+                <span class="package-choice-table-icon">
+                    <i class="fa fa-users"></i>
+                </span><br/>
+                Sisa {{ paket.sisa_kuota }}
+            </td>
+            <td class="price-section">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-lg-offset-1">
+                        <a href="" ng-click="removeFromCompare($index)" class="btn btn-sm btn-custom">Unpin <i class="fa fa-paperclip">&nbsp;</i></a>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5">
+                        <a class="btn btn-sm btn-custom" ui-sref="paket-details.home.persyaratan({paketId : paket.id})">Info <i
+                                class="fa fa-info-circle">&nbsp;</i></a>
+                    </div>
+                </div>
+                <span class="package-price">
+                    <strong ng-hide="curr">{{ paket.harga | currency }}</strong>
+                    <strong ng-show="curr">{{ paket.harga | rupiah }}</strong>
+                </span><br/>
+                <a ui-sref="pesan({paketId: paket.id })" class="btn btn-orange" role="button">
+                    <i class="fa fa-shopping-cart">&nbsp;</i>
+                    Pilih Sekarang!
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 <div class="tabs-package-content">
     <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="paket-table package-choice-table data-entry-table table-custom table table-hover">
         <thead>
@@ -86,10 +183,11 @@
             <td class="price-section">
                 <div class="row">
                     <div class="col-lg-5 col-md-5 col-sm-5 col-lg-offset-1">
-                        <a href="#">Pin <i class="fa fa-pinterest-square">&nbsp;</i></a>
+                        <a href="" ng-click="addToCompare(paket)" ng-if="!paket.isToCompare" class="btn btn-sm btn-custom">Pin <i class="fa fa-paperclip">&nbsp;</i></a>
+                        <a href="" ng-click="removeFromCompare(paket.index)" ng-if="paket.isToCompare" class="btn btn-sm btn-custom">Unpin <i class="fa fa-paperclip">&nbsp;</i></a>
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-5">
-                        <a ui-sref="paket-details.home.persyaratan({paketId : paket.id})">Info <i
+                        <a class="btn btn-sm btn-custom" ui-sref="paket-details.home.persyaratan({paketId : paket.id})">Info <i
                                 class="fa fa-info-circle">&nbsp;</i></a>
                     </div>
                 </div>

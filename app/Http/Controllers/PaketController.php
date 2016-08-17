@@ -57,6 +57,8 @@ class PaketController extends Controller
     public function store(Requests\PaketRequest $request)
     {
         $paket = Paket::create($request->all());
+        $paket->setSisaKuota();
+        $paket->save();
         if(is_null($paket)){
             abort(500);
         }
@@ -118,6 +120,8 @@ class PaketController extends Controller
         if(!$t){
             abort(500);
         }
+        $paket->setSisaKuota();
+        $paket->save();
         Session::flash('paket-edited','Telah Teredit');
 
         return redirect(action('PaketController@index'));

@@ -7,8 +7,8 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
             Currency.set(data.date,data.rates.IDR);
         });
     })
-    .constant('PAKET_KATEGORI_URL', 'api/paket-kategori/')
-    .constant('PAKET_URL', 'api/paket/')
+    .constant('PAKET_KATEGORI_URL', '/api/paket-kategori/')
+    .constant('PAKET_URL', '/api/paket/')
     .value('Month', [
         'Januari',
         'Februari',
@@ -450,6 +450,20 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
         $rootScope.changeCurrency = function (curr) {
             $rootScope.curr = curr == 'IDR';
         };
+        $scope.comparePackages = [];
+        $scope.addToCompare = function (paket) {
+            paket.isToCompare = true;
+            $scope.comparePackages.push(paket);
+            paket.index = $scope.comparePackages.indexOf(paket);
+            console.log(paket);
+        };
+        $scope.removeFromCompare = function (index) {
+            $scope.comparePackages[index].isToCompare = false;
+            $scope.comparePackages.splice(index,1);
+            $scope.comparePackages.forEach(function (x) {
+                x.index = $scope.comparePackages.indexOf(x);
+            });
+        };
         $scope.id = $stateParams.id;
         $scope.dtColumnDefs = [];
         console.log($stateParams);
@@ -469,6 +483,7 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
         defer.promise.then(function (data) {
             $scope.data = data.data;
             for (var i = 0; i < $scope.data.length; i++) {
+                $scope.data[i].isToCompare = false;
                 var waktu = new Date($scope.data[i].waktu);
                 var tahun = waktu.getFullYear();
                 var bulan = Month[waktu.getMonth()];
