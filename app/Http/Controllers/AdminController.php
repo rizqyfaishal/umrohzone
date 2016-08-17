@@ -92,6 +92,7 @@ class AdminController extends Controller
             'page' => $this->page,'agens' => $agens
         ]);
     }
+
     public function rememberAgent()    {
         $this->page->setTitle('Tambah Paket');
         $namaagen = Input::get('agen');

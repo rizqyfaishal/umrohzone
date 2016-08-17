@@ -111,8 +111,9 @@ class PageController extends Controller
 
     public function dashboardAgentBuatPaket(){
         $this->page->setTitle('Dashboard Travel Agent');
+        $agen = Agen::where('id',Auth::user()->user_id)->first();
         return view('dashboard-agent-buatpaket')->with([
-            'page' => $this->page
+            'page' => $this->page, 'agen' => $agen
         ]);
     }
 
