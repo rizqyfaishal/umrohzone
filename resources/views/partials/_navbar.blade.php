@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand topnav" href="#">
+            <a class="navbar-brand topnav" href="{{ action('PageController@index') }}">
                 <img src="{{ URL::asset('/img/logo.png') }}" alt="Logo" height="60">
             </a>
             {{--<div class="navbar-brand topnav">| &nbsp;Portal Travel Umroh Seluruh Indonesia</div>--}}

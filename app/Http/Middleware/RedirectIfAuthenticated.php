@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             if(Auth::user()->isAdmin()){
-                return redirect('/dashboard');
+                return redirect('/admin/dashboard');
             } elseif (Auth::user()->isAgen()){
                 return redirect('/agent/dashboard');
             } else {

@@ -23,6 +23,9 @@ Route::get('/login', 'PageController@login');
 //================== ROUTE FOR PAYMENT GATEWAY ==========================
 
 Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
+    route::get('init', function()   {
+        return view('UserArea.bayar');
+    });
     route::get('pay', function () {
         return view('PaymentArea.bayar-user');
     });
@@ -61,6 +64,7 @@ Route::group(['middleware' => 'auth'],function()    {
 Route::get('/logout','Auth\AuthController@logout');
 Route::get('/api/provinsi/{id}','PageController@getRegencies');
 Route::get('/dashboard','PageController@dashboard');
+Route::get('/dashboard','AdminController@index');
 
 //tambahan luthfi dashboard
 Route::get('/agent/dashboard','PageController@dashboardAgent');
