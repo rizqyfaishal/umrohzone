@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Booking;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
 {
@@ -82,5 +83,19 @@ class AdminController extends Controller
         $pesawat = Pesawat::find($id);
         $pesawat->delete();
         return redirect()->back();
+    }
+
+    public function chooseAgent()    {
+        $this->page->setTitle('Pilih Agen');
+        $agens = Agen::get();
+        return view('admin._choose_agen')->with([
+            'page' => $this->page,'agens' => $agens
+        ]);
+    }
+    public function rememberAgent()    {
+       $agen = Input::get('Tambah Paket');
+        return view('data-entry.paket.create')->with([
+            'page' => $this->page,'agen' => $agen
+        ]);
     }
 }
