@@ -133,7 +133,7 @@
     <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group {{ $errors->has('penerbangan_pulang_id') ? ' has-error' : '' }}">
             {!! Form::label('penerbangan_pulang_id','Penerbangan Pulang') !!}
-            {!! Form::select('penerbangan_pulang_id',\App\Penerbangan::where('jenis_penerbangan','=',2)->lists('tanggal_berangkat','id'),old('penerbangan_pulang_id'),['class' => 'form-control','placeholder' => 'Penerbangan Pulang']) !!}
+            {!! Form::select('penerbangan_pulang_id',\App\Penerbangan::where('jenis_penerbangan','=',0)->lists('tanggal_berangkat','id'),old('penerbangan_pulang_id'),['class' => 'form-control','placeholder' => 'Penerbangan Pulang']) !!}
             @if ($errors->has('penerbangan_pulang_id'))
                 <span class="help-block">
                     <strong>{{ $errors->first('penerbangan_pulang_id') }}</strong>

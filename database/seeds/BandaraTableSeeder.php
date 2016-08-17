@@ -14,11 +14,14 @@ class BandaraTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         $limit = 50;
+        $provinsi = \App\Provinsi::all()->all();
+        $regencies = \App\Regency::all()->all();
         for($i = 0 ;$i<$limit;$i++){
             \App\Bandara::create([
                 'nama' => $faker->name,
-                'provinsi_id' => 11,
-                'regency_id' => 3401
+                'kode_bandara' => strtoupper($faker->word),
+                'provinsi_id' => $provinsi[$faker->numberBetween(0,count($provinsi)-1)]->id,
+                'regency_id' => $regencies[$faker->numberBetween(0,count($regencies)-1)]->id
             ]);
         }
     }

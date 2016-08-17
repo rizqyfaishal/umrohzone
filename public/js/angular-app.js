@@ -107,7 +107,6 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
         };
         return this;
     })
-
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('paket-list', {
@@ -361,11 +360,12 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
             });
         })
     })
-    .controller('PaketDetailsHotelMekahController', function ($scope, $location, Collection, PAKET_URL, $stateParams) {
+    .controller('PaketDetailsHotelMekahController', function ($sce,$scope, $location, Collection, PAKET_URL, $stateParams) {
         $scope.paketId = $stateParams.paketId;
         Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMekah');
         Collection.getData().then(function (data) {
             $scope.data = data.data;
+            $scope.data.address.google_map_url = $sce.trustAsResourceUrl(data.address.google_map_url);
             console.log($scope.data);
         });
         $scope.changeTabs = function (url) {

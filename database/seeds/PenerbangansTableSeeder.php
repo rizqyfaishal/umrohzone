@@ -18,13 +18,15 @@ class PenerbangansTableSeeder extends Seeder
         $limit = 150;
         for($i = 0 ;$i<$limit;$i++){
             \App\Penerbangan::create([
-                'tanggal_berangkat' => $faker->dateTime,
+                'tanggal_berangkat' => $faker->dateTime->format('Y-m-d'),
                 'waktu_tempuh' => $faker->numberBetween(1,10),
+                'tanggal_tiba' =>$faker->dateTime->format('Y-m-d'),
                 'terminal_berangkat_id' => $terminals[$faker->numberBetween(0,count($terminals)-1)]->id,
                 'terminal_tujuan_id' => $terminals[$faker->numberBetween(0,count($terminals)-1)]->id,
                 'bandara_tujuan_id' => $bandaras[$faker->numberBetween(0,count($bandaras)-1)]->id,
                 'bandara_berangkat_id' => $bandaras[$faker->numberBetween(0,count($bandaras)-1)]->id,
                 'pesawat_id' => $pesawats[$faker->numberBetween(0,count($pesawats)-1)]->id,
+                'jenis_penerbangan' => $faker->numberBetween(0,1)
             ]);
         }
     }
