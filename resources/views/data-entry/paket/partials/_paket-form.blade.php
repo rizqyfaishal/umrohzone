@@ -85,7 +85,11 @@
     <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group {{ $errors->has('agen_id') ? ' has-error' : '' }}">
             {!! Form::label('agen_id','Nama Agen') !!}
+            @if(isset($agen))
+                <input disabled name="agen_id" value="{{$agen->id}}" class="form-control">
+            @else
             {!! Form::select('agen_id',\App\Agen::lists('nama_agen','id'),old('agen_id'),['class' => 'form-control','placeholder' => 'Nama Agen']) !!}
+            @endif
             @if ($errors->has('agen_id'))
                 <span class="help-block">
                     <strong>{{ $errors->first('agen_id') }}</strong>
