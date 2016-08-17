@@ -93,7 +93,10 @@
                                 class="fa fa-info-circle">&nbsp;</i></a>
                     </div>
                 </div>
-                <span class="package-price">$ {{ paket.harga }}</span><br/>
+                <span class="package-price">
+                    <strong ng-hide="curr">{{ paket.harga | currency }}</strong>
+                    <strong ng-show="curr">{{ paket.harga | rupiah }}</strong>
+                </span><br/>
                 <a ui-sref="pesan({paketId: paket.id })" class="btn btn-orange" role="button">
                     <i class="fa fa-shopping-cart">&nbsp;</i>
                     Pilih Sekarang!
@@ -103,3 +106,4 @@
         </tbody>
     </table>
 </div>
+

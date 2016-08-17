@@ -165,7 +165,12 @@ var app = angular.module('app',['ui.router'])
 
             })
         };
+
+        $scope.showDetail = function () {
+            $('#payDetailModal').modal('show');
+        };
         $scope.totalHarga = 0;
+
     })
     .controller('ProgressController',function ($scope) {
 

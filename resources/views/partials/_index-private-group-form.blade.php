@@ -25,6 +25,22 @@
         </div>
     </div>
 </div>
+<div class="form-group {{ $errors->has('flexible_date') ? ' has-error' : '' }}">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('flexible_date',true) !!} Tanggal Flexible
+                </label>
+                @if ($errors->has('flexible_date'))
+                    <span class="help-block text-center">
+                            <strong>{{ $errors->first('flexible_date') }}</strong>
+                        </span>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="form-group{{ $errors->has('jumlah_jamaah') ? ' has-error' : '' }}">
