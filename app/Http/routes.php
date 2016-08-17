@@ -89,6 +89,8 @@ Route::group(['prefix' => 'admin'], function (){
     Route::get('travel-agent','AdminController@getTA');
     Route::get('hotel','AdminController@getHotels');
     Route::get('maskapai','AdminController@getAirlines');
+    Route::get('pilih-agen','AdminController@chooseAgent');
+    Route::post('pilih-agen','AdminController@rememberAgent');
 });
 
 Route::group(['prefix' => 'password'],function (){
