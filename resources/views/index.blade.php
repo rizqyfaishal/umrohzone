@@ -227,10 +227,12 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Nomor HP atau Email">
+                        {{Form::open(array('action'=>'PageController@index','id'=>'customise'))}}
+                        <input type="text" class="form-control" placeholder="Nomor HP atau Email" id="customise-contact">
                               <span class="input-group-btn">
-                                <button class="btn btn-orange" type="button">Go!</button>
+                                <button class="btn btn-orange" type="button" onclick="tempcheck()">Go!</button>
                               </span>
+                        {{Form::close()}}
                     </div><!-- /input-group -->
                 </div>
             </div>
@@ -442,6 +444,19 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="customise-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Sistem SMS belum berjalan. Silakan input email.</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 @endsection
 @section('date-picker')
     <script src="{{ URL::asset('js/bootstrap-datepicker.js') }}"></script>
@@ -461,5 +476,16 @@
             $('#date-picker').datepicker();
 
         });
+        function tempcheck() {
+            var data = document.getElementById('customise-contact').value;
+            if(!isNaN(data))
+                $('#customise-modal').modal('show');
+            else
+                document.getElementById('customise').submit();
+        }
     </script>
+@endsection
+@section('additional-script')
+    <script src="{{ URL::asset('js/node_modules/chart.js/dist/Chart.min.js') }}"></script>
+    <script src="{{ URL::asset('js/node_modules/angular-chart.js/dist/angular-chart.min.js') }}"></script>
 @endsection

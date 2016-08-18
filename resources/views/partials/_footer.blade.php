@@ -4,15 +4,15 @@
             <div class="col-lg-12">
                 <ul class="list-inline">
                     <li>
-                        <a href="#">Home</a>
+                        <a href="{{ action('PageController@index') }}">Home</a>
                     </li>
                     <li class="footer-menu-divider">&sdot;</li>
                     <li>
-                        <a href="#services">My Booking</a>
+                        <a href="{{ action('PageController@bookingStatus') }}">My Booking</a>
                     </li>
                     <li class="footer-menu-divider">&sdot;</li>
                     <li>
-                        <a href="#contact">Afiliasi & Mitra</a>
+                        <a href="{{ action('AgenController@showRegister') }}">Afiliasi & Mitra</a>
                     </li>
                     <li class="footer-menu-divider">&sdot;</li>
                     <li>

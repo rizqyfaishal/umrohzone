@@ -109,5 +109,6 @@
 @yield('ajax-image-js')
 @yield('select2-js')
 @yield('data-tables-js')
+@yield('additional-script')
 </body>
 </html>
