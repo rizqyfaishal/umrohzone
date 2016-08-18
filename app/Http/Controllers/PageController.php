@@ -7,6 +7,7 @@ use App\Helper\PageDescription;
 use App\Paket;
 use App\Provinsi;
 use App\Booking;
+use App\Testimoni;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -28,8 +29,9 @@ class PageController extends Controller
 
     public function index(){
         $this->page->setTitle('Home');
+        $testimonies = Testimoni::where('chosen','1')->get();
         return view('index')->with([
-            'page' => $this->page
+            'page' => $this->page, 'testimonies' => $testimonies
         ]);
     }
 
