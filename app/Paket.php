@@ -59,7 +59,7 @@ class Paket extends Model
     }
 
     public function fasilitas(){
-        return $this->belongsTo('App\Fasilitas','fasilitas_id');
+        return $this->belongsToMany('App\Fasilitas','paket_fasilitas_pivot','paket_id');
     }
 
     public function agen()

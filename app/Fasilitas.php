@@ -10,6 +10,7 @@ class Fasilitas extends Model
     use SoftDeletes;
 
     protected $dates = ['delete_at'];
+    protected $hidden = ['created_at','deleted_at','updated_at','pivot'];
 
     protected $table = 'fasilitas';
 
@@ -18,6 +19,6 @@ class Fasilitas extends Model
     ];
 
     public function paket(){
-        return $this->belongsToMany('App\Paket','paket_fasilitas_pivot','paket_id');
+        return $this->belongsToMany('App\Paket','paket_fasilitas_pivot','fasilitas_id');
     }
 }

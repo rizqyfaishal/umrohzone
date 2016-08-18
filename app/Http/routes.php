@@ -137,6 +137,8 @@ Route::group(['prefix' => 'api'],function (){
     Route::get('/paket/{id}/hotelMadinah','AngularController@getPaketHotelMadinah');
     Route::get('/paket/{id}/hotelMadinah/photos','AngularController@getPaketHotelMadinahPhotos');
     Route::get('/paket/{id}/hotelMekah/photos','AngularController@getPaketHotelMekahPhotos');
+    Route::get('/paket/{id}/fasilitas','AngularController@getPaketFasilitas');
+    Route::get('/paket/{id}/agenda','AngularController@getPaketAgenda');
     Route::get('/unique/{email}','AngularController@checkEmailUnique');
     Route::get('/user','PemesanController@getInformation');
     Route::get('/user/paket/{hash}','PemesanController@getInformationPaket');

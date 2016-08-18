@@ -594,6 +594,7 @@ footer a{
 
 .agenda-route-map  .map {
     position: relative;
+    height: 250px;
 }
 
 .agenda-route-map hr.strike-line {
@@ -608,6 +609,10 @@ footer a{
 
 .data-jamaah-form .date-pick {
     margin-top: 0.2em;
+}
+
+h4.destination {
+    height: 3em;
 }
 
 .data-jamaah-form h5,

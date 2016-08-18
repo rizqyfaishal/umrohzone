@@ -22,8 +22,14 @@ class FasilitasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('json')){
+            return response()->json([
+                'status' => true,
+                'data' => Fasilitas::all()
+            ]);
+        }
         $this->page->setTitle('Fasilitas All');
         return view('data-entry.fasilitas.index')->with([
             'page' => $this->page,

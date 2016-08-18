@@ -57,21 +57,25 @@ class PaketController extends Controller
      */
     public function store(Requests\PaketRequest $request)
     {
-
         $paket = Paket::create($request->all());
         $paket->setSisaKuota();
         $paket->save();
         if(is_null($paket)){
             abort(500);
         }
+        $paket->fasilitas()->sync($request->input('fasilitas'));
         $agenda_count = $request->input('agenda_count');
         $arr = [];
         for($i = 1;$i<=$agenda_count;$i++){
-            $agenda = new Agenda();
-            $agenda->tempat = $request->input('tempat_agenda' .$i);
-            $agenda->description = $request->input('agenda' .$i);
-            $agenda->step_number = $i;
-            array_push($arr,$agenda);
+            $tempat = $request->input('tempat_agenda' .$i);
+            $description =  $request->input('agenda' .$i);
+            if(!is_null($tempat) && !is_null($description)){
+                $agenda = new Agenda();
+                $agenda->tempat = $tempat;
+                $agenda->description = $description;
+                $agenda->step_number = $i;
+                array_push($arr,$agenda);
+            }
         }
         $paket->agenda()->saveMany($arr);
         Session::flash('paket-registered','Telah Ditambahkan');
@@ -135,13 +139,18 @@ class PaketController extends Controller
         $paket->setSisaKuota();
         $paket->save();
         $agenda_count = $request->input('agenda_count');
+        $paket->fasilitas()->sync($request->input('fasilitas'));
         $arr = [];
         for($i = 1;$i<=$agenda_count;$i++){
-            $agenda = new Agenda();
-            $agenda->tempat = $request->input('tempat_agenda' .$i);
-            $agenda->description = $request->input('agenda' .$i);
-            $agenda->step_number = $i;
-            array_push($arr,$agenda);
+            $tempat = $request->input('tempat_agenda' .$i);
+            $description =  $request->input('agenda' .$i);
+            if(!is_null($tempat) && !is_null($description)){
+                $agenda = new Agenda();
+                $agenda->tempat = $tempat;
+                $agenda->description = $description;
+                $agenda->step_number = $i;
+                array_push($arr,$agenda);
+            }
         }
         $paket->agenda()->saveMany($arr);
         Session::flash('paket-edited','Telah Teredit');

@@ -1,62 +1,15 @@
 <div role="tabpanel" class="tab-pane" id="agenda">
     <div class="row agenda-route-map text-center">
-        <hr class="strike-line">
-        <div class="col-lg-2 map">
-            <h4 class="destination">Jakarta</h4>
+        <hr class="strike-line" ng-repeat="line in lines" ng-style="lineStyle={top: line.height, width: line.width }">
+        <div class="col-lg-2 map" ng-repeat="agenda in data">
+            <h4 class="destination">{{ agenda.tempat }}</h4>
             <div class="map-marker-dot">
                 <i class="fa fa-circle text-center"></i>
-                <div class="chevron">
+                <div class="chevron" ng-hide="$last">
                     <i class="fa fa-chevron-right"></i>
                 </div>
             </div>
-            <h5>Manasik</h5>
-        </div>
-        <div class="col-lg-2 map">
-            <h4 class="destination">Jakarta</h4>
-            <div class="map-marker-dot">
-                <i class="fa fa-circle text-center"></i>
-                <div class="chevron">
-                    <i class="fa fa-chevron-right"></i>
-                </div>
-            </div>
-            <h5>Manasik</h5>
-        </div>
-        <div class="col-lg-2 map">
-            <h4 class="destination">Jakarta</h4>
-            <div class="map-marker-dot">
-                <i class="fa fa-circle text-center"></i>
-                <div class="chevron">
-                    <i class="fa fa-chevron-right"></i>
-                </div>
-            </div>
-            <h5>Manasik</h5>
-        </div>
-        <div class="col-lg-2 map">
-            <h4 class="destination">Jakarta</h4>
-            <div class="map-marker-dot">
-                <i class="fa fa-circle text-center"></i>
-                <div class="chevron">
-                    <i class="fa fa-chevron-right"></i>
-                </div>
-            </div>
-            <h5>Manasik</h5>
-        </div>
-        <div class="col-lg-2 map">
-            <h4 class="destination">Jakarta</h4>
-            <div class="map-marker-dot">
-                <i class="fa fa-circle text-center"></i>
-                <div class="chevron">
-                    <i class="fa fa-chevron-right"></i>
-                </div>
-            </div>
-            <h5>Manasik</h5>
-        </div>
-        <div class="col-lg-2 map">
-            <h4 class="destination">Jakarta</h4>
-            <div class="map-marker-dot">
-                <i class="fa fa-circle text-center"></i>
-            </div>
-            <h5>Manasik</h5>
+            <h5>{{ agenda.description }}</h5>
         </div>
     </div>
 </div>

@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 //        $this->call(EmbarkasiTableSeeder::class);
 //        $this->call(ManasikTableSeeder::class);
 ////        $this->call(PesawatsTableSeeder::class);
-        $this->call(TerminalsTableSeeder::class);
+//        $this->call(TerminalsTableSeeder::class);
 ////        $this->call(PenerbangansTableSeeder::class);
 //        $this->call(AttachmentCategoriesTable::class);
 //        $this->call(HotelFasilitasCategoryTableSeeder::class);
@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
 ////        $this->call(HotelsTableSeeder::class);
 ////        $this->call(PenerbangansTableSeeder::class);
 //        $this->call(PaketCategoryTableSeeder::class);
+        $this->call(FasilitasTableSeeder::class);
     }
 }

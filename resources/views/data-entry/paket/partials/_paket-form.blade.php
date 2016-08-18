@@ -197,8 +197,18 @@
     </div>
 </div>
 <hr>
+<h3>Fasilitas</h3>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-group {{ $errors->has('fasilitas') ? ' has-error' : '' }}">
+            {!! Form::label('fasilitas','Fasilitas Paket') !!}
+            {!! Form::select('fasilitas[]',\App\Fasilitas::lists('name','id'),is_null($paket->fasilitas->lists('id')) ?  old('hotel_fasilitas') : $paket->fasilitas->lists('id')->all(),['class' => 'form-control','multiple','placeholder' => 'Fasilitas']) !!}
+        </div>
+    </div>
+</div>
+<hr>
 <h3>Agenda</h3>
-<input type="hidden" id="agenda_count" value="1" name="agenda_count">
+<input type="hidden" id="agenda_count" value="0" name="agenda_count">
 <div id="agenda-form">
 </div>
 <div class="row">
@@ -258,4 +268,4 @@
         }
     })
 </script>
-
+@include('partials._select2')

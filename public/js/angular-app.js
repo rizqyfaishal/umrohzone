@@ -309,6 +309,32 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
             $scope.data = data.data;
         })
     })
+    .controller('PaketAgendaDetailsController',function ($scope,PAKET_URL,Collection,$stateParams) {
+        $scope.paketId = $stateParams.paketId;
+        Collection.setUrl(PAKET_URL + $scope.paketId + '/agenda');
+        Collection.getData().then(function (res) {
+            $scope.data = res.data;
+            // console.log($scope.data);
+            var l = $scope.data.length;
+            var t = 97;
+            var i = 0;
+            var arr = [];
+            while (l>0){
+                arr[i] = {
+                    width: (l>6) ? '100%' : (l*(100/6)) + '%',
+                    height: (typeof arr[i-1] == 'undefined') ? t : arr[i-1].height + 252
+                };
+                l = l - 6;
+                i++;
+            }
+            $scope.lines = arr;
+            console.log(arr);
+            // $http.get('/fasilitas?json=true').then(function (res) {
+            //     $scope.fasilitas = res.data;
+            // })
+        });
+
+    })
     .controller('HotelFotoController', function ($scope, $stateParams, $state, Collection, PAKET_URL) {
         $scope.paketId = $stateParams.paketId;
         if ($state.current.name == 'paket-details.hotel-mekah.foto') {

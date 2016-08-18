@@ -129,7 +129,14 @@ class AngularController extends Controller
     }
 
     public function getPaketAgenda($id){
-
+        $paket = Paket::find($id);
+        if(is_null($paket)){
+            abort(404);
+        }
+        return response()->json([
+            'status' => true,
+            'data' => $paket->agenda
+        ]);
     }
 
     public function getPeketFasilitas(){
@@ -154,6 +161,17 @@ class AngularController extends Controller
             'data' => Provinsi::all()
         ]);
     }
+    public function getPaketFasilitas($id){
+        $paket = Paket::find($id);
+        if(is_null($paket)){
+            abort(404);
+        }
+        return response()->json([
+            'status' => true,
+            'data' => $paket->fasilitas
+        ]);
+    }
+
 
 
 }
