@@ -332,25 +332,19 @@
                         layanan Umrohzone.com</p>
                     <h6>Prof. Dr. Tokoh Agama</h6>
                 </div>
+                @foreach($testimonies as $testimony)
                 <div class="col-lg-4">
                     <div class="user-icon">
-                        <img src="{{ URL::asset('img/home/bu_tani_image.png') }}" alt="Testimoni Bu Tani">
+                        <img src="{{ URL::asset('img/home/tokoh_agama_image.png') }}" alt="Testimoni Tokoh Agama">
                     </div>
-                    <p>Berkat cucu saya,
-                        semua urusan umroh
-                        jadi mudah.
-                        Memang hebat dia... </p>
-                    <h6>Bu Tani Tawangmanu</h6>
+                    <p>{{$testimony->description}}</p>
+                    @if($testimony->testimoni_type == 'App/Agen')
+                    <h6>{{App\Agen::find($testimony->testimoni_id)}}</h6>
+                    @else
+                    <h6>{{App\Pemesan::find($testimony->testimoni_id)}}</h6>
+                    @endif
                 </div>
-                <div class="col-lg-4">
-                    <div class="user-icon">
-                        <img src="{{ URL::asset('img/home/pakar_komputer_image.png') }}" alt="Testimoni Pakar Komputer">
-                    </div>
-                    <p>Futuristic is
-                        when the system
-                        drive the poeple</p>
-                    <h6>Ir. Pakar Konmuter</h6>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
