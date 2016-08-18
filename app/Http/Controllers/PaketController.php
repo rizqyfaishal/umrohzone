@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Agen;
+use App\Agenda;
 use App\Helper\PageDescription;
 use App\Hotel;
 use App\Paket;
@@ -56,12 +57,23 @@ class PaketController extends Controller
      */
     public function store(Requests\PaketRequest $request)
     {
+
         $paket = Paket::create($request->all());
         $paket->setSisaKuota();
         $paket->save();
         if(is_null($paket)){
             abort(500);
         }
+        $agenda_count = $request->input('agenda_count');
+        $arr = [];
+        for($i = 1;$i<=$agenda_count;$i++){
+            $agenda = new Agenda();
+            $agenda->tempat = $request->input('tempat_agenda' .$i);
+            $agenda->description = $request->input('agenda' .$i);
+            $agenda->step_number = $i;
+            array_push($arr,$agenda);
+        }
+        $paket->agenda()->saveMany($arr);
         Session::flash('paket-registered','Telah Ditambahkan');
         return redirect(action('PaketController@index'));
     }
@@ -122,6 +134,16 @@ class PaketController extends Controller
         }
         $paket->setSisaKuota();
         $paket->save();
+        $agenda_count = $request->input('agenda_count');
+        $arr = [];
+        for($i = 1;$i<=$agenda_count;$i++){
+            $agenda = new Agenda();
+            $agenda->tempat = $request->input('tempat_agenda' .$i);
+            $agenda->description = $request->input('agenda' .$i);
+            $agenda->step_number = $i;
+            array_push($arr,$agenda);
+        }
+        $paket->agenda()->saveMany($arr);
         Session::flash('paket-edited','Telah Teredit');
 
         return redirect(action('PaketController@index'));

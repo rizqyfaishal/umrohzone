@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="form-group {{ $errors->has('waktu') ? ' has-error' : '' }}">
-            {!! Form::label('waktu','Waktu') !!}
-            {!! Form::date('waktu',old('waktu'),['class' => 'form-control','placeholder' => 'Waktu']) !!}
-            @if ($errors->has('waktu'))
+        <div class="form-group {{ $errors->has('nama') ? ' has-error' : '' }}">
+            {!! Form::label('nama','Nama Paket') !!}
+            {!! Form::text('nama',old('nama'),['class' => 'form-control','placeholder' => 'Nama Paket']) !!}
+            @if ($errors->has('nama'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('waktu') }}</strong>
+                    <strong>{{ $errors->first('nama') }}</strong>
                 </span>
             @endif
         </div>
@@ -111,9 +111,35 @@
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="form-group {{ $errors->has('waktu') ? ' has-error' : '' }}">
+            {!! Form::label('waktu','Waktu') !!}
+            {!! Form::date('waktu',old('waktu'),['class' => 'form-control','placeholder' => 'Waktu']) !!}
+            @if ($errors->has('waktu'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('waktu') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="form-group {{ $errors->has('manasik_id') ? ' has-error' : '' }}">
             {!! Form::label('manasik_id','Agenda Manasik') !!}
-            {!! Form::select('manasik_id',\App\Manasik::lists('waktu_manasik','id'),old('manasik_id'),['class' => 'form-control','placeholder' => 'Agenda Manasik']) !!}
+            <select name="manasik_id" id="manasik_id" class="form-control">
+                <option value="0" selected>Agenda Manasik</option>
+                @foreach(\App\Manasik::with('address')->get() as $manasik)
+                    @if(!is_null(old('manasik_id')))
+                        @if(old('manasik_id') == $manasik->id)
+                            <option selected value="{{ $manasik->id }}">{{ $manasik->address->full_address }} - {{ $manasik->waktu_manasik }}</option>
+                        @else
+                            <option value="{{ $manasik->id }}">{{ $manasik->address->full_address }} - {{ $manasik->waktu_manasik }}</option>
+                        @endif
+                    @else
+                        <option value="{{ $manasik->id }}">{{ $manasik->address->full_address }} - {{ $manasik->waktu_manasik }}</option>
+                    @endif
+                @endforeach
+            </select>
             @if ($errors->has('manasik_id'))
                 <span class="help-block">
                     <strong>{{ $errors->first('manasik_id') }}</strong>
@@ -137,7 +163,7 @@
     <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="form-group {{ $errors->has('penerbangan_pulang_id') ? ' has-error' : '' }}">
             {!! Form::label('penerbangan_pulang_id','Penerbangan Pulang') !!}
-            {!! Form::select('penerbangan_pulang_id',\App\Penerbangan::where('jenis_penerbangan','=',0)->lists('tanggal_berangkat','id'),old('penerbangan_pulang_id'),['class' => 'form-control','placeholder' => 'Penerbangan Pulang']) !!}
+            {!! Form::select('penerbangan_pulang_id',\App\Penerbangan::where('jenis_penerbangan','=',2)->lists('tanggal_berangkat','id'),old('penerbangan_pulang_id'),['class' => 'form-control','placeholder' => 'Penerbangan Pulang']) !!}
             @if ($errors->has('penerbangan_pulang_id'))
                 <span class="help-block">
                     <strong>{{ $errors->first('penerbangan_pulang_id') }}</strong>
@@ -172,39 +198,63 @@
 </div>
 <hr>
 <h3>Agenda</h3>
+<input type="hidden" id="agenda_count" value="1" name="agenda_count">
 <div id="agenda-form">
-    <div class="row" id="agenda-template">
-        <div class="col-lg-6 col-md-6 col-sm-12" >
-            <div class="form-group {{ $errors->has('photos') ? ' has-error' : '' }}">
-                {!! Form::label('agenda','Agenda') !!}
-                {!! Form::file('agenda[]',old('agenda'),['class' => 'form-control', 'placeholder' => 'Photo Pesawat', 'multiple']) !!}
-                @if ($errors->has('photos'))
-                    <span class="help-block">
-                    <strong>{{ $errors->first('photos') }}</strong>
-                 </span>
-                @endif
-            </div>
-        </div>
-    </div>
 </div>
 <div class="row">
     <div class="col-lg-3">
-        <button id="add-template" style="margin: 1em 0;" class="btn btn-orange" type="button"><i class="fa fa-plus">&nbsp;</i>Tambah Foto</button>
+        <button id="add-template" style="margin: 1em 0;" class="btn btn-orange" type="button"><i class="fa fa-plus">&nbsp;</i>Tambahkan Agenda</button>
     </div>
 </div>
 <script>
-    var count = 1;
+    var count = 0;
+
     var btn = $('#add-template').on('click',function () {
-        if(count <= 15){
-            var template = $('#photos-template').html();
-            var con = $('#photos-form');
-            var elem = document.createElement('div');
-            elem.className = 'col-lg-6 col-md-6 col-sm-12';
-            elem.innerHTML = template;
-            $(con).append(elem);
-            count++;
+        if(count <= 7){
+            var row = document.createElement('div');
+            row.className = 'row';
+            var col1 = document.createElement('div');
+            col1.className = 'col-lg-6 col-md-6 col-sm-12';
+            var col2 = document.createElement('div');
+            col2.className = 'col-lg-6 col-md-6 col-sm-12';
+            var fg1 = document.createElement('div');
+            fg1.className = 'form-group';
+            var fg2 = document.createElement('div');
+            fg2.className = 'form-group';
+            var label1 = document.createElement('label');
+            label1.setAttribute('for','agenda' + ++count);
+            label1.innerHTML = 'Nama Agenda';
+            var text1 = document.createElement('input');
+            text1.setAttribute('type','text');
+            text1.setAttribute('name','agenda' + count);
+            text1.setAttribute('placeholder','Nama Agenda');
+            text1.className = 'form-control agenda-name-input';
+            text1.id = 'agenda' + count;
+            fg1.appendChild(label1);
+            fg1.appendChild(text1);
+            col1.appendChild(fg1);
+            row.appendChild(col1);
+
+
+            var label2 = document.createElement('label');
+            label2.setAttribute('for','tempat_agenda' + count);
+            label2.innerHTML = 'Tempat Agenda';
+            var text2 = document.createElement('input');
+            text2.setAttribute('type','text');
+            text2.setAttribute('name','tempat_agenda' + count);
+            text2.setAttribute('placeholder','Tempat Agenda');
+            text2.className = 'form-control agenda-address-input';
+            text2.id = 'agenda' + count;
+
+            fg2.appendChild(label2);
+            fg2.appendChild(text2);
+            col2.appendChild(fg2);
+            row.appendChild(col2);
+
+            $('#agenda-form').append(row);
+            $('#agenda_count').val(count);
         } else {
-            alert('Photo tidak boleh lebih dari 16');
+            alert('Agenda tidak boleh lebih dari 7');
         }
     })
 </script>
