@@ -121,6 +121,7 @@ Route::resource('rekening','RekeningController');
 Route::get('/attachments/all','AttachmentController@index');
 Route::get('/list-paket','PageController@listPakets');
 Route::get('/q','PageController@getListPaketRedirect');
+Route::delete('/d/{hashcode}','AttachmentController@delete');
 
 Route::group(['prefix' => 'api'],function (){
     Route::get('/token','AngularController@getToken');

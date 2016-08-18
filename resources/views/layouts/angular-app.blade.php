@@ -7,6 +7,8 @@
     @yield('hash_id_paket')
     <meta name="keyword" content="{{ $page->getKeyword() }}">
     <meta name="author" content="{{ $page->getAuthor() }}">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=0.9, maximum-scale=0.9, minimum-scale=0.9">
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-theme.min.css') }}">

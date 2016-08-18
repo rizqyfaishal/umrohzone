@@ -24,6 +24,7 @@ class PaketRequest extends Request
     public function rules()
     {
         return [
+            'nama' => 'required',
             'harga' => 'required',
             'waktu' => 'required|date',
             'durasi' => 'required',

@@ -64,7 +64,7 @@
 }
 
 .hotel-icon .rating.mekah {
-    left: 52px;
+    left: 34px;
 }
 
 .hotel-icon .rating.madinah {
@@ -599,7 +599,7 @@ footer a{
 .agenda-route-map hr.strike-line {
     width: 92%;
     left: 4%;
-    top: 55px;
+    top: 63px;
     background-color: #eedd26;
     border-color: #eedd26;
     position: absolute;
@@ -830,6 +830,11 @@ ul.feature-function li select
     color: #939393;
     background-color: #cecece;
     padding: 1em;
+}
+
+.pesawat-details h5 {
+    color: #0f0f0f;
+    font-weight: bold;
 }
 .modal-body .bottom-bordered {
     border-bottom: 1px solid #e5e5e5;

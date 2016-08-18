@@ -12,7 +12,6 @@ class Paket extends Model
         'agen_id','penerbangan_berangkat_id','penerbangan_pulang_id','embarkasi_id','paket_category_id'
     ];
 
-
     protected $dates = ['delete_at'];
 
     protected $table = 'paket';
@@ -32,9 +31,13 @@ class Paket extends Model
         'embarkasi_id',
         'paket_category_id',
         'penerbangan_berangkat_id',
-        'penerbangan_pulang_id'
+        'penerbangan_pulang_id',
+        'nama'
     ];
 
+    public function agenda(){
+        return $this->hasMany('App\Agenda','paket_id');
+    }
     public function penerbanganBerangkat(){
         return $this->belongsTo('App\Penerbangan','penerbangan_berangkat_id');
     }

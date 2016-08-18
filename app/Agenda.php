@@ -10,5 +10,8 @@ class Agenda extends Model
     use SoftDeletes;
     protected $dates = ['delete_at'];
 
+    public function paket(){
+        return $this->belongsTo('App\Paket','paket_id');
+    }
 
 }

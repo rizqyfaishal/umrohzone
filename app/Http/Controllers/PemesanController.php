@@ -57,8 +57,7 @@ class PemesanController extends Controller
         $paket = Paket::find($request->input('paket_id'));
         $paket->setSisaKuota();
         $paket->save();
-        $hashids = new Hashids(env('RECAPTCHA_PRIVATE_KEY'), 9, '6LfAkSYTAAAAACIlI9fTob3-UmJBFyRo9y9w7y0F
-RECAPTCHA_PRIVATE_KEY=6LfAkSYTAAAAAFeKL4KvHOd3z0fIAfNnWr6EgkCh');
+        $hashids = new Hashids(env('RECAPTCHA_PRIVATE_KEY'), 9, 'abcdefghijlmnopqwrstuvwxyzABCKSJASAKNAKS1234567890');
         return redirect(action('PemesanController@isiDataJamaah', $hashids->encode($request->input('paket_id'))));
     }
 

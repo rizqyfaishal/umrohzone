@@ -157,7 +157,7 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
             })
             .state('paket-details.home.agenda', {
                 url: '/agenda',
-                templateUrl: 'templates/persyaratan.html',
+                templateUrl: 'templates/agenda.html',
                 controller: 'PaketAgendaDetailsController'
             })
             .state('paket-details.home.fasilitas', {
@@ -365,8 +365,8 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
         Collection.setUrl(PAKET_URL + $scope.paketId + '/hotelMekah');
         Collection.getData().then(function (data) {
             $scope.data = data.data;
-            $scope.data.address.google_map_url = $sce.trustAsResourceUrl(data.address.google_map_url);
-            console.log($scope.data);
+            $scope.data.address.google_map_url = $sce.trustAsResourceUrl($scope.data.address.google_map_url);
+            console.log($sce.trustAsResourceUrl($scope.data.address.google_map_url));
         });
         $scope.changeTabs = function (url) {
             $location.path('/paket/' + $scope.id + '/hotel-mekah/' + url);

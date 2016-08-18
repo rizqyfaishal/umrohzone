@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateTablePaket4 extends Migration
+class UpdateTableAgenda extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,8 @@ class UpdateTablePaket4 extends Migration
      */
     public function up()
     {
-        Schema::table('paket', function (Blueprint $table) {
-            $table->integer('sisa_kuota');
-            $table->string('nama');
+        Schema::table('agendas', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -25,9 +24,8 @@ class UpdateTablePaket4 extends Migration
      */
     public function down()
     {
-        Schema::table('paket', function (Blueprint $table) {
-            $table->dropColumn('nama');
-            $table->dropColumn('sisa_kuota');
+        Schema::table('agendas', function (Blueprint $table) {
+            $table->dropColumn('delete_at');
         });
     }
 }

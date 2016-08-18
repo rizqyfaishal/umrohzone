@@ -135,6 +135,13 @@ class PesawatController extends Controller
         if(!is_null($file)){
             $pesawat->attachments()->save($this->saveFile($file,1));
         }
+        if($request->hasFile('photos')){
+            $photos = $request->file('photos');
+            foreach ($photos as $photo){
+                $file = $this->saveFile($photo,4);
+                $pesawat->attachments()->save($file);
+            }
+        }
         Session::flash('pesawat-edited','Pesawat telah di edit');
         return redirect(action('PesawatController@index'));
     }
