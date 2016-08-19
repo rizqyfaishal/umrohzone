@@ -21,56 +21,76 @@ class PageController extends Controller
 {
 
 
-    public function __construct(PageDescription $pageDescription){
+    public function __construct(PageDescription $pageDescription)
+    {
         $this->page = $pageDescription;
-        $this->middleware('guest',['only' => ['login']]);
-        $this->middleware('auth-pemesan',['only'=> ['dashboardUser','dashboardAgent']]);
+        $this->middleware('guest', ['only' => ['login']]);
+        $this->middleware('auth-pemesan', ['only' => ['dashboardUser', 'dashboardAgent']]);
 
     }
 
-    public function index(){
+    public function index()
+    {
         $this->page->setTitle('Home');
-        $testimonies = Testimoni::where('chosen','1')->get();
-        $promos = Promo::whereMonth('due_date','=',Carbon::today()->month)->get();
-        $pakets =array();
-        foreach($promos as $promo)  {
-            array_push($pakets,Paket::find($promo->paket_id));
+        $testimonies = Testimoni::where('chosen', '1')->get();
+        $promos = Promo::whereMonth('due_date', '=', Carbon::today()->month)->get();
+        $paket_prices = Paket::whereDate('waktu', '>=', (Carbon::today()->subDays(9)))
+            ->whereDate('waktu', '<=', (Carbon::today()->addDays(9)))
+            ->get();
+        $prices = array();
+        foreach ($paket_prices as $paket) {
+            if (empty($prices)) array_push($prices, $paket);
+            else {
+                if (($end = (end($prices)->waktu)) == $paket->waktu) {
+                    if ($end->harga > $paket->harga) {
+                        array_push(array_pop($prices), $paket);
+                    }
+                } else array_push($prices, $paket);
+            }
+        }
+        $prices = json_encode($prices);
+        $pakets = array();
+        foreach ($promos as $promo) {
+            array_push($pakets, Paket::find($promo->paket_id));
         }
         return view('index')->with([
-            'page' => $this->page, 'testimonies' => $testimonies, 'promos' => $promos->toArray(), 'pakets'=>$pakets
+            'page' => $this->page, 'testimonies' => $testimonies, 'promos' => $promos->toArray(), 'pakets' => $pakets, 'prices' => $prices
         ]);
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
         return Auth::user();
     }
 
-    public function bookingStatus(){
+    public function bookingStatus()
+    {
         $this->page->setTitle('Booking Status');
         $phone = Input::get('booking_status_phone_number');
         $id = Input::get('booking_status_code');
-        if($phone == '' && $id == '')
+        if ($phone == '' && $id == '')
             $bookings = Booking::get();
-        else if($phone != '')   {
-            $user = User::where('phone','=',$phone)->get();
-            $bookings = Booking::where('user_id','=',$user->id)->get();
-        }
-        else
-            $bookings = Booking::where('id','=',$id)->get();
+        else if ($phone != '') {
+            $user = User::where('phone', '=', $phone)->get();
+            $bookings = Booking::where('user_id', '=', $user->id)->get();
+        } else
+            $bookings = Booking::where('id', '=', $id)->get();
 
         return view('booking-status')->with([
-            'page' => $this->page,'bookings'=>$bookings
+            'page' => $this->page, 'bookings' => $bookings
         ]);
     }
 
-    public function features(){
+    public function features()
+    {
         $this->page->setTitle('Features');
         return view('features')->with([
             'page' => $this->page
         ]);
     }
 
-    public function login(){
+    public function login()
+    {
         $this->page->setTitle('Login');
         return view('login')->with([
             'page' => $this->page
@@ -78,8 +98,9 @@ class PageController extends Controller
     }
 
 
-    public function getRegencies($id){
-        $res = Provinsi::where('id','=',$id)->first();
+    public function getRegencies($id)
+    {
+        $res = Provinsi::where('id', '=', $id)->first();
         $res = $res->regencies()->get();
         return response()->json([
             'status' => true,
@@ -96,93 +117,105 @@ class PageController extends Controller
 
 
     //di bawah ini tambahan luthfi dashboard
-    public function dashboardAgent(){
+    public function dashboardAgent()
+    {
         $this->page->setTitle('Dashboard Travel Agent');
         return view('dashboard-agent')->with([
             'page' => $this->page
         ]);
     }
 
-    public function dashboardAgentInfoAkun(){
+    public function dashboardAgentInfoAkun()
+    {
         $this->page->setTitle('Dashboard Travel Agent');
         return view('dashboard-agent-infoakun')->with([
             'page' => $this->page
         ]);
     }
 
-    public function dashboardAgentDaftarPaket(){
+    public function dashboardAgentDaftarPaket()
+    {
         $this->page->setTitle('Dashboard Travel Agent');
         return view('dashboard-agent-daftarpaket')->with([
             'page' => $this->page
         ]);
     }
 
-    public function dashboardAgentBuatPaket(){
+    public function dashboardAgentBuatPaket()
+    {
         $this->page->setTitle('Dashboard Travel Agent');
-        $agen = Agen::where('id',Auth::user()->user_id)->first();
+        $agen = Agen::where('id', Auth::user()->user_id)->first();
         return view('dashboard-agent-buatpaket')->with([
             'page' => $this->page, 'agen' => $agen
         ]);
     }
 
-    public function dashboardAgentEditPaket(){
+    public function dashboardAgentEditPaket()
+    {
         $this->page->setTitle('Dashboard Travel Agent');
         return view('dashboard/_dashboard-base-agent-editpaket')->with([
             'page' => $this->page
         ]);
     }
 
-    public function dashboardAgentDaftarPemesan(){
+    public function dashboardAgentDaftarPemesan()
+    {
         $this->page->setTitle('Dashboard Travel Agent');
         return view('dashboard-agent-daftarpemesan')->with([
             'page' => $this->page
         ]);
     }
 
-    public function dashboardUser(){
+    public function dashboardUser()
+    {
         $this->page->setTitle('Dashboard Calon Jamaah');
         return view('dashboard-user')->with([
             'page' => $this->page
         ]);
     }
 
-    public function dashboardUserInfoAkun(){
+    public function dashboardUserInfoAkun()
+    {
         $this->page->setTitle('Dashboard Calon Jamaah');
         return view('dashboard/_dashboard-base-user-infoakun')->with([
             'page' => $this->page
         ]);
     }
 
-    public function dashboardUserBooking(){
+    public function dashboardUserBooking()
+    {
         $this->page->setTitle('Dashboard Calon Jamaah');
         return view('dashboard/_dashboard-base-user-booking')->with([
             'page' => $this->page
         ]);
     }
+
     // end of tambahan luthfi dashboard
 
 
-    public function listPakets(){
+    public function listPakets()
+    {
         $this->page->setTitle('List of all paket');
         return view('paket.index')->with([
             'page' => $this->page
         ]);
     }
 
-    public function getListPaketRedirect(Requests\ListPaketQueryRequest $request){
-        $date = Carbon::createFromFormat('d/m/Y',$request->query('tanggal_keberangkatan'));
-        if($request->query('flexible_date')){
+    public function getListPaketRedirect(Requests\ListPaketQueryRequest $request)
+    {
+        $date = Carbon::createFromFormat('d/m/Y', $request->query('tanggal_keberangkatan'));
+        if ($request->query('flexible_date')) {
             return redirect('/list-paket#/1?jumlah_jamaah='
-                . $request->query('jumlah_jamaah').'&embarkasi='.$request->query('embarkasi')
-                .'&flexible_date='.$request->query('flexible_date').'&tanggal_keberangkatan=' . $date->toDateString());
+                . $request->query('jumlah_jamaah') . '&embarkasi=' . $request->query('embarkasi')
+                . '&flexible_date=' . $request->query('flexible_date') . '&tanggal_keberangkatan=' . $date->toDateString());
         }
         return redirect('/list-paket#/1?jumlah_jamaah=' .
-            $request->query('jumlah_jamaah').'&embarkasi='.$request->query('embarkasi')
-            .'&tanggal_keberangkatan='.$date->toDateString()
-            .(!is_null($request->query('hotel_mekah')) ? '&hotel_mekah=' . $request->query('hotel_mekah') : '')
-            .'&flexible_date=0'
-            .(!is_null($request->query('hotel_madinah')) ? '&hotel_madinah=' . $request->query('hotel_madinah') : ''));
+            $request->query('jumlah_jamaah') . '&embarkasi=' . $request->query('embarkasi')
+            . '&tanggal_keberangkatan=' . $date->toDateString()
+            . (!is_null($request->query('hotel_mekah')) ? '&hotel_mekah=' . $request->query('hotel_mekah') : '')
+            . '&flexible_date=0'
+            . (!is_null($request->query('hotel_madinah')) ? '&hotel_madinah=' . $request->query('hotel_madinah') : ''));
 
     }
-    
+
 }
