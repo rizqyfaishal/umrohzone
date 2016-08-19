@@ -153,5 +153,6 @@ Route::group(['prefix' => 'api'],function (){
 
 Route::get('p/{hashcode}','AttachmentController@get');
 Route::get('/{id}/isi-data-jamaah','PemesanController@isiDataJamaah');
+Route::post('/{id}/isi-data-jamaah','PemesanController@isiDataJamaahPost');
 Route::post('pemesan-store-paket','PemesanController@registerPemesan');
 Route::get('getUserData','PemesanController@getInformation');

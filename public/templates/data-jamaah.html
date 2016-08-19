@@ -87,8 +87,9 @@
                         </div>
                     </div>
                     <div class="data-pemesan-form-field-2">
-                        <form action="" novalidate name="jamaahForm" class="data-jamaah-form">
-                            <input type="hidden" ng-attr-value="{{ count }}">
+                        <form action="" method="POST" novalidate name="jamaahForm" class="data-jamaah-form">
+                            <input type="hidden" name="count" ng-attr-value="{{ count }}">
+                            <input type="hidden" name="_token" ng-attr-value="{{ token }}">
                             <div class="tabs">
                                 <div>
                                     <!-- Nav tabs -->

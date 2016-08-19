@@ -23,6 +23,13 @@ var app = angular.module('app',['ui.router'])
             });
         $urlRouterProvider.otherwise('/');
     })
+    .factory('Token', function ($q, $http) {
+        var defer = $q.defer();
+        $http.get('/api/token').then(function (res) {
+            defer.resolve(res.data);
+        });
+        return defer.promise;
+    })
     .factory('Currency',function ($q, $http) {
         var defer = $q.defer();
         $http.get('http://api.fixer.io/latest?base=USD&symbols=USD,IDR').then(function (res) {
@@ -66,7 +73,10 @@ var app = angular.module('app',['ui.router'])
         };
         return this;
     })
-    .controller('HomeController',function ($scope,User,Paket,USER_API_URL,$http,Month,$location) {
+    .controller('HomeController',function (Token,$scope,User,Paket,USER_API_URL,$http,Month,$location) {
+        Token.then(function (res) {
+            $scope.token = res.data;
+        })
         $scope.daftarJamaah = [];
         $scope.tambahJamaah = function () {
             if($scope.count >= 4){

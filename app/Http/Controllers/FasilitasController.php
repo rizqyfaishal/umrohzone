@@ -14,7 +14,7 @@ class FasilitasController extends Controller
     public function __construct(PageDescription $page)
     {
         $this->page = $page;
-        $this->middleware('auth-admin');
+        $this->middleware('auth-admin',['except' => ['index']]);
     }
 
     /**

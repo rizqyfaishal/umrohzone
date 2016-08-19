@@ -23,13 +23,6 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
         'November',
         'Desember'
     ])
-    .factory('Token', function ($q, $http) {
-        var defer = $q.defer();
-        $http.get('/api/token').then(function (res) {
-            defer.resolve(res.data);
-        });
-        return defer.promise;
-    })
     .factory('Currency', function ($q, $http) {
         var defer = $q.defer();
         this.date = null;

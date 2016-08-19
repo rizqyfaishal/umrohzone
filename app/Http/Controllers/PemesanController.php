@@ -7,9 +7,8 @@ use App\Helper\RegistersUsers;
 use App\Paket;
 use App\Pemesan;
 use Hashids\Hashids;
-use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -63,6 +62,20 @@ class PemesanController extends Controller
 
     public function isiDataJamaah($id)
     {
+        $hashids = new Hashids(env('RECAPTCHA_PRIVATE_KEY'), 9, 'abcdefghijlmnopqwrstuvwxyzABCKSJASAKNAKS1234567890');
+        if (!$hashids->decode($id)) {
+            abort(404);
+        }
+        $this->page->setTitle('Isi data jamaah');
+        return view('pemesan.data-jamaah')->with([
+            'page' => $this->page,
+            'hash_id_paket' => $id
+        ]);
+    }
+
+    public function isiDataJamaahPost($id,Request $request)
+    {
+        dd($request);
         $hashids = new Hashids(env('RECAPTCHA_PRIVATE_KEY'), 9, 'abcdefghijlmnopqwrstuvwxyzABCKSJASAKNAKS1234567890');
         if (!$hashids->decode($id)) {
             abort(404);
