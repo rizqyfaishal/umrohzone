@@ -517,14 +517,22 @@
     </script>
 @endsection
 
-@include('angular._script')
 @section('additional-script')
     <script src="{{ URL::asset('js/node_modules/chart.js/dist/Chart.min.js') }}"></script>
-    <script src="{{ URL::asset('js/node_modules/angular-chart.js/angular-chart.min.js') }}"></script>
     <script>
+        var json = '{!!$prices!!}';
+        console.log(json);
+        json = JSON.parse(json.trim());
+        console.log(json);
         var ctx = $("#myChart");
+        var labels = [];
+        var data = [];
+        for (var i = 0; i < json.length; i++)    {
+            labels.push(json[i].waktu);
+            data.push(json[i].harga);
+        }
         var data = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels: labels,
             datasets: [
                 {
                     label: "My First dataset",
@@ -545,7 +553,7 @@
                         'rgba(255, 159, 64, 1)'
                     ],
                     borderWidth: 1,
-                    data: [65, 59, 80, 81, 56, 55, 40]
+                    data: data
                 }
             ]
         };
