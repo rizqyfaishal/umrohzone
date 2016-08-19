@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Agen;
 use App\Helper\PageDescription;
 use App\Paket;
+use App\Promo;
 use App\Provinsi;
 use App\Booking;
 use App\Testimoni;
@@ -30,8 +31,13 @@ class PageController extends Controller
     public function index(){
         $this->page->setTitle('Home');
         $testimonies = Testimoni::where('chosen','1')->get();
+        $promos = Promo::whereMonth('due_date','=',Carbon::today()->month)->get();
+        $pakets =array();
+        foreach($promos as $promo)  {
+            array_push($pakets,Paket::find($promo->paket_id));
+        }
         return view('index')->with([
-            'page' => $this->page, 'testimonies' => $testimonies
+            'page' => $this->page, 'testimonies' => $testimonies, 'promos' => $promos->toArray(), 'pakets'=>$pakets
         ]);
     }
 
