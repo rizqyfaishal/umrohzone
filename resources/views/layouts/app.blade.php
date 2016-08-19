@@ -51,6 +51,8 @@
     <link rel="stylesheet" href="{{ URL::asset('css/slick-theme.css') }}">
     <link rel="shortcut icon" href="{{ URL::asset('img/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ URL::asset('img/favicon.ico') }}" type="image/x-icon">
+
+    <script src="{{ URL::asset('js/jquery-2.2.1.min.js') }}"></script>
     @yield('angular-css')
     @yield('angular-js')
     @yield('data-tables-css')
@@ -62,7 +64,6 @@
     {{--docs nya ada di sini : http://www.eyecon.ro/bootstrap-datepicker/#--}}
     <link rel="stylesheet" href="{{ URL::asset('css/datepicker.css') }}">
 
-    <script src="{{ URL::asset('js/jquery-2.2.1.min.js') }}"></script>
     @yield('date-time-picker')
 </head>
 <body>

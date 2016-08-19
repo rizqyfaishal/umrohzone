@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
     <div class="intro-header">
         <div class="container">
@@ -57,7 +56,7 @@
                     <ul class="nav nav-pills">
                         <li class="active">
                             <a data-toggle="pill" href="#regular">
-                                <i class="fa fa-bus" ></i></a>
+                                <i class="fa fa-bus"></i></a>
                             <span>Regular</span>
                         </li>
                         <li>
@@ -97,10 +96,12 @@
                     <p>Swissotel Mecca
                         Hyatt Medina
                         Garuda CGK-JED</p>
+
                     <p>
                         <span class="price discount">$2.050</span>
                         <span class="price">$2000</span>
                     </p>
+
                     <p>
                         <span class="price message">Pesan s/d juli 2016</span>
                     </p>
@@ -109,10 +110,12 @@
                     <p>Swissotel Mecca
                         Hyatt Medina
                         Garuda CGK-JED</p>
+
                     <p>
                         <span class="price discount">$2.050</span>
                         <span class="price">$2000</span>
                     </p>
+
                     <p>
                         <span class="price message">Pesan s/d juli 2016</span>
                     </p>
@@ -121,10 +124,12 @@
                     <p>Swissotel Mecca
                         Hyatt Medina
                         Garuda CGK-JED</p>
+
                     <p>
                         <span class="price discount">$2.050</span>
                         <span class="price">$2000</span>
                     </p>
+
                     <p>
                         <span class="price message">Pesan s/d juli 2016</span>
                     </p>
@@ -133,10 +138,12 @@
                     <p>Swissotel Mecca
                         Hyatt Medina
                         Garuda CGK-JED</p>
+
                     <p>
                         <span class="price discount">$2.050</span>
                         <span class="price">$2000</span>
                     </p>
+
                     <p>
                         <span class="price message">Pesan s/d juli 2016</span>
                     </p>
@@ -202,18 +209,30 @@
                 <div class="col-lg-12">
                     <h3 class="text-center"> Kapan harga paket Umroh termurah ?</h3>
                     <br>
+
                     <div class="row">
-                        <h4 class="text-left"><img src="img/home/listordericon.png"/> Indicates cheapest package in this frame | Price range $2130 to 3150</h4>
-                        <div class="col-sm-9"><img src="img/home/statistic_image.jpg" style="width:100%; height:100%;"/></div>
-                        <div class="col-sm-3"><img src="img/home/pilih_hijau.png" style="width:100%; height:100%;"/> </div>
+                        <h4 class="text-left"><img src="img/home/listordericon.png"/> Indicates cheapest package in this
+                            frame | Price range $2130 to 3150</h4>
+
+                        <div class="col-sm-9"><img src="img/home/statistic_image.jpg" style="width:100%; height:100%;"/>
+                        </div>
+                        <div class="col-sm-3"><img src="img/home/pilih_hijau.png" style="width:100%; height:100%;"/>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-app="app">
+                        <canvas id="myChart" width="100" height="100"></canvas>
                     </div>
                     <br><br><br>
+
                     <div class="row">
                         <div class="col-lg-12">
                             <iframe id="forecast_embed" type="text/html" frameborder="0" height="245"
-                                    width="100%" src="http://forecast.io/embed/#lat=21.389082&lon=-39.8579123&name=Mecca"> </iframe>
+                                    width="100%"
+                                    src="http://forecast.io/embed/#lat=21.389082&lon=-39.8579123&name=Mecca"></iframe>
                         </div>
                     </div>
+
 
                 </div>
             </div>
@@ -223,17 +242,20 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-8 text-right">
-                    <h4 class="section-heading">Anda mau paket CUSTOMISE ? atau info PROMO ? Call <a href="tel:0800-1453-000"><span class="phone">0800-1453-000</span></a> atau tulis</h4>
+                    <h4 class="section-heading">Anda mau paket CUSTOMISE ? atau info PROMO ? Call <a
+                                href="tel:0800-1453-000"><span class="phone">0800-1453-000</span></a> atau tulis</h4>
                 </div>
                 <div class="col-lg-4">
                     <div class="input-group">
                         {{Form::open(array('action'=>'PageController@index','id'=>'customise'))}}
-                              <span class="input-group-btn">
-                                  <input type="text" class="form-control" placeholder="Nomor HP atau Email" id="customise-contact">
+                        <span class="input-group-btn">
+                                  <input type="text" class="form-control" placeholder="Nomor HP atau Email"
+                                         id="customise-contact">
                                   <button class="btn btn-orange" type="button" onclick="tempcheck()">Go!</button>
                               </span>
                         {{Form::close()}}
-                    </div><!-- /input-group -->
+                    </div>
+                    <!-- /input-group -->
                 </div>
             </div>
         </div>
@@ -254,6 +276,7 @@
                             <img src="{{ URL::asset('img/home/fast_simple_icon.png') }}" alt="Fast Simple">
                         </div>
                         <h4 class="text-center">Fast & Simple</h4>
+
                         <p class="text-center">Umrohzone.com menghimpun
                             ratusan paket dari
                             travel agen diseluruh
@@ -267,6 +290,7 @@
                             <img src="{{ URL::asset('img/home/cheap_icon.png') }}" alt="Cheaper">
                         </div>
                         <h4 class="text-center">Cheaper</h4>
+
                         <p class="text-center">Kami jamin Anda
                             mendapat harga terbaik
                             karena seluruh paket berasal
@@ -280,7 +304,8 @@
                             <img src="{{ URL::asset('img/home/trusted_icon.png') }}" alt="Trusted">
                         </div>
                         <h4 class="text-center">Trusted
-                           </h4>
+                        </h4>
+
                         <p class="text-center"> Umrohzone.com telah
                             dilengkapi dengan
                             keamanan data (SSL)
@@ -294,6 +319,7 @@
                             <img src="{{ URL::asset('img/home/no_hidden_cost_icon.png') }}" alt="No Hidden Cost">
                         </div>
                         <h4 class="text-center">No Hidden Cost</h4>
+
                         <p class="text-center">
                             Seluruh harga adalah final,
                             selesai didepan dan telah
@@ -309,6 +335,7 @@
                             <img src="{{ URL::asset('img/home/24-7-icon.png') }}" alt="24 Jam">
                         </div>
                         <h4 class="text-center">24 / 7</h4>
+
                         <p class="text-center">
                             Kami layani Anda
                             setiap hari
@@ -333,17 +360,17 @@
                     <h6>Prof. Dr. Tokoh Agama</h6>
                 </div>
                 @foreach($testimonies as $testimony)
-                <div class="col-lg-4">
-                    <div class="user-icon">
-                        <img src="{{ URL::asset('img/home/tokoh_agama_image.png') }}" alt="Testimoni Tokoh Agama">
+                    <div class="col-lg-4">
+                        <div class="user-icon">
+                            <img src="{{ URL::asset('img/home/tokoh_agama_image.png') }}" alt="Testimoni Tokoh Agama">
+                        </div>
+                        <p>{{$testimony->description}}</p>
+                        @if($testimony->testimoni_type == 'App/Agen')
+                            <h6>{{App\Agen::find($testimony->testimoni_id)}}</h6>
+                        @else
+                            <h6>{{App\Pemesan::find($testimony->testimoni_id)}}</h6>
+                        @endif
                     </div>
-                    <p>{{$testimony->description}}</p>
-                    @if($testimony->testimoni_type == 'App/Agen')
-                    <h6>{{App\Agen::find($testimony->testimoni_id)}}</h6>
-                    @else
-                    <h6>{{App\Pemesan::find($testimony->testimoni_id)}}</h6>
-                    @endif
-                </div>
                 @endforeach
             </div>
         </div>
@@ -384,24 +411,30 @@
                         <img src="img/home/appstore.png" style="height: 50px; float: right;"/>
                     </div>
                     <br><br>
+
                     <div class="row">
 
                         <p style="color: black;" class="text-right">
                             Kantor kami:
                         </p>
+
                         <p style="margin:0;padding:0;color: black;" class="text-right">
                             Ruko PPG Widya Kartika
                         </p>
+
                         <p style="margin:0;padding:0;color: black;" class="text-right">
                             Mulyosari No. 156 Surabaya
                         </p>
+
                         <p style="color: black;" class="text-right">
                             INDONESIA 60113
                         </p>
                         <br>
+
                         <p style="margin:0;padding:0;color: black;" class="text-right">
                             0800 123 4122
                         </p>
+
                         <p style="color: black;" class="text-right">
                             webmaster@umrohzone.com
                         </p>
@@ -409,31 +442,32 @@
                     </div>
                     <div class="row">
 
-                            <a target="_blank" href="https://www.google.co.id/maps/place/Jl.+Raya+Mulyosari+No.156,+Kalisari,+Mulyorejo,+Kota+SBY,+Jawa+Timur+60112/@-7.2636668,112.7998047,17.75z/data=!4m5!3m4!1s0x2dd7f9f62b500691:0x65c92c9f51a22ba4!8m2!3d-7.263846!4d112.7956096?hl=en">
-                                <img src="img/home/peta.jpg" style="width: 100%;"/>
-                            </a>
-                            <br><br>
-                            <img src="img/home/sosmed.jpg" style="width: 50%;float:right;"/>
+                        <a target="_blank"
+                           href="https://www.google.co.id/maps/place/Jl.+Raya+Mulyosari+No.156,+Kalisari,+Mulyorejo,+Kota+SBY,+Jawa+Timur+60112/@-7.2636668,112.7998047,17.75z/data=!4m5!3m4!1s0x2dd7f9f62b500691:0x65c92c9f51a22ba4!8m2!3d-7.263846!4d112.7956096?hl=en">
+                            <img src="img/home/peta.jpg" style="width: 100%;"/>
+                        </a>
+                        <br><br>
+                        <img src="img/home/sosmed.jpg" style="width: 50%;float:right;"/>
                     </div>
                 </div>
                 {{--<div class="col-lg-6">--}}
-                    {{--<h2 class="green">Hubungi Kami : </h2>--}}
+                {{--<h2 class="green">Hubungi Kami : </h2>--}}
                 {{--</div>--}}
                 {{--<div class="col-lg-4">--}}
-                    {{--<ul class="list-inline banner-social-buttons">--}}
-                        {{--<li>--}}
-                            {{--<a href="https://twitter.com/umrohzone" class="btn btn-orange btn-lg">--}}
-                                {{--<i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<a href="http://www.fb.com/umrohzone" class="btn btn-orange btn-lg">--}}
-                                {{--<i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<a href="#" class="btn btn-orange btn-lg"><i class="fa fa-instagram fa-fw">--}}
-                                {{--</i> <span class="network-name">Instagram</span></a>--}}
-                        {{--</li>--}}
-                    {{--</ul>--}}
+                {{--<ul class="list-inline banner-social-buttons">--}}
+                {{--<li>--}}
+                {{--<a href="https://twitter.com/umrohzone" class="btn btn-orange btn-lg">--}}
+                {{--<i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                {{--<a href="http://www.fb.com/umrohzone" class="btn btn-orange btn-lg">--}}
+                {{--<i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                {{--<a href="#" class="btn btn-orange btn-lg"><i class="fa fa-instagram fa-fw">--}}
+                {{--</i> <span class="network-name">Instagram</span></a>--}}
+                {{--</li>--}}
+                {{--</ul>--}}
                 {{--</div>--}}
             </div>
         </div>
@@ -442,14 +476,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Sistem SMS belum berjalan. Silakan input email.</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div><!-- /.modal -->
 @endsection
 @section('date-picker')
@@ -472,14 +509,55 @@
         });
         function tempcheck() {
             var data = document.getElementById('customise-contact').value;
-            if(!isNaN(data))
+            if (!isNaN(data))
                 $('#customise-modal').modal('show');
             else
                 document.getElementById('customise').submit();
         }
     </script>
 @endsection
+
+@include('angular._script')
 @section('additional-script')
     <script src="{{ URL::asset('js/node_modules/chart.js/dist/Chart.min.js') }}"></script>
-    <script src="{{ URL::asset('js/node_modules/angular-chart.js/dist/angular-chart.min.js') }}"></script>
+    <script src="{{ URL::asset('js/node_modules/angular-chart.js/angular-chart.min.js') }}"></script>
+    <script>
+        var ctx = $("#myChart");
+        var data = {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [
+                {
+                    label: "My First dataset",
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                    data: [65, 59, 80, 81, 56, 55, 40]
+                }
+            ]
+        };
+        var options ={
+            responsive: true
+        };
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+
+
+    </script>
 @endsection
