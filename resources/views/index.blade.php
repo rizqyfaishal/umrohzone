@@ -90,57 +90,232 @@
                 <div class="col-lg-12 text-center">
                     <h3>Promo Umroh Bulan Ini!</h3>
                 </div>
-                <hr>
             </div>
+            <br><br><br>
             <div class="row">
-                <div class="col-sm-3">
-                    <p>Swissotel Mecca
-                        Hyatt Medina
-                        Garuda CGK-JED</p>
-                    <p>
-                        <span class="price discount">$2.050</span>
-                        <span class="price">$2000</span>
-                    </p>
-                    <p>
-                        <span class="price message">Pesan s/d juli 2016</span>
-                    </p>
+
+                <div class="promo-slick slider-slick">
+                    <a href="http://www.facebook.com">
+                        <div>
+                            <p>
+                                Swissotel Mecca
+                                Hyatt Medina
+                                Garuda CGK-JED
+                            </p>
+                            <p>
+                                <span class="price discount">$2.050</span>
+                                <span class="price">$2000</span>
+                            </p>
+                            <p>
+                                <span class="price message">Pesan s/d juli 2016</span>
+                            </p>
+
+
+                            <!-- <img src="http://placehold.it/350x300?text=1"> -->
+                        </div>
+                    </a>
+                    <a href="http://www.facebook.com">
+                        <div>
+                            <p>
+                                Swissotel Mecca
+                                Hyatt Medina
+                                Garuda CGK-JED
+                            </p>
+                            <p>
+                                <span class="price discount">$2.050</span>
+                                <span class="price">$2000</span>
+                            </p>
+                            <p>
+                                <span class="price message">Pesan s/d juli 2016</span>
+                            </p>
+
+
+                            <!-- <img src="http://placehold.it/350x300?text=1"> -->
+                        </div>
+                    </a>
+                    <a href="http://www.facebook.com">
+                        <div>
+                            <p>
+                                Swissotel Mecca
+                                Hyatt Medina
+                                Garuda CGK-JED
+                            </p>
+                            <p>
+                                <span class="price discount">$2.050</span>
+                                <span class="price">$2000</span>
+                            </p>
+                            <p>
+                                <span class="price message">Pesan s/d juli 2016</span>
+                            </p>
+
+
+                            <!-- <img src="http://placehold.it/350x300?text=1"> -->
+                        </div>
+                    </a>
+                    <a href="http://www.facebook.com">
+                        <div>
+                            <p>
+                                Swissotel Mecca
+                                Hyatt Medina
+                                Garuda CGK-JED
+                            </p>
+                            <p>
+                                <span class="price discount">$2.050</span>
+                                <span class="price">$2000</span>
+                            </p>
+                            <p>
+                                <span class="price message">Pesan s/d juli 2016</span>
+                            </p>
+
+
+                            <!-- <img src="http://placehold.it/350x300?text=1"> -->
+                        </div>
+                    </a>
+                    <a href="http://www.facebook.com">
+                        <div>
+                            <p>
+                                Swissotel Mecca
+                                Hyatt Medina
+                                Garuda CGK-JED
+                            </p>
+                            <p>
+                                <span class="price discount">$2.050</span>
+                                <span class="price">$2000</span>
+                            </p>
+                            <p>
+                                <span class="price message">Pesan s/d juli 2016</span>
+                            </p>
+
+
+                            <!-- <img src="http://placehold.it/350x300?text=1"> -->
+                        </div>
+                    </a>
+                    <a href="http://www.facebook.com">
+                        <div>
+                            <p>
+                                Swissotel Mecca
+                                Hyatt Medina
+                                Garuda CGK-JED
+                            </p>
+                            <p>
+                                <span class="price discount">$2.050</span>
+                                <span class="price">$2000</span>
+                            </p>
+                            <p>
+                                <span class="price message">Pesan s/d juli 2016</span>
+                            </p>
+
+
+                            <!-- <img src="http://placehold.it/350x300?text=1"> -->
+                        </div>
+                    </a>
+                    <a href="http://www.facebook.com">
+                        <div>
+                            <p>
+                                Swissotel Mecca
+                                Hyatt Medina
+                                Garuda CGK-JED
+                            </p>
+                            <p>
+                                <span class="price discount">$2.050</span>
+                                <span class="price">$2000</span>
+                            </p>
+                            <p>
+                                <span class="price message">Pesan s/d juli 2016</span>
+                            </p>
+
+
+                            <!-- <img src="http://placehold.it/350x300?text=1"> -->
+                        </div>
+                    </a>
+                    <a href="http://www.facebook.com">
+                        <div>
+                            <p>
+                                Swissotel Mecca
+                                Hyatt Medina
+                                Garuda CGK-JED
+                            </p>
+                            <p>
+                                <span class="price discount">$2.050</span>
+                                <span class="price">$2000</span>
+                            </p>
+                            <p>
+                                <span class="price message">Pesan s/d juli 2016</span>
+                            </p>
+
+
+                            <!-- <img src="http://placehold.it/350x300?text=1"> -->
+                        </div>
+                    </a>
+                    <a href="http://www.facebook.com">
+                        <div>
+                            <p>
+                                Swissotel Mecca
+                                Hyatt Medina
+                                Garuda CGK-JED
+                            </p>
+                            <p>
+                                <span class="price discount">$2.050</span>
+                                <span class="price">$2000</span>
+                            </p>
+                            <p>
+                                <span class="price message">Pesan s/d juli 2016</span>
+                            </p>
+
+
+                            <!-- <img src="http://placehold.it/350x300?text=1"> -->
+                        </div>
+                    </a>
                 </div>
-                <div class="col-sm-3">
-                    <p>Swissotel Mecca
-                        Hyatt Medina
-                        Garuda CGK-JED</p>
-                    <p>
-                        <span class="price discount">$2.050</span>
-                        <span class="price">$2000</span>
-                    </p>
-                    <p>
-                        <span class="price message">Pesan s/d juli 2016</span>
-                    </p>
-                </div>
-                <div class="col-sm-3">
-                    <p>Swissotel Mecca
-                        Hyatt Medina
-                        Garuda CGK-JED</p>
-                    <p>
-                        <span class="price discount">$2.050</span>
-                        <span class="price">$2000</span>
-                    </p>
-                    <p>
-                        <span class="price message">Pesan s/d juli 2016</span>
-                    </p>
-                </div>
-                <div class="col-sm-3">
-                    <p>Swissotel Mecca
-                        Hyatt Medina
-                        Garuda CGK-JED</p>
-                    <p>
-                        <span class="price discount">$2.050</span>
-                        <span class="price">$2000</span>
-                    </p>
-                    <p>
-                        <span class="price message">Pesan s/d juli 2016</span>
-                    </p>
-                </div>
+
+                {{--<div class="col-sm-3">--}}
+                    {{--<p>Swissotel Mecca--}}
+                        {{--Hyatt Medina--}}
+                        {{--Garuda CGK-JED</p>--}}
+                    {{--<p>--}}
+                        {{--<span class="price discount">$2.050</span>--}}
+                        {{--<span class="price">$2000</span>--}}
+                    {{--</p>--}}
+                    {{--<p>--}}
+                        {{--<span class="price message">Pesan s/d juli 2016</span>--}}
+                    {{--</p>--}}
+                {{--</div>--}}
+                {{--<div class="col-sm-3">--}}
+                    {{--<p>Swissotel Mecca--}}
+                        {{--Hyatt Medina--}}
+                        {{--Garuda CGK-JED</p>--}}
+                    {{--<p>--}}
+                        {{--<span class="price discount">$2.050</span>--}}
+                        {{--<span class="price">$2000</span>--}}
+                    {{--</p>--}}
+                    {{--<p>--}}
+                        {{--<span class="price message">Pesan s/d juli 2016</span>--}}
+                    {{--</p>--}}
+                {{--</div>--}}
+                {{--<div class="col-sm-3">--}}
+                    {{--<p>Swissotel Mecca--}}
+                        {{--Hyatt Medina--}}
+                        {{--Garuda CGK-JED</p>--}}
+                    {{--<p>--}}
+                        {{--<span class="price discount">$2.050</span>--}}
+                        {{--<span class="price">$2000</span>--}}
+                    {{--</p>--}}
+                    {{--<p>--}}
+                        {{--<span class="price message">Pesan s/d juli 2016</span>--}}
+                    {{--</p>--}}
+                {{--</div>--}}
+                {{--<div class="col-sm-3">--}}
+                    {{--<p>Swissotel Mecca--}}
+                        {{--Hyatt Medina--}}
+                        {{--Garuda CGK-JED</p>--}}
+                    {{--<p>--}}
+                        {{--<span class="price discount">$2.050</span>--}}
+                        {{--<span class="price">$2000</span>--}}
+                    {{--</p>--}}
+                    {{--<p>--}}
+                        {{--<span class="price message">Pesan s/d juli 2016</span>--}}
+                    {{--</p>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>
@@ -455,6 +630,57 @@
 @section('date-picker')
     <script src="{{ URL::asset('js/bootstrap-datepicker.js') }}"></script>
     {{--docs nya ada di sini : http://www.eyecon.ro/bootstrap-datepicker/#--}}
+
+    <script type="text/javascript">
+        $(document).on('ready', function() {
+
+            $(".not-responsive").slick({
+                dots: true,
+                infinite: true,
+                centerMode: true,
+                slidesToShow: 4,
+                slidesToScroll: 3
+            });
+
+            $(".promo-slick").slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                    // You can unslick at a given breakpoint now by adding:
+                    // settings: "unslick"
+                    // instead of a settings object
+                ]
+            });
+
+        });
+    </script>
+
     <script type="text/javascript">
         // When the document is ready
         $(document).ready(function () {

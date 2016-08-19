@@ -49,6 +49,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/landing-page.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/slick.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/slick-style.css') }}">
     <link rel="shortcut icon" href="{{ URL::asset('img/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ URL::asset('img/favicon.ico') }}" type="image/x-icon">
     @yield('angular-css')
