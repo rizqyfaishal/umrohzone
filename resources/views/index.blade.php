@@ -228,9 +228,9 @@
                 <div class="col-lg-4">
                     <div class="input-group">
                         {{Form::open(array('action'=>'PageController@index','id'=>'customise'))}}
-                        <input type="text" class="form-control" placeholder="Nomor HP atau Email" id="customise-contact">
                               <span class="input-group-btn">
-                                <button class="btn btn-orange" type="button" onclick="tempcheck()">Go!</button>
+                                  <input type="text" class="form-control" placeholder="Nomor HP atau Email" id="customise-contact">
+                                  <button class="btn btn-orange" type="button" onclick="tempcheck()">Go!</button>
                               </span>
                         {{Form::close()}}
                     </div><!-- /input-group -->

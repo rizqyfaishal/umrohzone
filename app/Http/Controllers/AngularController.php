@@ -62,6 +62,28 @@ class AngularController extends Controller
         ]);
     }
 
+    public function getHotelMekahLokasi($id){
+        $paket = Paket::find($id);
+        if(is_null($paket)){
+            abort(404);
+        }
+        return response()->json([
+            'status' => true,
+            'data' => $paket->hotelMekah->address
+        ]);
+    }
+
+    public function getHotelMadinahLokasi($id){
+        $paket = Paket::find($id);
+        if(is_null($paket)){
+            abort(404);
+        }
+        return response()->json([
+            'status' => true,
+            'data' => $paket->hotelMadinah->load('address')
+        ]);
+    }
+
     public function getPaketHotelMekahReview($id){
         $paket = Paket::find($id);
         if(is_null($paket)){
@@ -139,8 +161,28 @@ class AngularController extends Controller
         ]);
     }
 
-    public function getPeketFasilitas(){
+    public function getHotelMadinahFasilitas($id){
+        $paket = Paket::find($id);
+        if(is_null($paket)){
+            abort(404);
+        }
+        $category = $paket->hotelMadinah->fasilitas()->with('category')->orderBy('hotel_fasilitas_category_id')->get();
+        return response()->json([
+            'status' => true,
+            'data' => $category
+        ]);
+    }
 
+    public function getHotelMekahFasilitas($id){
+        $paket = Paket::find($id);
+        if(is_null($paket)){
+            abort(404);
+        }
+        $category = $paket->hotelMekah->fasilitas()->with('category')->orderBy('hotel_fasilitas_category_id')->get();
+        return response()->json([
+            'status' => true,
+            'data' => $category
+        ]);
     }
 
     public function checkEmailUnique($email){

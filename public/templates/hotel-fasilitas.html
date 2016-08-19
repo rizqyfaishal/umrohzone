@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="hotel-fasilitas">
+    <div class="row">
+        <div class="col-lg-3" ng-repeat="f in fasilitas">
+            <h4>{{ f.category_name }}</h4>
+            <div class="category-list">
+                <ul>
+                    <li ng-repeat="fn in f.data"><i class="fa fa-check">&nbsp;&nbsp;</i>{{ fn.name }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

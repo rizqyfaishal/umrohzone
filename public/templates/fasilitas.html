@@ -1,45 +1,21 @@
-<div role="tabpanel">
-    <div class="row bottom-bordered">
-        <div class="fasilitas-head">
-            <div class="col-lg-5">
-                <h5 class="text-left">Termasuk :</h5>
-            </div>
-            <div class="col-lg-2">
-                <h5 class="text-center">Yes/No</h5>
-            </div>
-            <div class="col-lg-5">
-                <h5 class="text-center">Keterangan</h5>
-            </div>
-        </div>
-        <div class="fasilitas-body">
-            <div class="col-lg-5">
-                <h5 class="text-left">Visa</h5>
-            </div>
-            <div class="col-lg-2">
-                <h5 class="text-center">Yes</h5>
-            </div>
-            <div class="col-lg-5">
-                <h5 class="text-center">-</h5>
-            </div>
-        </div>
-    </div>
-    <div class="row optional">
-        <div class="optional-head">
-            <div class="col-lg-12">
-                <h5 class="text-left">Optional :</h5>
-            </div>
-        </div>
-        <div class="optional-body">
-            {!! Form::open(['style' => 'padding:0;']) !!}
-            <div class="form-item">
-                <div class="col-lg-5">
-                    <h5 class="text-left">Surat Mahrom</h5>
-                </div>
-                <div class="col-lg-7">
-                    {!! Form::checkbox('surat_mahrom',null) !!}
-                </div>
-            </div>
-            {!! Form::close() !!}
-        </div>
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-stripped table-hover table-custom">
+            <thead>
+            <tr>
+                <td>Termasuk:</td>
+                <td class="text-center">Yes/No</td>
+                <td class="text-center">Keterangan</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="f in fasilitas">
+                <td>{{ f.name }}</td>
+                <td class="text-center">{{ f.choice ? 'Yes' : 'No' }}</td>
+                <td class="text-center">-</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+<hr>

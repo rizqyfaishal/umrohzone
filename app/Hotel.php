@@ -23,6 +23,7 @@ class Hotel extends Model
         return $this->belongsToMany('App\HotelFasilitas','hotel_hotel_fasilitas','hotel_id');
     }
 
+
     public function attachments(){
         return $this->morphMany('App\Attachment','attach');
     }

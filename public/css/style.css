@@ -5,6 +5,15 @@
 
 */
 
+.hotel-fasilitas {
+    padding: 1em;
+}
+
+.hotel-fasilitas .category-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
 /* ini kodingan luthfi*/
 .nav:not(.nav-tabs) {
     float: right;

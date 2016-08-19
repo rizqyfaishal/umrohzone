@@ -487,7 +487,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">Mahrom</a>
                                 </div>
                                 <div class="status-detail-item">
                                     <h5 class="first">Total Harga</h5>
-                                    <h5 class="second">{{ totalHarga }}</h5>
+                                    <h5 class="second">{{ paket.harga * count | currency }}</h5>
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <button class="btn btn-orange" data-toggle="modal" ng-click="showDetail()">
@@ -539,8 +539,8 @@ sagittis lacus vel augue laoreet rutrum faucibus.">Mahrom</a>
                         <td>{{ jamaah.fname }} {{ jamaah.mname == '-' ? '' : jamaah.mname }} {{ jamaah.lname == '-' ? '' :
                             jamaah.lname }}
                         </td>
-                        <td>{{ jamaah.upgrade_kamar }}</td>
-                        <td>{{ jamaah.asuransi_tambahan }}</td>
+                        <td>{{ jamaah.upgrade_kamar ? 'YA' : 'NO'}}</td>
+                        <td>{{ jamaah.asuransi_tambahan  ? 'YA' : 'NO' }}</td>
                         <td>{{ paket.harga }}</td>
                     </tr>
                     </tbody>

@@ -107,6 +107,11 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
         };
         return this;
     })
+    .directive('iFrane',function () {
+        return {
+            restrict: 'E',
+        }
+    })
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('paket-list', {
@@ -162,8 +167,8 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
             })
             .state('paket-details.home.fasilitas', {
                 url: '/fasilitas',
-                templateUrl: 'templates/persyaratan.html',
-                controller: 'PaketAgendaDetailsController'
+                templateUrl: 'templates/fasilitas.html',
+                controller: 'PaketFasilitasDetailsController'
             })
             .state('paket-details.home.persyaratan', {
                 url: '/persyaratan',
@@ -192,7 +197,7 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
             .state('paket-details.hotel-mekah.lokasi', {
                 url: '/lokasi',
                 templateUrl: 'templates/hotel-lokasi.html',
-                controller: 'HotelLokasiController'
+                controller: 'HotelMekahLokasiController'
             })
             .state('paket-details.hotel-mekah.foto', {
                 url: '/photos',
@@ -202,7 +207,7 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
             .state('paket-details.hotel-mekah.fasilitas', {
                 url: '/fasilitas',
                 templateUrl: 'templates/hotel-fasilitas.html',
-                controller: 'HotelFasilitasController'
+                controller: 'HotelMekahFasilitasController'
             })
             .state('paket-details.hotel-madinah.review', {
                 url: '/review',
@@ -212,7 +217,7 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
             .state('paket-details.hotel-madinah.lokasi', {
                 url: '/lokasi',
                 templateUrl: 'templates/hotel-lokasi.html',
-                controller: 'HotelLokasiController'
+                controller: 'HotelMadinahLokasiController'
             })
             .state('paket-details.hotel-madinah.foto', {
                 url: '/photos',
@@ -222,7 +227,7 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
             .state('paket-details.hotel-madinah.fasilitas', {
                 url: '/fasilitas',
                 templateUrl: 'templates/hotel-fasilitas.html',
-                controller: 'HotelFasilitasController'
+                controller: 'HotelMadinahFasilitasController'
             });
         $urlRouterProvider.otherwise('/1');
     })
@@ -309,6 +314,36 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
             $scope.data = data.data;
         })
     })
+    .controller('PaketFasilitasDetailsController',function ($http,$scope, Collection, PAKET_URL, $stateParams) {
+        Collection.setUrl(PAKET_URL + $stateParams.paketId + '/fasilitas');
+        Collection.getData().then(function (res) {
+            $scope.data = res.data;
+            $http.get('/fasilitas?json=true').then(function (res) {
+                $scope.fasilitas = res.data.data;
+                console.log($scope.data[0]);
+                var curr = 0;
+                for (var i =0;i<$scope.fasilitas.length;i++){
+                    if($scope.fasilitas[i].id == $scope.data[curr].id){
+                        $scope.fasilitas[i].choice = true;
+                        curr++;
+                    } else {
+                        $scope.fasilitas[i].choice = false;
+                    }
+                    if(curr >= $scope.data.length){
+                        break;
+                    }
+                }
+                console.log($scope.fasilitas);
+            });
+
+
+        });
+
+        $http.get('/fasilitas?json=true').then(function (res) {
+            $scope.fasilitas = res.data;
+            console.log($scope.fasilitas);
+        })
+    })
     .controller('PaketAgendaDetailsController',function ($scope,PAKET_URL,Collection,$stateParams) {
         $scope.paketId = $stateParams.paketId;
         Collection.setUrl(PAKET_URL + $scope.paketId + '/agenda');
@@ -316,12 +351,12 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
             $scope.data = res.data;
             // console.log($scope.data);
             var l = $scope.data.length;
-            var t = 97;
+            var t = 100;
             var i = 0;
             var arr = [];
             while (l>0){
                 arr[i] = {
-                    width: (l>6) ? '100%' : (l*(100/6)) + '%',
+                    width: (l>6) ? '96%' : (l*(16)) + '%',
                     height: (typeof arr[i-1] == 'undefined') ? t : arr[i-1].height + 252
                 };
                 l = l - 6;
@@ -357,10 +392,57 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
             });
         })
     })
-    .controller('HotelFasilitasController', function ($scope, $stateParams) {
-
+    .controller('HotelMekahFasilitasController', function ($scope, $stateParams,Collection,$stateParams,PAKET_URL) {
+        Collection.setUrl(PAKET_URL + $stateParams.paketId + '/hotelMekah/fasilitas');
+        Collection.getData().then(function (res) {
+            var arr = res.data;
+            var curr = 0;
+            var curr2 = -1;
+            var y = [];
+            for(var i = 0;i<arr.length;i++){
+                if(curr != arr[i].hotel_fasilitas_category_id){
+                    curr2++;
+                    curr = arr[i].hotel_fasilitas_category_id;
+                    y.push({
+                        category_name: arr[i].category.name,
+                        data: []
+                    });
+                }
+                y[curr2].data.push(arr[i]);
+            }
+            $scope.fasilitas = y;
+        })
     })
-    .controller('HotelLokasiController', function ($scope, $stateParams) {
+    .controller('HotelMadinahFasilitasController', function ($scope, $stateParams,Collection,$stateParams,PAKET_URL) {
+        Collection.setUrl(PAKET_URL + $stateParams.paketId + '/hotelMadinah/fasilitas');
+        Collection.getData().then(function (res) {
+            var arr = res.data;
+            var curr = 0;
+            var curr2 = -1;
+            var y = [];
+            for(var i = 0;i<arr.length;i++){
+                if(curr != arr[i].hotel_fasilitas_category_id){
+                    curr2++;
+                    curr = arr[i].hotel_fasilitas_category_id;
+                    y.push({
+                        category_name: arr[i].category.name,
+                        data: []
+                    });
+                }
+                y[curr2].data.push(arr[i]);
+            }
+            $scope.fasilitas = y;
+        })
+    })
+    .controller('HotelMekahLokasiController', function ($scope, $stateParams,$sce,PAKET_URL,$stateParams,Collection) {
+        Collection.setUrl(PAKET_URL + $stateParams.paketId + '/hotelMekah/lokasi');
+        Collection.getData().then(function (res) {
+            $scope.lokasi = res.data;
+            $scope.lokasi.google_map_url = $sce.trustAsResourceUrl($scope.lokasi.google_map_url);
+            console.log($sce.trustAsResourceUrl($scope.lokasi.google_map_url));
+        })
+    })
+    .controller('HotelMadinahLokasiController', function ($scope, $stateParams,$sce) {
 
     })
     .controller('PaketDetailsHomeController', function ($scope, $location, $stateParams) {
