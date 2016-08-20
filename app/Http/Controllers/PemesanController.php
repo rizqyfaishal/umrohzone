@@ -7,6 +7,7 @@ use App\Helper\RegistersUsers;
 use App\Paket;
 use App\Pemesan;
 use Hashids\Hashids;
+use App\Http\Requests;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

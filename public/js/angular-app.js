@@ -100,10 +100,12 @@ var app = angular.module('app', ['ui.router', 'ngAnimate', 'datatables'])
         };
         return this;
     })
-    .directive('iFrane',function () {
-        return {
-            restrict: 'E',
-        }
+    .factory('Token', function ($q, $http) {
+        var defer = $q.defer();
+        $http.get('/api/token').then(function (res) {
+            defer.resolve(res.data);
+        });
+        return defer.promise;
     })
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
